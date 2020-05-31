@@ -4,4 +4,5 @@
 | Päivämäärä | Työtunnit | Mitä tein  |
 | :---------:|:----------| :----------|
 | 30.5       | 1         | Repo init, lint config |
-| Yht.       | 1        | | 
+| 31.5       | 2         | surveySchema, mongoose validointi ja surveysService |
+| Yht.       | 3        | | 
