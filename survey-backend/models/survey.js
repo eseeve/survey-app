@@ -4,16 +4,16 @@ mongoose.set('useFindAndModify', false)
 
 const questionSchema = new mongoose.Schema(
   {
-    type: String,
-    title: String,
-    options: [String],
+    type: { type: String, required: true },
+    title: { type: String, minlength: 3, required: true },
+    options: { type: [String], required: true },
   }
 )
 
 const surveySchema = new mongoose.Schema(
   {
-    name: String,
-    questions: [questionSchema]
+    name: { type: String, minlength: 3, required: true },
+    questions: { type: [questionSchema], required: true },
   }
 )
 
