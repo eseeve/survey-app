@@ -12,6 +12,13 @@ surveysRouter.post('/', async (request, response) => {
   response.status(201).json(savedSurvey.toJSON())
 })
 
+surveysRouter.put('/:id', async (request, response) => {
+  const survey = request.body
+  const updatedSurvey = await Survey.findByIdAndUpdate(request.params.id, survey, { new: true })
+  response.json(updatedSurvey.toJSON())
+})
+
+
 surveysRouter.delete('/:id', async (request, response) => {
   await Survey.findByIdAndRemove(request.params.id)
   response.status(204).end()
