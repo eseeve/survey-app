@@ -6,6 +6,15 @@ surveysRouter.get('/', async (request, response) => {
   response.json(surveys.map(blog => blog.toJSON()))
 })
 
+surveysRouter.get('/:id', async (request, response) => {
+  const survey = await Survey.findById(request.params.id)
+  if (survey) {
+    response.json(survey.toJSON())
+  } else {
+    response.status(404).end()
+  }
+})
+
 surveysRouter.post('/', async (request, response) => {
   const survey = new Survey(request.body)
   const savedSurvey = await survey.save()
@@ -17,7 +26,6 @@ surveysRouter.put('/:id', async (request, response) => {
   const updatedSurvey = await Survey.findByIdAndUpdate(request.params.id, survey, { new: true })
   response.json(updatedSurvey.toJSON())
 })
-
 
 surveysRouter.delete('/:id', async (request, response) => {
   await Survey.findByIdAndRemove(request.params.id)

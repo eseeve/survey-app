@@ -7,6 +7,7 @@ const cors = require('cors')
 
 const config = require('./utils/config')
 const logger = require('./utils/logger')
+const middleware = require('./utils/middleware')
 const surveysRouter = require('./controllers/surveys')
 
 const app = express()
@@ -27,5 +28,8 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 app.use('/api/surveys', surveysRouter)
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 module.exports = app
