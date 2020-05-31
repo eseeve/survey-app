@@ -5,13 +5,14 @@ mongoose.set('useFindAndModify', false)
 const questionSchema = new mongoose.Schema(
   {
     type: String,
+    title: String,
     options: [String],
   }
 )
 
 const surveySchema = new mongoose.Schema(
   {
-    title: String,
+    name: String,
     questions: [questionSchema]
   }
 )

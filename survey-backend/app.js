@@ -7,6 +7,7 @@ const cors = require('cors')
 
 const config = require('./utils/config')
 const logger = require('./utils/logger')
+const surveysRouter = require('./controllers/surveys')
 
 const app = express()
 
@@ -20,14 +21,11 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     logger.error('error connection to MongoDB:', error.message)
   })
 
-morgan.token('data', (req) => {
-  if (req.method.toString() === 'POST')
-    return JSON.stringify(req.body)
-})
-
 app.use(cors())
 app.use(helmet())
 app.use(express.json())
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :data'))
+app.use(morgan('dev'))
+
+app.use('/api/surveys', surveysRouter)
 
 module.exports = app
