@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/surveys'
+const baseUrl = 'http://localhost:3001/api/surveys'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)

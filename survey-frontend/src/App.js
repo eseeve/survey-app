@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect  } from 'react'
 import './App.css'
+import { useDispatch } from 'react-redux'
 
-const App = () => (
-  <div>
-    <p>Hello world</p>
-  </div>
-)
+import { initializeSurveys } from './reducers/surveyReducer'
+import Surveys from './components/Surveys'
+
+const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(initializeSurveys())
+  }, [dispatch])
+
+  return  (
+    <div>
+      <h1>Surveys</h1>
+      <Surveys />
+    </div>
+  )
+}
 
 export default App

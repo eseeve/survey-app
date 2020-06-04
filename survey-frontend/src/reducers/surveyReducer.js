@@ -2,10 +2,10 @@ import surveyService from '../services/surveys'
 
 export const initializeSurveys = () => {
   return async dispatch => {
-    const Surveys = await surveyService.getAll()
+    const surveys = await surveyService.getAll()
     dispatch({
-      type: 'INIT',
-      data: Surveys,
+      type: 'INIT_SURVEYS',
+      data: surveys,
     })
   }
 }
@@ -33,7 +33,7 @@ export const removeSurvey = (survey) => {
 
 const surveyReducer = (state = [], action) => {
   switch(action.type) {
-  case 'INIT':
+  case 'INIT_SURVEYS':
     if (!action.data) {
       return null
     }
