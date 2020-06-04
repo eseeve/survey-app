@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-
-import Survey from './Survey'
+import { Link } from 'react-router-dom'
 
 const Surveys = () => {
   const surveys = useSelector(state => state)
@@ -12,12 +11,13 @@ const Surveys = () => {
 
   return(
     <div>
-      {surveys.map(survey =>
-        <Survey
-          key={survey.id}
-          survey={survey}
-        />
-      )}
+      <ul>
+        {surveys.map(survey =>
+          <li key={survey.id}>
+            <Link to={`/surveys/${survey.id}`}>{survey.name}</Link>
+          </li>
+        )}
+      </ul>
     </div>
   )
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 const Question = ({ question }) => {
   return (
@@ -23,7 +25,16 @@ const Questions = ({ questions }) => {
   )
 }
 
-const Survey = ({ survey }) => {
+const Survey = () => {
+  const surveys = useSelector(state => state)
+
+  const id = useParams().id
+  const survey = surveys.find(s => s.id === id)
+
+  if (!survey) {
+    return null
+  }
+
   return (
     <div>
       <h2>{survey.name}</h2>
