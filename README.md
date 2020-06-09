@@ -7,4 +7,5 @@
 | 31.5       | 2         | surveySchema, mongoose validointi ja surveysService |
 | 4.6        | 1         | Backendin testaus |
 |            | 1         | Frontend Redux init, Survey-komponentit |
-| Yht.       | 5         | | 
+| 9.6        | 3         | NewSurvey-lomake ja sen validointi  |
+| Yht.       | 8         | | 
