@@ -1,22 +1,71 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, FieldArray, reduxForm } from 'redux-form'
 
-const NewSurvey = ({ handleSubmit, value }) => {
+const renderField = ({ input, label, type }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} type={type} />
+    </div>
+  </div>
+)
+
+const renderOptions = ({ fields }) => (
+  <ul>
+    <li>
+      <button type="button" onClick={() => fields.push()}>
+        Add Option
+      </button>
+    </li>
+    {fields.map((option, index) => (
+      <li key={index}>
+        <Field
+          name={option}
+          type="text"
+          component={renderField}
+        />
+        <button type="button" onClick={() => fields.remove(index)}>Remove Option</button>
+      </li>
+    ))}
+  </ul>
+)
+
+const renderQuestions = ({ fields }) => (
+  <ul>
+    <li>
+      <button type="button" onClick={() => fields.push({})}>
+        Add Question
+      </button>
+    </li>
+    {fields.map((question, index) => (
+      <li key={index}>
+        <h4>Question #{index + 1}</h4>
+        <Field
+          name={`${question}.title`}
+          type="text"
+          component={renderField}
+          label="Question Title"
+        />
+        <button type="button" onClick={() => fields.remove(index)}>Remove Question</button>
+        <FieldArray name={`${question}.options`} component={renderOptions} />
+      </li>
+    ))}
+  </ul>
+)
+
+const NewSurvey = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
+      <Field
+        name="name"
+        type="text"
+        label="Survey name"
+        component={renderField}
+      />
+      <FieldArray name="questions" component={renderQuestions} />
       <div>
-        <label>Survey title</label>
-        <div>
-          <Field
-            name='title'
-            component='input'
-            type='text'
-            placeholder='Survey title'
-            value={value}
-          />
-        </div>
+        <button type="submit">Submit</button>
       </div>
-      <button type="submit">Submit</button>
     </form>
   )
 }

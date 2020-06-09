@@ -3,7 +3,7 @@ import './App.css'
 import { useDispatch } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 
-import { initializeSurveys } from './reducers/surveyReducer'
+import { initializeSurveys, createSurvey } from './reducers/surveyReducer'
 import Survey from './components/Survey'
 import Surveys from './components/Surveys'
 import NewSurvey from './components/NewSurvey'
@@ -17,6 +17,8 @@ const App = () => {
 
   const handleSubmit = (values) => {
     console.log(values)
+    values.questions.map(q => q.type = 'MultipleChoice')
+    dispatch(createSurvey(values))
   }
 
   return  (

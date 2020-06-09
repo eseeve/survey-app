@@ -1,6 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams, useHistory } from 'react-router-dom'
+
+import { removeSurvey } from '../reducers/surveyReducer'
 
 const Question = ({ question }) => {
   return (
@@ -27,9 +29,16 @@ const Questions = ({ questions }) => {
 
 const Survey = () => {
   const surveys = useSelector(state => state.surveys)
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   const id = useParams().id
   const survey = surveys.find(s => s.id === id)
+
+  const handleClick = () => {
+    dispatch(removeSurvey(survey))
+    history.push('/')
+  }
 
   if (!survey) {
     return null
@@ -39,6 +48,7 @@ const Survey = () => {
     <div>
       <h2>{survey.name}</h2>
       <Questions questions={survey.questions} />
+      <button onClick={handleClick}>Remove Survey</button>
     </div>
   )
 }
