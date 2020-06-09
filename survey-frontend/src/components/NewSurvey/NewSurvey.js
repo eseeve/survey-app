@@ -1,16 +1,18 @@
 import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
+import validate from './validate'
 
-const renderField = ({ input, label, type }) => (
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
     <label>{label}</label>
     <div>
       <input {...input} type={type} />
+      {touched && error && <div>{error}</div>}
     </div>
   </div>
 )
 
-const renderOptions = ({ fields }) => (
+const renderOptions = ({ fields, meta: { error } }) => (
   <ul>
     <li>
       <button type="button" onClick={() => fields.push()}>
@@ -27,15 +29,17 @@ const renderOptions = ({ fields }) => (
         <button type="button" onClick={() => fields.remove(index)}>Remove Option</button>
       </li>
     ))}
+    {error && <li className="error">{error}</li>}
   </ul>
 )
 
-const renderQuestions = ({ fields }) => (
+const renderQuestions = ({ fields, meta: { error, submitFailed } }) => (
   <ul>
     <li>
       <button type="button" onClick={() => fields.push({})}>
         Add Question
       </button>
+      {submitFailed && error && <span>{error}</span>}
     </li>
     {fields.map((question, index) => (
       <li key={index}>
@@ -53,7 +57,7 @@ const renderQuestions = ({ fields }) => (
   </ul>
 )
 
-const NewSurvey = ({ handleSubmit }) => {
+const NewSurvey = ({ handleSubmit, pristine, reset, submitting }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Field
@@ -64,12 +68,18 @@ const NewSurvey = ({ handleSubmit }) => {
       />
       <FieldArray name="questions" component={renderQuestions} />
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={submitting}>
+          Submit
+        </button>
+        <button type="button" disabled={pristine || submitting} onClick={reset}>
+          Clear Values
+        </button>
       </div>
     </form>
   )
 }
 
 export default reduxForm({
-  form: 'survey'
+  form: 'survey',
+  validate
 })(NewSurvey)

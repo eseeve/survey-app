@@ -6,7 +6,7 @@ import { Switch, Route } from 'react-router-dom'
 import { initializeSurveys, createSurvey } from './reducers/surveyReducer'
 import Survey from './components/Survey'
 import Surveys from './components/Surveys'
-import NewSurvey from './components/NewSurvey'
+import NewSurvey from './components/NewSurvey/NewSurvey'
 
 const App = () => {
   const dispatch = useDispatch()

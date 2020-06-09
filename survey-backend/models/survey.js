@@ -13,7 +13,7 @@ const questionSchema = new mongoose.Schema(
 const surveySchema = new mongoose.Schema(
   {
     name: { type: String, minlength: 3, required: true },
-    questions: { type: [questionSchema], required: true },
+    questions: { type: [questionSchema], maxlength: 10, required: true },
   }
 )
 
