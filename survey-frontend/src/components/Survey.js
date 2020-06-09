@@ -26,7 +26,7 @@ const Questions = ({ questions }) => {
 }
 
 const Survey = () => {
-  const surveys = useSelector(state => state)
+  const surveys = useSelector(state => state.surveys)
 
   const id = useParams().id
   const survey = surveys.find(s => s.id === id)

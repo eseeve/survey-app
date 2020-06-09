@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Surveys = () => {
-  const surveys = useSelector(state => state)
+  const surveys = useSelector(state => state.surveys)
 
   if (!surveys) {
     return null

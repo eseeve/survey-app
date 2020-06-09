@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom'
 import { initializeSurveys } from './reducers/surveyReducer'
 import Survey from './components/Survey'
 import Surveys from './components/Surveys'
+import NewSurvey from './components/NewSurvey'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,10 @@ const App = () => {
   useEffect(() => {
     dispatch(initializeSurveys())
   }, [dispatch])
+
+  const handleSubmit = (values) => {
+    console.log(values)
+  }
 
   return  (
     <div>
@@ -23,6 +28,8 @@ const App = () => {
         <Route path="/">
           <h1>Surveys</h1>
           <Surveys />
+          <h2>Create new survey</h2>
+          <NewSurvey onSubmit={handleSubmit} />
         </Route>
       </Switch>
     </div>
