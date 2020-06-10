@@ -10,7 +10,7 @@ const Question = ({ question }) => {
       <h4>{question.title}</h4>
       <ul>
         {question.options.map(o =>
-          <li key={o}>{o}</li>
+          <li key={o.option}>{o.option}, votes: {o.votes}</li>
         )}
       </ul>
     </div>
@@ -48,6 +48,7 @@ const Survey = () => {
     <div>
       <h2>{survey.name}</h2>
       <Questions questions={survey.questions} />
+      <div>times answered: {survey.answers}</div>
       <button onClick={handleClick}>Remove Survey</button>
     </div>
   )

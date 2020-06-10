@@ -22,7 +22,7 @@ const renderOptions = ({ fields, meta: { error } }) => (
     {fields.map((option, index) => (
       <li key={index}>
         <Field
-          name={option}
+          name={`${option}.option`}
           type="text"
           component={renderField}
         />
