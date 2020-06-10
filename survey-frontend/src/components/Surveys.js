@@ -14,7 +14,7 @@ const Surveys = () => {
       <ul>
         {surveys.map(survey =>
           <li key={survey.id}>
-            <Link to={`/surveys/${survey.id}`}>{survey.name}</Link>
+            {survey.name} <Link to={`/surveys/${survey.id}`}>Take survey</Link>
           </li>
         )}
       </ul>
