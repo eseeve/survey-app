@@ -3,54 +3,92 @@ const Survey = require('../models/survey')
 const initialSurveys = [
   {
     name: 'Food Survey',
+    answers: 0,
     questions: [
       {
-        type: 'MultipleChoice ',
-        title: 'What is your favorite ice cream? ',
+        type: 'MultipleChoice',
+        title: 'What is your favorite ice cream?',
         options: [
-          'Vanilla ',
-          'Chocolate ',
-          'Strawberry',
+          {
+            option: 'Vanilla',
+            votes: 0
+          },
+          {
+            option: 'Chocolate',
+            votes: 0
+          },
+          {
+            option: 'Strawberry',
+            votes: 0
+          }
         ]
       },
       {
-        type: 'MultipleChoice ',
-        title: 'What is your favorite restaurant? ',
+        type: 'MultipleChoice',
+        title: 'What is your favorite restaurant?',
         options: [
-          'Blanko ',
-          'Tintå ',
-          'Nerå ',
+          {
+            option: 'Blanko',
+            votes: 0
+          },
+          {
+            option: 'Tintå',
+            votes: 0
+          },
+          {
+            option: 'Nerå',
+            votes: 0
+          }
         ]
       }
     ]
   },
   {
     name: 'Animal Survey',
+    answers: 0,
     questions: [
       {
-        type: 'MultipleChoice ',
-        title: 'What is your favorite dog breed? ',
+        type: 'MultipleChoice',
+        title: 'What is your favorite dog breed?',
         options: [
-          'Corgi ',
-          'Golden retriever ',
-          'Pitbull ',
+          {
+            option: 'Corgi',
+            votes: 0
+          },
+          {
+            option: 'Golden retriever',
+            votes: 0
+          },
+          {
+            option: 'Pitbull',
+            votes: 0
+          }
         ]
       },
       {
-        type: 'MultipleChoice ',
-        title: 'What is your favorite cat breed? ',
+        type: 'MultipleChoice',
+        title: 'What is your favorite cat breed?',
         options: [
-          'Burma ',
-          'Ragdoll ',
-          'Siamese ',
+          {
+            option: 'Burma',
+            votes: 0
+          },
+          {
+            option: 'Ragdoll',
+            votes: 0
+          },
+          {
+            option: 'Siamese',
+            votes: 0
+          }
         ]
       }
     ]
-  },
+  }
 ]
 
 const nonExistingId = async () => {
-  const survey = new Survey({ name: 'willremovethissoon' })
+  const survey = new Survey({ name: 'willremovethissoon', answers: 0 })
   await survey.save()
   await survey.remove()
 

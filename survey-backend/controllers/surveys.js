@@ -30,7 +30,6 @@ surveysRouter.put('/:id', async (request, response) => {
 surveysRouter.delete('/:id', async (request, response) => {
   await Survey.findByIdAndRemove(request.params.id)
   response.status(204).end()
-
 })
 
 module.exports = surveysRouter

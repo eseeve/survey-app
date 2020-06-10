@@ -91,23 +91,42 @@ describe('when there is initially some surveys saved', () => {
     test('succeeds with valid data', async () => {
       const newSurvey = {
         name: 'Drink Survey',
+        answers: 0,
         questions: [
           {
             type: 'MultipleChoice ',
             title: 'What is your favorite cold drink? ',
             options: [
-              'Lemonade',
-              'Soda',
-              'Ice tea',
+              {
+                option: 'Lemonade',
+                votes: 0
+              },
+              {
+                option: 'Soda',
+                votes: 0
+              },
+              {
+                option: 'Ice tea',
+                votes: 0
+              }
             ]
           },
           {
             type: 'MultipleChoice ',
             title: 'What is your favorite hot drink? ',
             options: [
-              'Hot Cocoa',
-              'Coffee',
-              'Tea',
+              {
+                option: 'Hot Cocoa',
+                votes: 0
+              },
+              {
+                option: 'Coffee',
+                votes: 0
+              },
+              {
+                option: 'Tea',
+                votes: 0
+              }
             ]
           }
         ]
