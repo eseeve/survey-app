@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/eseeve/survey-app#readme",
   "dependencies": {
+    "babel-jest": "^24.9.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
@@ -38,7 +39,6 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "babel-jest": "^24.9.0",
     "eslint": "^6.6.0",
     "jest": "24.9.0",
     "nodemon": "^2.0.4",
