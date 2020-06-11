@@ -19,7 +19,7 @@ const Survey = () => {
   }
 
   const handleSubmit = (values) => {
-    dispatch(answerSurvey(id, values))
+    dispatch(answerSurvey(survey, values))
   }
 
   if (!survey) {

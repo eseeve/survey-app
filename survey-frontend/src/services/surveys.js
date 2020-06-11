@@ -11,10 +11,8 @@ const create = async newObject => {
   return response.data
 }
 
-const answer = async (id) => {
-  const survey = await axios.get(`${baseUrl}/${id}`)
-  const object = { ...survey.data, answers: survey.data.answers + 1 }
-  const response = await axios.put(`${baseUrl}/${id}`, object)
+const answer = async (object) => {
+  const response = await axios.put(`${baseUrl}/${object.id}`, object)
   return response.data
 }
 

@@ -21,15 +21,14 @@ export const createSurvey = (survey) => {
   }
 }
 
-export const answerSurvey = (id, values) => {
+export const answerSurvey = (survey, values) => {
   return async dispatch => {
-    const answeredSurvey = await surveyService.answer(id)
+    console.log(values)
+    const toAnswer = { ...survey, answers: survey.answers + 1 }
+    const data = await surveyService.answer(toAnswer)
     dispatch({
       type: 'ANSWER',
-      data: {
-        survey: answeredSurvey,
-        values
-      }
+      data
     })
   }
 }
@@ -55,19 +54,10 @@ const surveyReducer = (state = [], action) => {
   case 'CREATE':
     return [...state, action.data]
   case 'ANSWER':
-    const survey = action.data.survey
-    const id = survey.id
-    const surveyToAnswer = state.find(s => s.id === id)
-    const answeredSurvey = {
-      ...surveyToAnswer,
-      answers: surveyToAnswer.answers + 1
-    }
-    console.log(answeredSurvey)
-    return state.map(s =>
-      s.id !== id ? s : answeredSurvey
-    )
+    const answered = action.data
+    return state.map(s => s.id === answered.id ? answered : s)
   case 'REMOVE':
-    return state.filter(b => b.id!==action.survey.id)
+    return state.filter(s => s.id!==action.survey.id)
   default:
     return state
   }
