@@ -3,7 +3,9 @@ const express = require('express')
 require('express-async-errors')
 const helmet = require('helmet')
 const morgan = require('morgan')
+const path = require('path')
 const cors = require('cors')
+
 
 const config = require('./utils/config')
 const logger = require('./utils/logger')
@@ -26,7 +28,7 @@ app.use(cors())
 app.use(helmet())
 app.use(morgan('dev'))
 app.use(express.json())
-app.use(express.static('build'))
+app.use(express.static(path.resolve(__dirname, '../survey-frontend/build')))
 
 app.use('/api/surveys', surveysRouter)
 
