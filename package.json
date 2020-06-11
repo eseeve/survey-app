@@ -4,11 +4,16 @@
   "description": "Survey app lets you make surveys and collect results from them.",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
-    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start": "cross-env NODE_ENV=production node server",
+    "dev": "cross-env NODE_ENV=development nodemon server",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "build": "cd survey-frontend/ && npm install && npm run build",
     "lint": "eslint ."
   },
+  "cacheDirectories": [
+    "node_modules",
+    "survey-frontend/node_modules"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eseeve/survey-app.git"
@@ -30,8 +35,9 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "eslint": "^7.1.0",
-    "jest": "^26.0.1",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.6.0",
+    "jest": "24.9.0",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   },

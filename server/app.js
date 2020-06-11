@@ -24,8 +24,9 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 app.use(cors())
 app.use(helmet())
-app.use(express.json())
 app.use(morgan('dev'))
+app.use(express.json())
+app.use(express.static('build'))
 
 app.use('/api/surveys', surveysRouter)
 
