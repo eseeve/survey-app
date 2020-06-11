@@ -1,4 +1,6 @@
 # Survey App - FullStack harjoitustyö
+## Linkki appiin Herokussa:  
+[Survey App](https://survey-app-seeve.herokuapp.com/)
 ## Työaikakirjanpito
 
 | Päivämäärä | Työtunnit | Mitä tein  |
@@ -11,5 +13,5 @@
 | 10.6       | 2         | SurveyScheman muutos, Frontendin refaktorointi  |
 | 11.6       | 3         | Surveyn täyttäminen, vastausten tallentaminen ja notifikaatiot  |
 |            | 1         | Refaktorointi |
-|            | 1         | Heroku setup  |
-| Yht.       | 15        | | 
+|            | 2         | Heroku setup  |
+| Yht.       | 16        | | 
