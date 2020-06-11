@@ -20,6 +20,7 @@ const Survey = () => {
 
   const handleSubmit = (values) => {
     dispatch(answerSurvey(survey, values))
+    history.push('/')
   }
 
   if (!survey) {
