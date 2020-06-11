@@ -15,6 +15,10 @@ const App = () => {
     dispatch(initializeSurveys())
   }, [dispatch])
 
+  const handleSubmit = (values) => {
+    console.log(values)
+  }
+
   return  (
     <div>
       <Switch>
@@ -22,7 +26,7 @@ const App = () => {
           <NewSurvey />
         </Route>
         <Route path="/surveys/:id">
-          <Survey />
+          <Survey onSubmit={handleSubmit}/>
         </Route>
         <Route path="/">
           <h1>Surveys</h1>

@@ -20,7 +20,6 @@ const Surveys = () => {
       </ul>
     </div>
   )
-
 }
 
 export default Surveys

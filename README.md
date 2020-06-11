@@ -9,4 +9,4 @@
 |            | 1         | Frontend Redux init, Survey-komponentit |
 | 9.6        | 3         | NewSurvey-lomake ja sen validointi  |
 | 10.6       | 2         | SurveyScheman muutos, Frontendin refaktorointi  |
-| Yht.       | 8         | | 
+| Yht.       | 10        | | 

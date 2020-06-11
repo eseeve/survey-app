@@ -80,6 +80,6 @@ const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
 }
 
 export default reduxForm({
-  form: 'survey',
+  form: 'newsurvey',
   validate
 })(SurveyForm)
