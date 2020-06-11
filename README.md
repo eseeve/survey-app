@@ -9,4 +9,7 @@
 |            | 1         | Frontend Redux init, Survey-komponentit |
 | 9.6        | 3         | NewSurvey-lomake ja sen validointi  |
 | 10.6       | 2         | SurveyScheman muutos, Frontendin refaktorointi  |
-| Yht.       | 10        | | 
+| 11.6       | 3         | Surveyn täyttäminen, vastausten tallentaminen ja notifikaatiot  |
+|            | 1         | Refaktorointi |
+|            | 1         | Heroku setup  |
+| Yht.       | 15        | | 
