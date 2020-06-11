@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
 
 import { initializeSurveys } from './reducers/surveyReducer'
+import NewSurvey from './components/NewSurvey/NewSurvey'
 import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
-import NewSurvey from './components/NewSurvey/NewSurvey'
+import Notification from './components/Notification'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ const App = () => {
         </Route>
         <Route path="/">
           <h1>Surveys</h1>
+          <Notification />
           <Surveys />
           <Link to={'/surveys/new'}>Create a new survey</Link>
         </Route>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 
 import { removeSurvey, answerSurvey } from '../../reducers/surveyReducer'
+import { setNotification } from '../../reducers/notificationReducer'
 import TakeSurvey from './TakeSurvey'
 
 const Survey = () => {
@@ -20,6 +21,7 @@ const Survey = () => {
 
   const handleSubmit = (values) => {
     dispatch(answerSurvey(survey, values))
+    dispatch(setNotification(`Your answers to the survey '${survey.name}' were saved!`, 5))
     history.push('/')
   }
 

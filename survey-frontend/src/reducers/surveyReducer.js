@@ -1,11 +1,27 @@
-/* eslint-disable no-case-declarations */
 import surveyService from '../services/surveys'
+
+const byAnswers = (s1, s2) => s2.answers - s1.answers
+
+const surveyReducer = (state = [], action) => {
+  switch(action.type) {
+  case 'INIT':
+    return action.data.sort(byAnswers)
+  case 'CREATE':
+    return [...state, action.data]
+  case 'ANSWER':
+    return state.map(s => s.id === action.data.id ? action.data : s).sort(byAnswers)
+  case 'REMOVE':
+    return state.filter(s => s.id !== action.survey.id)
+  default:
+    return state
+  }
+}
 
 export const initializeSurveys = () => {
   return async dispatch => {
     const surveys = await surveyService.getAll()
     dispatch({
-      type: 'INIT_SURVEYS',
+      type: 'INIT',
       data: surveys,
     })
   }
@@ -43,25 +59,6 @@ export const removeSurvey = (survey) => {
       data,
       survey
     })
-  }
-}
-
-const surveyReducer = (state = [], action) => {
-  switch(action.type) {
-  case 'INIT_SURVEYS':
-    if (!action.data) {
-      return null
-    }
-    return action.data
-  case 'CREATE':
-    return [...state, action.data]
-  case 'ANSWER':
-    const answered = action.data
-    return state.map(s => s.id === answered.id ? answered : s)
-  case 'REMOVE':
-    return state.filter(s => s.id !== action.survey.id)
-  default:
-    return state
   }
 }
 
