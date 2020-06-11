@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
 
 import { initializeSurveys } from './reducers/surveyReducer'
-import Survey from './components/Survey'
+import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
 import NewSurvey from './components/NewSurvey/NewSurvey'
 
@@ -15,10 +15,6 @@ const App = () => {
     dispatch(initializeSurveys())
   }, [dispatch])
 
-  const handleSubmit = (values) => {
-    console.log(values)
-  }
-
   return  (
     <div>
       <Switch>
@@ -26,7 +22,7 @@ const App = () => {
           <NewSurvey />
         </Route>
         <Route path="/surveys/:id">
-          <Survey onSubmit={handleSubmit}/>
+          <Survey />
         </Route>
         <Route path="/">
           <h1>Surveys</h1>

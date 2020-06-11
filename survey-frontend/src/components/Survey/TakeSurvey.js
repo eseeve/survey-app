@@ -1,9 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
-
-import { removeSurvey } from '../reducers/surveyReducer'
 
 const Option = ({ option, title }) => {
   return (
@@ -44,18 +40,7 @@ const Questions = ({ questions }) => {
   )
 }
 
-const Survey = ({ handleSubmit, pristine, submitting }) => {
-  const surveys = useSelector(state => state.surveys)
-  const dispatch = useDispatch()
-  const history = useHistory()
-
-  const id = useParams().id
-  const survey = surveys.find(s => s.id === id)
-
-  const handleClick = () => {
-    dispatch(removeSurvey(survey))
-    history.push('/')
-  }
+const TakeSurvey = ({ survey, handleSubmit, pristine, submitting }) => {
 
   if (!survey) {
     return null
@@ -63,7 +48,6 @@ const Survey = ({ handleSubmit, pristine, submitting }) => {
 
   return (
     <div>
-      <h1>{survey.name}</h1>
       <form onSubmit={handleSubmit}>
         <Questions questions={survey.questions} />
         <div>
@@ -73,11 +57,10 @@ const Survey = ({ handleSubmit, pristine, submitting }) => {
         </div>
       </form>
       <div>times answered: {survey.answers}</div>
-      <button onClick={handleClick}>Remove Survey</button>
     </div>
   )
 }
 
 export default reduxForm({
-  form: 'survey'
-})(Survey)
+  form: 'takeSurvey'
+})(TakeSurvey)
