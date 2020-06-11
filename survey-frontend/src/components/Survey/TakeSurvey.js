@@ -6,7 +6,7 @@ const Option = ({ option, title }) => {
     <div>
       <label>
         <Field
-          name={title}
+          name={`answers.${title}`}
           component="input"
           type="radio"
           value={option.option}

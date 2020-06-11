@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 
-import { removeSurvey } from '../../reducers/surveyReducer'
+import { removeSurvey, answerSurvey } from '../../reducers/surveyReducer'
 import TakeSurvey from './TakeSurvey'
 
 const Survey = () => {
@@ -19,8 +19,7 @@ const Survey = () => {
   }
 
   const handleSubmit = (values) => {
-    console.log(values)
-    console.log(id)
+    dispatch(answerSurvey(id, values))
   }
 
   if (!survey) {

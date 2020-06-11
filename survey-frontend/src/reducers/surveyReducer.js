@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import surveyService from '../services/surveys'
 
 export const initializeSurveys = () => {
@@ -10,12 +11,25 @@ export const initializeSurveys = () => {
   }
 }
 
-export const createSurvey = (content) => {
+export const createSurvey = (survey) => {
   return async dispatch => {
-    const data = await surveyService.create(content)
+    const data = await surveyService.create(survey)
     dispatch({
       type: 'CREATE',
       data
+    })
+  }
+}
+
+export const answerSurvey = (id, values) => {
+  return async dispatch => {
+    const answeredSurvey = await surveyService.answer(id)
+    dispatch({
+      type: 'ANSWER',
+      data: {
+        survey: answeredSurvey,
+        values
+      }
     })
   }
 }
@@ -40,6 +54,18 @@ const surveyReducer = (state = [], action) => {
     return action.data
   case 'CREATE':
     return [...state, action.data]
+  case 'ANSWER':
+    const survey = action.data.survey
+    const id = survey.id
+    const surveyToAnswer = state.find(s => s.id === id)
+    const answeredSurvey = {
+      ...surveyToAnswer,
+      answers: surveyToAnswer.answers + 1
+    }
+    console.log(answeredSurvey)
+    return state.map(s =>
+      s.id !== id ? s : answeredSurvey
+    )
   case 'REMOVE':
     return state.filter(b => b.id!==action.survey.id)
   default:
