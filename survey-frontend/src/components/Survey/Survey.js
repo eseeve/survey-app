@@ -18,7 +18,7 @@ const Survey = () => {
   const handleSubmit = (values) => {
     if (Object.keys(values).length < survey.questions.length) {
       throw new SubmissionError({
-        _error: 'Answer all of the questions.'
+        _error: 'You must answer to all questions'
       })
     } else {
       dispatch(answerSurvey(survey, values))

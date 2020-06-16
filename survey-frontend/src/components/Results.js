@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch  } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
 
 import { removeSurvey } from '../reducers/surveyReducer'
 
@@ -48,11 +49,20 @@ const Results = () => {
 
   const total = survey.answers
 
+  if (total === 0) {
+    return (
+    <div>
+      <h1>{survey.name}</h1>
+      No answers yet.
+    </div>
+    )
+  }
+
   return(
     <div>
       <h1>{survey.name}</h1>
       <Questions questions={survey.questions} total={total}/>
-      <button onClick={handleClick}>Remove Survey</button>
+      <Button color='red' size='tiny' onClick={handleClick}>Delete Survey</Button>
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { Form, Button } from 'semantic-ui-react'
 
 const Option = ({ option, title }) => {
   return (
-    <div>
+    <div style={{marginTop: '5px'}}>
       <label>
         <Field
           name={`${title}`}
@@ -19,8 +20,8 @@ const Option = ({ option, title }) => {
 
 const Question = ({ question }) => {
   return (
-    <div>
-      <label>{question.title}</label>
+    <div style={{marginTop: '10px', marginBottom: '10px'}}>
+      <strong style={{fontSize: '16px'}}>{question.title}</strong>
       <div>
         {question.options.map(o =>
           <Option key={o.option} option={o} title={question.title}/>
@@ -48,16 +49,15 @@ const TakeSurvey = ({ survey, handleSubmit, submitting, error }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Questions questions={survey.questions} />
-        {error && <strong>{error}</strong>}
+        {error && <div style={{color: 'red'}}>{error}</div>}
         <div>
-          <button type="submit" disabled={submitting}>
+          <Button primary size='small' style={{marginTop: '10px'}} type="submit" disabled={submitting}>
             Submit
-          </button>
+          </Button>
         </div>
-      </form>
-      <div>times answered: {survey.answers}</div>
+      </Form>
     </div>
   )
 }
