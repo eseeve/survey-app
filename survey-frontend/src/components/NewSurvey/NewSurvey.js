@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { Header } from 'semantic-ui-react'
 
 import { createSurvey } from '../../reducers/surveyReducer'
 import SurveyForm from './SurveyForm'
@@ -21,7 +22,7 @@ const NewSurvey = () => {
 
   return (
     <div>
-      <h2>Create new survey</h2>
+      <Header as='h1' style={{marginTop: '10px'}}>Create new survey</Header>
       <SurveyForm onSubmit={handleSubmit} />
     </div>
   )
