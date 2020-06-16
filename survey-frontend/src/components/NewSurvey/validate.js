@@ -23,8 +23,10 @@ const validate = values => {
       if (question && question.options && question.options.length) {
         const optionArrayErrors = []
         question.options.forEach((option, optionIndex) => {
-          if (!option || !option.length) {
-            optionArrayErrors[optionIndex] = 'Required'
+          const optionErrors = {}
+          if (!option || !option.option) {
+            optionErrors.option = 'Required'
+            optionArrayErrors[optionIndex] = optionErrors
           }
         })
         if (optionArrayErrors.length) {
