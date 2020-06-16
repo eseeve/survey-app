@@ -14,4 +14,6 @@
 | 11.6       | 3         | Surveyn täyttäminen, vastausten tallentaminen ja notifikaatiot  |
 |            | 1         | Refaktorointi |
 |            | 2         | Heroku setup  |
-| Yht.       | 16        | | 
+| 16.6       | 1         | Results-sivu ja refaktorointi |
+|            | 2         | Semantic UI käyttöönotto ja tutustuminen, UI parantelu |
+| Yht.       | 19        | | 
