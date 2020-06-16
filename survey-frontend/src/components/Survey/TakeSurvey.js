@@ -40,7 +40,7 @@ const Questions = ({ questions }) => {
   )
 }
 
-const TakeSurvey = ({ survey, handleSubmit, pristine, submitting }) => {
+const TakeSurvey = ({ survey, handleSubmit, submitting, error }) => {
 
   if (!survey) {
     return null
@@ -50,8 +50,9 @@ const TakeSurvey = ({ survey, handleSubmit, pristine, submitting }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <Questions questions={survey.questions} />
+        {error && <strong>{error}</strong>}
         <div>
-          <button type="submit" disabled={pristine || submitting}>
+          <button type="submit" disabled={submitting}>
             Submit
           </button>
         </div>
