@@ -11,7 +11,6 @@ const NewSurvey = () => {
   const history = useHistory()
 
   const handleSubmit = (values) => {
-    console.log(values)
     values.questions.map(q => q.type = 'MultipleChoice')
     values.answers = 0
     values.questions.map(q => q.options.map(o => o.votes = 0))

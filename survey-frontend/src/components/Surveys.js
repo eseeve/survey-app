@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Segment, Button } from 'semantic-ui-react'
 
 const Surveys = () => {
   const surveys = useSelector(state => state.surveys)
@@ -15,15 +16,15 @@ const Surveys = () => {
 
   return(
     <div>
-      <ul>
+      <Segment.Group>
         {surveys.map(survey =>
-          <li key={survey.id}>
-            {survey.name} 
-            <Link to={`/surveys/${survey.id}`}>Take survey</Link>  
-            <Link to={`/surveys/${survey.id}/results`}>Results</Link>
-          </li>
-        )}
-      </ul>
+            <Segment key={survey.id} >
+              {survey.name} 
+              <Button primary as={Link} to={`/surveys/${survey.id}`} floated='right'>Take survey</Button>
+              <p style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>Results</Link></p>
+            </Segment>
+          )}
+      </Segment.Group>
     </div>
   )
 }
