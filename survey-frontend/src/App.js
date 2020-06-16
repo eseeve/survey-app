@@ -5,9 +5,10 @@ import { Switch, Route, Link } from 'react-router-dom'
 
 import { initializeSurveys } from './reducers/surveyReducer'
 import NewSurvey from './components/NewSurvey/NewSurvey'
+import Notification from './components/Notification'
 import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
-import Notification from './components/Notification'
+import Results from './components/Results'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,9 @@ const App = () => {
   return  (
     <div>
       <Switch>
+        <Route path="/surveys/:id/results">
+          <Results />
+        </Route>
         <Route path="/surveys/new">
           <NewSurvey />
         </Route>

@@ -9,12 +9,18 @@ const Surveys = () => {
     return null
   }
 
+  if (surveys.length === 0) {
+    return <div>No surveys yet</div>
+  }
+
   return(
     <div>
       <ul>
         {surveys.map(survey =>
           <li key={survey.id}>
-            {survey.name} <Link to={`/surveys/${survey.id}`}>Take survey</Link>
+            {survey.name} 
+            <Link to={`/surveys/${survey.id}`}>Take survey</Link>  
+            <Link to={`/surveys/${survey.id}/results`}>Results</Link>
           </li>
         )}
       </ul>
