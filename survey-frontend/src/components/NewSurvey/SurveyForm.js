@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { Button, Form } from 'semantic-ui-react'
+import { TextField } from '../FormField'
 
 import validate from './validate'
 
@@ -14,7 +15,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
   </div>
 )
 
-const renderOptions = ({ fields, meta: { error } }) => (
+const Options = ({ fields, meta: { error } }) => (
   <ul>
     <li>
       <button type="button" onClick={() => fields.push()}>
@@ -35,7 +36,7 @@ const renderOptions = ({ fields, meta: { error } }) => (
   </ul>
 )
 
-const renderQuestions = ({ fields, meta: { error, submitFailed } }) => (
+const Questions = ({ fields, meta: { error, submitFailed } }) => (
   <div>
     <Button primary size='small' type="button" style={{marginTop: '10px'}} onClick={() => fields.push({})}>
       Add Question
@@ -52,7 +53,7 @@ const renderQuestions = ({ fields, meta: { error, submitFailed } }) => (
             label="Question Title"
           />
           <button type="button" onClick={() => fields.remove(index)}>Remove Question</button>
-          <FieldArray name={`${question}.options`} component={renderOptions} />
+          <FieldArray name={`${question}.options`} component={Options} />
         </li>
       ))}
     </ul>
@@ -64,11 +65,10 @@ const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
     <Form onSubmit={handleSubmit}>
       <Field
         name="name"
-        type="text"
         label="Survey name"
-        component={renderField}
+        component={TextField}
       />
-      <FieldArray name="questions" component={renderQuestions} />
+      <FieldArray name="questions" component={Questions} />
       <div>
         <Button color='green' size='small' type="submit" disabled={submitting}>
           Submit

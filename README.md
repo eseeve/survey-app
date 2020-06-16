@@ -1,5 +1,5 @@
 # Survey App - FullStack harjoitustyö
-## Linkki appiin Herokussa:  
+## Linkki appiin (Heroku):  
 [Survey App](https://survey-app-seeve.herokuapp.com/)
 ## Työaikakirjanpito
 
