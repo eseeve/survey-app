@@ -2,6 +2,9 @@ import React from 'react'
 import { useSelector, useDispatch  } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
+import {
+  PieChart, Pie, Legend, Tooltip,
+} from 'recharts'
 
 import { removeSurvey } from '../reducers/surveyReducer'
 
@@ -9,13 +12,10 @@ const Question = ({ question, total }) => {
   return (
     <div>
       <h4>{question.title}</h4>
-      <ul>
-        {question.options.map(o => 
-         <li key={o.option}>
-           {o.option}, {o.votes/total * 100} % of people answered this
-          </li>
-        )}
-      </ul>
+      <PieChart width={400} height={400}>
+        <Pie dataKey="votes" isAnimationActive={false} data={question.options} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
+        <Tooltip />
+      </PieChart>
     </div>
   )
 }
