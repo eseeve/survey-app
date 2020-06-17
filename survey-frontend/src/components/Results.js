@@ -2,20 +2,30 @@ import React from 'react'
 import { useSelector, useDispatch  } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
-import {
-  PieChart, Pie, Legend, Tooltip,
-} from 'recharts'
+import Chart from "react-google-charts"
 
 import { removeSurvey } from '../reducers/surveyReducer'
 
 const Question = ({ question, total }) => {
+  let data = question.options.map(o => {
+    return [
+      o.option,
+      o.votes
+    ]
+  })
+  data.unshift(['Option', 'Votes'])
   return (
     <div>
       <h4>{question.title}</h4>
-      <PieChart width={400} height={400}>
-        <Pie dataKey="votes" isAnimationActive={false} data={question.options} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
-        <Tooltip />
-      </PieChart>
+      <div>{total} answers</div>
+      <Chart
+        width={'500px'}
+        height={'300px'}
+        chartType="PieChart"
+        loader={<div>Loading Chart</div>}
+        data={data}
+        rootProps={{ 'data-testid': '1' }}
+      />
     </div>
   )
 }
