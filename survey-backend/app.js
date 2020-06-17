@@ -11,6 +11,7 @@ const config = require('./utils/config')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
 const surveysRouter = require('./controllers/surveys')
+const usersRouter = require('./controllers/users')
 
 const app = express()
 
@@ -30,6 +31,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, '../survey-frontend/build')))
 
+app.use('/api/users', usersRouter)
 app.use('/api/surveys', surveysRouter)
 
 app.use(middleware.unknownEndpoint)

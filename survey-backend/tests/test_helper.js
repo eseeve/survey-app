@@ -1,4 +1,5 @@
 const Survey = require('../models/survey')
+const User = require('../models/user')
 
 const initialSurveys = [
   {
@@ -100,6 +101,11 @@ const surveysInDb = async () => {
   return surveys.map(survey => survey.toJSON())
 }
 
+const usersInDb = async () => {
+  const users = await User.find({})
+  return users.map(u => u.toJSON())
+}
+
 module.exports = {
-  initialSurveys, nonExistingId, surveysInDb,
+  initialSurveys, nonExistingId, surveysInDb, usersInDb,
 }

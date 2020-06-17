@@ -1,5 +1,6 @@
 const surveysRouter = require('express').Router()
 const Survey = require('../models/survey')
+const User = require('../models/user')
 
 surveysRouter.get('/', async (request, response) => {
   const surveys = await Survey.find({})
@@ -17,7 +18,14 @@ surveysRouter.get('/:id', async (request, response) => {
 
 surveysRouter.post('/', async (request, response) => {
   const survey = new Survey(request.body)
+
+  const user = await User.findById(request.body.userId)
+  survey.user = user._id
+
   const savedSurvey = await survey.save()
+  user.surveys = user.surveys.concat(savedSurvey._id)
+  await user.save()
+
   response.status(201).json(savedSurvey.toJSON())
 })
 
