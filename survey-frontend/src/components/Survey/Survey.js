@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
+import { Header } from 'semantic-ui-react'
 
 import { answerSurvey } from '../../reducers/surveyReducer'
 import { setNotification } from '../../reducers/notificationReducer'
@@ -33,7 +34,7 @@ const Survey = () => {
 
   return (
     <div>
-      <h1>{survey.name}</h1>
+      <Header as='h1' style={{marginTop: '10px'}}>{survey.name}</Header>
       <TakeSurvey survey={survey} onSubmit={handleSubmit}/>
     </div>
   )

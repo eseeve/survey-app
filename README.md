@@ -16,4 +16,5 @@
 |            | 2         | Heroku setup  |
 | 16.6       | 2         | Refaktorointi |
 |            | 5         | Semantic UI käyttöönotto ja tutustuminen, UI parantelu |
-| Yht.       | 23        | | 
+| 17.6       | 2         | Graafi-kirjastoihin tutustuminen ja react-google-charts käyttöönotto |
+| Yht.       | 25        | | 

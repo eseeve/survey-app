@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch  } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+import { Button, Header } from 'semantic-ui-react'
 import Chart from "react-google-charts"
 
 import { removeSurvey } from '../reducers/surveyReducer'
@@ -17,14 +17,16 @@ const Question = ({ question, total }) => {
   return (
     <div>
       <h4>{question.title}</h4>
-      <div>{total} answers</div>
+      <div>{total} responses</div>
       <Chart
         width={'500px'}
         height={'300px'}
         chartType="PieChart"
         loader={<div>Loading Chart</div>}
+        options={{
+          tooltip: { trigger: 'selection' },
+        }}
         data={data}
-        rootProps={{ 'data-testid': '1' }}
       />
     </div>
   )
@@ -70,7 +72,7 @@ const Results = () => {
 
   return(
     <div>
-      <h1>{survey.name}</h1>
+      <Header as='h1' style={{marginTop: '10px'}}>{survey.name}</Header>
       <Questions questions={survey.questions} total={total}/>
       <Button color='red' size='tiny' onClick={handleClick}>Delete Survey</Button>
     </div>
