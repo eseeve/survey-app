@@ -3,7 +3,8 @@ const Survey = require('../models/survey')
 const User = require('../models/user')
 
 surveysRouter.get('/', async (request, response) => {
-  const surveys = await Survey.find({})
+  const surveys = await Survey
+    .find({}).populate('user', { username: 1, name: 1 })
   response.json(surveys.map(blog => blog.toJSON()))
 })
 
