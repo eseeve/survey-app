@@ -17,5 +17,5 @@
 | 16.6       | 2         | Refaktorointi |
 |            | 5         | Semantic UI käyttöönotto ja tutustuminen, UI parantelu |
 | 17.6       | 2         | Graafi-kirjastoihin tutustuminen ja react-google-charts käyttöönotto |
-|            | 2         | Backend käyttäjien hallinta  |
-| Yht.       | 27        | | 
+|            | 4         | Backend käyttäjien hallinta ja testaus  |
+| Yht.       | 29        | | 
