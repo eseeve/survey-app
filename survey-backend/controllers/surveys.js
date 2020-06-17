@@ -1,14 +1,16 @@
-const surveysRouter = require('express').Router()
+const router = require('express').Router()
+const jwt = require('jsonwebtoken')
+
 const Survey = require('../models/survey')
 const User = require('../models/user')
 
-surveysRouter.get('/', async (request, response) => {
+router.get('/', async (request, response) => {
   const surveys = await Survey
     .find({}).populate('user', { username: 1, name: 1 })
   response.json(surveys.map(blog => blog.toJSON()))
 })
 
-surveysRouter.get('/:id', async (request, response) => {
+router.get('/:id', async (request, response) => {
   const survey = await Survey.findById(request.params.id)
   if (survey) {
     response.json(survey.toJSON())
@@ -17,28 +19,54 @@ surveysRouter.get('/:id', async (request, response) => {
   }
 })
 
-surveysRouter.post('/', async (request, response) => {
+router.post('/', async (request, response) => {
   const survey = new Survey(request.body)
 
-  const user = await User.findById(request.body.userId)
-  survey.user = user._id
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)
 
+  if (!request.token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+
+  const user = await User.findById(decodedToken.id)
+
+  if (!survey.answers) {
+    survey.answers = 0
+    survey.questions.map(q => q.options.map(o => o.votes = 0))
+  }
+
+  survey.user = user
   const savedSurvey = await survey.save()
+
   user.surveys = user.surveys.concat(savedSurvey._id)
   await user.save()
 
   response.status(201).json(savedSurvey.toJSON())
 })
 
-surveysRouter.put('/:id', async (request, response) => {
+router.put('/:id', async (request, response) => {
   const survey = request.body
   const updatedSurvey = await Survey.findByIdAndUpdate(request.params.id, survey, { new: true })
   response.json(updatedSurvey.toJSON())
 })
 
-surveysRouter.delete('/:id', async (request, response) => {
-  await Survey.findByIdAndRemove(request.params.id)
+router.delete('/:id', async (request, response) => {
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)
+
+  if (!request.token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+
+  const user = await User.findById(decodedToken.id)
+  const survey = await Survey.findById(request.params.id)
+  if (survey.user.toString() !== user.id.toString()) {
+    return response.status(401).json({ error: 'only the creator can delete surveys' })
+  }
+
+  await survey.remove()
+  user.surveys = user.surveys.filter(s => s.id.toString() !== request.params.id.toString())
+  await user.save()
   response.status(204).end()
 })
 
-module.exports = surveysRouter
+module.exports = router

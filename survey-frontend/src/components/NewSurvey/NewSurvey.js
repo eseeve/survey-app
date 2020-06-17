@@ -13,8 +13,6 @@ const NewSurvey = () => {
 
   const handleSubmit = (values) => {
     values.questions.map(q => q.type = 'MultipleChoice')
-    values.answers = 0
-    values.questions.map(q => q.options.map(o => o.votes = 0))
     dispatch(createSurvey(values))
     dispatch(setNotification(`New survey '${values.name}' created!`, 5))
     history.push('/')

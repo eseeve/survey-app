@@ -90,7 +90,29 @@ describe('when there is initially some surveys saved', () => {
   })
 
   describe('addition of a new survey', () => {
-    test('succeeds with valid data', async () => {
+    let headers
+
+    beforeEach(async () => {
+      const newUser = {
+        username: 'janedoez',
+        name: 'Jane Z. Doe',
+        password: 'password',
+      }
+
+      await api
+        .post('/api/users')
+        .send(newUser)
+
+      const result = await api
+        .post('/api/login')
+        .send(newUser)
+
+      headers = {
+        'Authorization': `bearer ${result.body.token}`
+      }
+    })
+
+    test('succeeds with valid data and token', async () => {
       const newSurvey = {
         name: 'Drink Survey',
         answers: 0,
@@ -137,6 +159,7 @@ describe('when there is initially some surveys saved', () => {
       await api
         .post('/api/surveys')
         .send(newSurvey)
+        .set(headers)
         .expect(201)
         .expect('Content-Type', /application\/json/)
 
@@ -177,32 +200,113 @@ describe('when there is initially some surveys saved', () => {
       await api
         .post('/api/surveys')
         .send(newSurvey)
+        .set(headers)
         .expect(400)
+        .expect('Content-Type', /application\/json/)
 
       const surveysAtEnd = await helper.surveysInDb()
 
       expect(surveysAtEnd.length).toBe(helper.initialSurveys.length)
     })
-  })
 
-  describe('deletion of a  survey', () => {
-    test('succeeds with status code 204 if id is valid', async () => {
-      const surveysAtStart = await helper.surveysInDb()
-      const surveyToDelete =  surveysAtStart[0]
+    test('fails with status code 401 if token is missing', async () => {
+      const newSurvey = {
+        questions: [
+          {
+            type: 'MultipleChoice ',
+            title: 'What is your favorite cold drink? ',
+            options: [
+              'Lemonade',
+              'Soda',
+              'Ice tea',
+            ]
+          },
+          {
+            type: 'MultipleChoice ',
+            title: 'What is your favorite hot drink? ',
+            options: [
+              'Hot Cocoa',
+              'Coffee',
+              'Tea',
+            ]
+          }
+        ]
+      }
 
       await api
-        .delete(`/api/surveys/${surveyToDelete.id}`)
-        .expect(204)
+        .post('/api/surveys')
+        .send(newSurvey)
+        .expect(401)
+        .expect('Content-Type', /application\/json/)
+    })
 
-      const surveysAtEnd = await helper.surveysInDb()
+    describe('deletion of a  survey', () => {
+      let result
+      beforeEach(async () => {
+        const newSurvey = {
+          name: 'Drink Survey',
+          answers: 0,
+          questions: [
+            {
+              type: 'MultipleChoice ',
+              title: 'What is your favorite cold drink? ',
+              options: [
+                {
+                  option: 'Lemonade',
+                  votes: 0
+                },
+                {
+                  option: 'Soda',
+                  votes: 0
+                },
+                {
+                  option: 'Ice tea',
+                  votes: 0
+                }
+              ]
+            },
+            {
+              type: 'MultipleChoice ',
+              title: 'What is your favorite hot drink? ',
+              options: [
+                {
+                  option: 'Hot Cocoa',
+                  votes: 0
+                },
+                {
+                  option: 'Coffee',
+                  votes: 0
+                },
+                {
+                  option: 'Tea',
+                  votes: 0
+                }
+              ]
+            }
+          ]
+        }
 
-      expect(surveysAtEnd.length).toBe(
-        helper.initialSurveys.length - 1
-      )
+        result = await api
+          .post('/api/surveys')
+          .send(newSurvey)
+          .set(headers)
+      })
 
-      const names = surveysAtEnd.map(r => r.name)
+      test('succeeds with status code 204 if id is valid and authorized', async () => {
+        const surveyToDelete =  result.body
+        const initialSurveys = await helper.surveysInDb()
 
-      expect(names).not.toContain(surveyToDelete.name)
+        await api
+          .delete(`/api/surveys/${surveyToDelete.id}`)
+          .set(headers)
+          .expect(204)
+
+        const surveysAtEnd = await helper.surveysInDb()
+        expect(surveysAtEnd.length).toBe(initialSurveys.length - 1)
+
+        const names = surveysAtEnd.map(r => r.name)
+        expect(names).not.toContain(surveyToDelete.name)
+      })
     })
   })
 
@@ -257,6 +361,44 @@ describe('when there is initially some surveys saved', () => {
 
       const usersAtEnd = await helper.usersInDb()
       expect(usersAtEnd.length).toBe(usersAtStart.length)
+    })
+
+    test('creation fails with proper statuscode and message if username is too short', async () => {
+      const usersAtStart = await helper.usersInDb()
+
+      const newUser = {
+        username: 'r',
+        name: 'Superuser',
+        password: 'salainen',
+      }
+
+      const result = await api
+        .post('/api/users')
+        .send(newUser)
+        .expect(400)
+        .expect('Content-Type', /application\/json/)
+
+      expect(result.body.error).toContain(' is shorter than the minimum allowed length (3)')
+
+      const usersAtEnd = await helper.usersInDb()
+      expect(usersAtEnd).toHaveLength(usersAtStart.length)
+    })
+
+
+    test('creation fails with proper statuscode and message if password is too short', async () => {
+      const newUser = {
+        username: 'janedoe',
+        name: 'Jane Doe',
+        password: 'p',
+      }
+
+      const result = await api
+        .post('/api/users')
+        .send(newUser)
+        .expect(400)
+        .expect('Content-Type', /application\/json/)
+
+      expect(result.body.error).toContain('password must have min length of 3')
     })
   })
 })

@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt')
-const usersRouter = require('express').Router()
+const router = require('express').Router()
 const User = require('../models/user')
 
-usersRouter.get('/', async (request, response) => {
+router.get('/', async (request, response) => {
   const users = await User
     .find({})
     .populate('surveys', { name: 1,  answers: 1 })
@@ -10,12 +10,12 @@ usersRouter.get('/', async (request, response) => {
   response.json(users.map(u => u.toJSON()))
 })
 
-usersRouter.post('/', async (request, response) => {
+router.post('/', async (request, response) => {
   const { password, name, username } = request.body
 
   if ( !password || password.length < 3 ) {
     return response.status(400).send({
-      error: 'password must min length 3'
+      error: 'password must have min length of 3'
     })
   }
 
@@ -32,9 +32,9 @@ usersRouter.post('/', async (request, response) => {
   response.json(savedUser)
 })
 
-usersRouter.delete('/:id', async (request, response) => {
+router.delete('/:id', async (request, response) => {
   await User.findByIdAndRemove(request.params.id)
   response.status(204).end()
 })
 
-module.exports = usersRouter
+module.exports = router
