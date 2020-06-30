@@ -6,16 +6,15 @@ router.get('/', async (request, response) => {
   const users = await User
     .find({})
     .populate('surveys', { name: 1,  answers: 1 })
-
   response.json(users.map(u => u.toJSON()))
 })
 
 router.post('/', async (request, response) => {
   const { password, name, username } = request.body
 
-  if ( !password || password.length < 3 ) {
+  if ( !password || password.length < 5 ) {
     return response.status(400).send({
-      error: 'password must have min length of 3'
+      error: 'password must have min length of 5'
     })
   }
 

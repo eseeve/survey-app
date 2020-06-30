@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import notificationReducer from './reducers/notificationReducer'
 import surveyReducer from './reducers/surveyReducer'
 import userReducer from './reducers/userReducer'
-import usersReducer from './reducers/userReducer'
+import usersReducer from './reducers/usersReducer'
 
 
 const rootReducer = combineReducers ({

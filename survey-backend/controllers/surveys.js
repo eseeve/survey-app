@@ -7,7 +7,7 @@ const User = require('../models/user')
 router.get('/', async (request, response) => {
   const surveys = await Survey
     .find({}).populate('user', { username: 1, name: 1 })
-  response.json(surveys.map(blog => blog.toJSON()))
+  response.json(surveys.map(s => s.toJSON()))
 })
 
 router.get('/:id', async (request, response) => {

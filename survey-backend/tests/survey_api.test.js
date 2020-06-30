@@ -326,7 +326,7 @@ describe('when there is initially some surveys saved', () => {
       const newUser = {
         username: 'eseeve',
         name: 'Elias Seeve',
-        password: 'salainen',
+        password: 'sekred',
       }
 
       await api
