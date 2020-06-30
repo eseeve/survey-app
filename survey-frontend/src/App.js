@@ -6,6 +6,7 @@ import { Button, Container, Header } from 'semantic-ui-react'
 
 import { initializeSurveys } from './reducers/surveyReducer'
 import { initializeUsers } from './reducers/usersReducer'
+import { login } from './reducers/userReducer'
 import storage from './utils/storage'
 
 import NewSurvey from './components/NewSurvey/NewSurvey'
@@ -22,6 +23,10 @@ const App = () => {
   useEffect(() => {
     dispatch(initializeSurveys())
     dispatch(initializeUsers())
+    const user = storage.loadUser()
+    if (user) {
+      dispatch(login(user))
+    }
   }, [dispatch])
 
   if ( !user ) {

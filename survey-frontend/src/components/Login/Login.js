@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom'
 import { Header } from 'semantic-ui-react'
 
 import { setNotification } from '../../reducers/notificationReducer'
-import { SubmissionError } from 'redux-form'
+import { login } from '../../reducers/userReducer'
+import storage from '../../utils/storage'
 import LoginForm from './LoginForm'
 import Notification from '../Notification'
 import loginService from '../../services/login'
@@ -20,6 +20,9 @@ const Login = () => {
       const user = await loginService.login({
         username, password
       })
+      dispatch(login(user))
+      dispatch(setNotification(`${user.name} welcome back!`, 5))
+      storage.saveUser(user)
     } catch(exception) {
       dispatch(setNotification('Wrong username or password', 5, 'error'))
     }
