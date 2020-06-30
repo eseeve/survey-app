@@ -4,7 +4,7 @@ const byAnswers = (s1, s2) => s2.answers - s1.answers
 
 const surveyReducer = (state = [], action) => {
   switch(action.type) {
-  case 'INIT':
+  case 'INIT_SURVEYS':
     return action.data.sort(byAnswers)
   case 'CREATE':
     return [...state, action.data]
@@ -21,7 +21,7 @@ export const initializeSurveys = () => {
   return async dispatch => {
     const surveys = await surveyService.getAll()
     dispatch({
-      type: 'INIT',
+      type: 'INIT_SURVEYS',
       data: surveys,
     })
   }

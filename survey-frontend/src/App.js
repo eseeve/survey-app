@@ -1,10 +1,11 @@
 import React, { useEffect  } from 'react'
 import './App.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
 import { Button, Container, Header } from 'semantic-ui-react'
 
 import { initializeSurveys } from './reducers/surveyReducer'
+import { initializeUsers } from './reducers/usersReducer'
 import NewSurvey from './components/NewSurvey/NewSurvey'
 import Notification from './components/Notification'
 import Survey from './components/Survey/Survey'
@@ -12,11 +13,22 @@ import Surveys from './components/Surveys'
 import Results from './components/Results'
 
 const App = () => {
+  const user = useSelector(state =>  state.user)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(initializeSurveys())
+    dispatch(initializeUsers())
   }, [dispatch])
+
+  if ( !user ) {
+    return (
+      <Container>
+        <Header as='h1' style={{marginTop: '10px'}}>Login to application</Header>
+        <Notification />
+      </Container>
+    )
+  }
 
   return  (
     <div>
