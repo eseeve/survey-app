@@ -19,6 +19,6 @@
 | 17.6       | 2         | Graafi-kirjastoihin tutustuminen ja react-google-charts käyttöönotto |
 |            | 4         | Backend käyttäjien hallinta ja testaus  |
 | 30.6       | 4         | Frontend käyttäjien hallinta ja testaus  |
-| 30.6       | 3         | Frontend kirjautuminen  |
-| 30.6       | 3         | Frontend uuden käyttäjän luonti ja validointi  |
+|            | 3         | Frontend kirjautuminen, UI päivityksiä  |
+|            | 3         | Frontend uuden käyttäjän luonti ja validointi  |
 | Yht.       | 39        | | 
