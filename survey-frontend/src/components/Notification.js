@@ -8,9 +8,11 @@ const Notification = () => {
     return null
   }
 
+  const color = notification.type === 'success' ? 'ui green message' : 'ui red message'
+
   return (
-    <div className='ui green message'>
-      {notification}
+    <div className={color}>
+      {notification.message}
     </div>
   )
 }

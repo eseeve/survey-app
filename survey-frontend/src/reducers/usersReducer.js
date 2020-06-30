@@ -18,5 +18,4 @@ export const initializeUsers = () => {
   }
 }
 
-
 export default reducer

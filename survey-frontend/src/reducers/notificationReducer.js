@@ -1,7 +1,7 @@
 const reducer = (state = null, action) => {
   switch (action.type) {
   case 'SET_NOTIFICATION':
-    return action.content
+    return action.data
   case 'CLEAR_NOTIFICATION':
     return null
   default:
@@ -11,11 +11,14 @@ const reducer = (state = null, action) => {
 
 let timeoutId
 
-export const setNotification = (content, time) => {
+export const setNotification = (message, time, type) => {
   return async dispatch => {
     dispatch({
       type: 'SET_NOTIFICATION',
-      content
+      data: {
+        message,
+        type
+      }
     })
 
     if (timeoutId) {
