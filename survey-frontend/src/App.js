@@ -2,11 +2,12 @@ import React, { useEffect  } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
-import { Button, Container, Header } from 'semantic-ui-react'
+import { Button, Container, Header, Grid } from 'semantic-ui-react'
 
+import { setNotification } from './reducers/notificationReducer'
 import { initializeSurveys } from './reducers/surveyReducer'
 import { initializeUsers } from './reducers/usersReducer'
-import { login } from './reducers/userReducer'
+import { login, logout } from './reducers/userReducer'
 import storage from './utils/storage'
 
 import NewSurvey from './components/NewSurvey/NewSurvey'
@@ -28,6 +29,12 @@ const App = () => {
       dispatch(login(user))
     }
   }, [dispatch])
+
+  const handleLogout = () => {
+    dispatch(logout())
+    dispatch(setNotification('You have logged out.', 5))
+    storage.logoutUser()
+  }
 
   if ( !user ) {
     return (
@@ -51,7 +58,16 @@ const App = () => {
             <Survey />
           </Route>
           <Route path="/">
-            <Header as='h1' style={{marginTop: '10px'}}>Survey App</Header>
+            <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
+              <Grid.Column >
+                <Header as='h1' >Survey App</Header>
+              </Grid.Column>
+              <Grid.Column >
+                <Button floated='right' primary size='small' type='button' onClick={handleLogout} >
+                  Logout
+                </Button>
+              </Grid.Column>
+            </Grid>
             <Notification />
             <Surveys />
             <Button style={{marginTop: '10px'}} primary as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
