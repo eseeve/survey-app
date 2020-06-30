@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch  } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
-import { Button, Header } from 'semantic-ui-react'
+import { Button, Header, Grid } from 'semantic-ui-react'
 import Chart from "react-google-charts"
 
 import { removeSurvey } from '../reducers/surveyReducer'
@@ -51,7 +51,7 @@ const Results = () => {
   const id = useParams().id
   const survey = surveys.find(s => s.id === id)
 
-  const handleClick = () => {
+  const handleRemove = () => {
     const ok = window.confirm(`Remove survey ${survey.name}?`)
     if (ok) {
       dispatch(removeSurvey(survey))
@@ -60,27 +60,30 @@ const Results = () => {
     }
   }
 
+  const handleClick = () => {
+    history.push('/')
+  }
+
   if (!survey) {
     return null
   }
 
   const total = survey.answers
 
-  if (total === 0) {
-    return (
-    <div>
-      <Header as='h1' style={{marginTop: '10px'}}>{survey.name}</Header>
-      No answers yet. <br/>
-      <Button style={{marginTop: '10px'}} color='red' size='tiny' onClick={handleClick}>Delete Survey</Button>
-    </div>
-    )
-  }
-
   return(
     <div>
-      <Header as='h1' style={{marginTop: '10px'}}>{survey.name}</Header>
-      <Questions questions={survey.questions} total={total}/>
-      <Button color='red' size='tiny' onClick={handleClick}>Delete Survey</Button>
+      <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
+        <Grid.Column >
+          <Header as='h1' >{survey.name}</Header>
+        </Grid.Column>
+        <Grid.Column >
+          <Button floated='right' primary size='small' type='button' onClick={handleClick} >
+            Home
+          </Button>
+        </Grid.Column>
+      </Grid>
+      {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions questions={survey.questions} total={total}/>}
+      <Button color='red' size='tiny' onClick={handleRemove}>Delete Survey</Button>
     </div>
   )
 }

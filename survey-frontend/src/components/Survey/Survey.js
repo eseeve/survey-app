@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
-import { Header } from 'semantic-ui-react'
+import { Header, Grid, Button } from 'semantic-ui-react'
 
 import { answerSurvey } from '../../reducers/surveyReducer'
 import { setNotification } from '../../reducers/notificationReducer'
@@ -28,13 +28,26 @@ const Survey = () => {
     }
   }
 
+  const handleClick = () => {
+    history.push('/')
+  }
+
   if (!survey) {
     return null
   }
 
   return (
     <div>
-      <Header as='h1' style={{marginTop: '10px'}}>{survey.name}</Header>
+      <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
+        <Grid.Column >
+          <Header as='h1' >{survey.name}</Header>
+        </Grid.Column>
+        <Grid.Column >
+          <Button floated='right' primary size='small' type='button' onClick={handleClick} >
+            Home
+          </Button>
+        </Grid.Column>
+      </Grid>
       <TakeSurvey survey={survey} onSubmit={handleSubmit}/>
     </div>
   )

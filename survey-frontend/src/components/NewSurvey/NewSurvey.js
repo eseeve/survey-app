@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Header } from 'semantic-ui-react'
+import { Header, Button, Grid } from 'semantic-ui-react'
 
 import { createSurvey } from '../../reducers/surveyReducer'
 import SurveyForm from './SurveyForm'
@@ -18,9 +18,22 @@ const NewSurvey = () => {
     history.push('/')
   }
 
+  const handleClick = () => {
+    history.push('/')
+  }
+
   return (
     <div>
-      <Header as='h1' style={{marginTop: '10px'}}>Create new survey</Header>
+      <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
+        <Grid.Column >
+          <Header as='h1' >Create new survey</Header>
+        </Grid.Column>
+        <Grid.Column >
+          <Button floated='right' primary size='small' type='button' onClick={handleClick} >
+            Home
+          </Button>
+      </Grid.Column>
+      </Grid>
       <SurveyForm onSubmit={handleSubmit} />
     </div>
   )
