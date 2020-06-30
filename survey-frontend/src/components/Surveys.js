@@ -5,8 +5,9 @@ import { Segment, Button } from 'semantic-ui-react'
 
 const Surveys = () => {
   const surveys = useSelector(state => state.surveys)
+  const users = useSelector(state => state.users)
 
-  if (!surveys) {
+  if (!surveys || !users) {
     return null
   }
 

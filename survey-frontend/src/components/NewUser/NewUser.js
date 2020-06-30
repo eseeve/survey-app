@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Header, Button, Grid } from 'semantic-ui-react'
 
-import { createSurvey } from '../../reducers/surveyReducer'
+import { createUser } from '../../reducers/usersReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import UserForm from './UserForm'
 
@@ -12,9 +12,9 @@ const NewUser = () => {
   const history = useHistory()
 
   const handleSubmit = (values) => {
-    values.questions.map(q => q.type = 'MultipleChoice')
-    dispatch(createSurvey(values))
-    dispatch(setNotification(`New survey '${values.name}' created!`, 5))
+    delete values.confirmPassword
+    dispatch(createUser(values))
+    dispatch(setNotification(`Account created succesfully!`, 5))
     history.push('/')
   }
 
@@ -34,7 +34,7 @@ const NewUser = () => {
           </Button>
       </Grid.Column>
       </Grid>
-      <UserForm />
+      <UserForm onSubmit={handleSubmit} />
     </div>
   )
 }
