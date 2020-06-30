@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Header } from 'semantic-ui-react'
 
 import { setNotification } from '../../reducers/notificationReducer'
@@ -10,7 +10,6 @@ import Notification from '../Notification'
 import loginService from '../../services/login'
 
 const Login = () => {
-  const users = useSelector(state => state.users)
   const dispatch = useDispatch()
 
   const handleSubmit = async (values) => {

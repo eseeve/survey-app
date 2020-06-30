@@ -5,6 +5,7 @@ import { Button, Header } from 'semantic-ui-react'
 import Chart from "react-google-charts"
 
 import { removeSurvey } from '../reducers/surveyReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const Question = ({ question, total }) => {
   let data = question.options.map(o => {
@@ -51,8 +52,12 @@ const Results = () => {
   const survey = surveys.find(s => s.id === id)
 
   const handleClick = () => {
-    dispatch(removeSurvey(survey))
-    history.push('/')
+    const ok = window.confirm(`Remove survey ${survey.name}?`)
+    if (ok) {
+      dispatch(removeSurvey(survey))
+      dispatch(setNotification(`Survey '${survey.name}' deleted.`, 5))
+      history.push('/')
+    }
   }
 
   if (!survey) {
@@ -64,8 +69,9 @@ const Results = () => {
   if (total === 0) {
     return (
     <div>
-      <h1>{survey.name}</h1>
-      No answers yet.
+      <Header as='h1' style={{marginTop: '10px'}}>{survey.name}</Header>
+      No answers yet. <br/>
+      <Button style={{marginTop: '10px'}} color='red' size='tiny' onClick={handleClick}>Delete Survey</Button>
     </div>
     )
   }

@@ -46,7 +46,11 @@ router.post('/', async (request, response) => {
 
 router.put('/:id', async (request, response) => {
   const survey = request.body
-  const updatedSurvey = await Survey.findByIdAndUpdate(request.params.id, survey, { new: true })
+  survey.user = survey.user.id
+
+  const updatedSurvey = await Survey
+    .findByIdAndUpdate(request.params.id, survey, { new: true })
+    .populate('user')
   response.json(updatedSurvey.toJSON())
 })
 
