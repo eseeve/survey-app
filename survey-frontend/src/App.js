@@ -11,11 +11,14 @@ import { login, logout } from './reducers/userReducer'
 import storage from './utils/storage'
 
 import NewSurvey from './components/NewSurvey/NewSurvey'
+import NewUser from './components/NewUser/NewUser'
 import Notification from './components/Notification'
+import UserSurveys from './components/UserSurveys'
 import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
 import Results from './components/Results'
 import Login from './components/Login/Login'
+
 
 const App = () => {
   const user = useSelector(state =>  state.user)
@@ -39,7 +42,14 @@ const App = () => {
   if ( !user ) {
     return (
       <Container>
-        <Login />
+        <Switch>
+          <Route path="/signup">
+            <NewUser />
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
       </Container>
     )
   }
@@ -57,6 +67,9 @@ const App = () => {
           <Route path="/surveys/:id">
             <Survey />
           </Route>
+          <Route path="/surveys">
+            <UserSurveys />
+          </Route>
           <Route path="/">
             <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
               <Grid.Column >
@@ -66,6 +79,7 @@ const App = () => {
                 <Button floated='right' primary size='small' type='button' onClick={handleLogout} >
                   Logout
                 </Button>
+                <Button floated='right' size='small' color='blue' basic as={Link} to={'/surveys'}>My Surveys</Button>
               </Grid.Column>
             </Grid>
             <Notification />

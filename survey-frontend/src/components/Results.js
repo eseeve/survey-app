@@ -1,11 +1,8 @@
 import React from 'react'
-import { useSelector, useDispatch  } from 'react-redux'
+import { useSelector  } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { Button, Header, Grid } from 'semantic-ui-react'
 import Chart from "react-google-charts"
-
-import { removeSurvey } from '../reducers/surveyReducer'
-import { setNotification } from '../reducers/notificationReducer'
 
 const Question = ({ question, total }) => {
   let data = question.options.map(o => {
@@ -45,21 +42,10 @@ const Questions = ({ questions, total }) => {
 
 const Results = () => {
   const surveys = useSelector(state => state.surveys)
-  const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
   const history = useHistory()
 
   const id = useParams().id
   const survey = surveys.find(s => s.id === id)
-
-  const handleRemove = () => {
-    const ok = window.confirm(`Remove survey ${survey.name}?`)
-    if (ok) {
-      dispatch(removeSurvey(survey))
-      dispatch(setNotification(`Survey '${survey.name}' deleted.`, 5))
-      history.push('/')
-    }
-  }
 
   const handleClick = () => {
     history.push('/')
@@ -84,7 +70,7 @@ const Results = () => {
         </Grid.Column>
       </Grid>
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions questions={survey.questions} total={total}/>}
-      {user.username === survey.user.username ? <Button color='red' size='tiny' onClick={handleRemove}>Delete Survey</Button> : <div>Created by {survey.user.name}</div>}
+      <div>Created by {survey.user.name}</div>
     </div>
   )
 }

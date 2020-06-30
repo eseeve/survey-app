@@ -15,9 +15,10 @@ const Surveys = () => {
       <Segment.Group>
         {surveys.map(survey =>
             <Segment key={survey.id} >
-              {survey.name} 
+              {survey.name}
               <Button primary as={Link} to={`/surveys/${survey.id}`} floated='right'>Take survey</Button>
-              <p style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>Results</Link></p>
+              <div>Created by {survey.user.name}</div>
+              <p style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>View results</Link></p>
             </Segment>
           )}
       </Segment.Group>

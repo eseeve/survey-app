@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Header } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 import { setNotification } from '../../reducers/notificationReducer'
 import { login } from '../../reducers/userReducer'
@@ -32,6 +33,7 @@ const Login = () => {
       <Header as='h1' style={{marginTop: '10px'}}>Login to application</Header>
       <Notification />
       <LoginForm onSubmit={handleSubmit}/>
+      <div style={{marginTop: '10px'}}>Not a user yet? Click <Link to={`/signup`}>here</Link>!</div>
     </div>
   )
 }
