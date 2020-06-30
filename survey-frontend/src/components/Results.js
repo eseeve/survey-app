@@ -45,6 +45,7 @@ const Questions = ({ questions, total }) => {
 
 const Results = () => {
   const surveys = useSelector(state => state.surveys)
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -83,7 +84,7 @@ const Results = () => {
         </Grid.Column>
       </Grid>
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions questions={survey.questions} total={total}/>}
-      <Button color='red' size='tiny' onClick={handleRemove}>Delete Survey</Button>
+      {user.username === survey.user.username ? <Button color='red' size='tiny' onClick={handleRemove}>Delete Survey</Button> : <div>Created by {survey.user.name}</div>}
     </div>
   )
 }
