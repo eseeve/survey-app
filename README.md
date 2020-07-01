@@ -21,4 +21,7 @@
 | 30.6       | 4         | Frontend käyttäjien hallinta ja testaus  |
 |            | 3         | Frontend kirjautuminen, UI päivityksiä  |
 |            | 3         | Frontend uuden käyttäjän luonti ja validointi  |
-| Yht.       | 39        | | 
+| 31.6       | 3         | Käyttäjien hallinta (poistaminen)  |
+|            | 3         | CheckBoxes kysymystyypin lisäys  |
+|            | 2         | Uusien toiminnallisuuksien ideointi |
+| Yht.       | 47        | | 
