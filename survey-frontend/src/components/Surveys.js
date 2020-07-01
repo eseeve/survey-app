@@ -11,6 +11,10 @@ const Surveys = () => {
     return null
   }
 
+  if (surveys && surveys.forEach(s => s.user !== undefined)) {
+    return null
+  }
+
   return(
     <div>
       <Segment.Group>

@@ -1,6 +1,13 @@
 import axios from 'axios'
+import storage from '../utils/storage'
 
 const baseUrl = '/api/users'
+
+const getConfig = () => {
+  return {
+    headers: { Authorization: `bearer ${storage.loadUser().token}` }
+  }
+}
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
@@ -12,5 +19,10 @@ const create = async newObject => {
   return response.data
 }
 
+const remove = async (id) => {
+  const response = await axios.delete(`${baseUrl}/${id}`, getConfig())
+  return response.data
+}
 
-export default { getAll, create }
+
+export default { getAll, create, remove }
