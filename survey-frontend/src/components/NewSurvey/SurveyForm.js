@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
-import { TextField } from '../FormField'
+import { TextField, SelectField } from '../FormField'
 import validate from './validate'
 
 const Options = ({ fields, meta: { error } }) => (
@@ -36,7 +36,7 @@ const Questions = ({ fields, meta: { error, submitFailed } }) => (
   <div>
       {fields.map((question, index) => (
         <Segment key={index}>
-          <Grid columns={2}>
+          <Grid columns={3}>
           <Grid.Row key={index}>
           <Grid.Column>
             <Field
@@ -45,6 +45,13 @@ const Questions = ({ fields, meta: { error, submitFailed } }) => (
               component={TextField}
               label='Question Title'
             />
+          </Grid.Column>
+          <Grid.Column>
+            <label style={{fontSize: '16px'}}>Question type</label>
+            <Field name={`${question}.type`} component="select" >
+              <option value="MultipleChoice">Multiple Choice</option>
+              <option value="CheckBoxes">CheckBoxes</option>
+            </Field>
           </Grid.Column>
           <Grid.Column>
             <Button icon floated='right' size='tiny' color='red' type='button' onClick={() => fields.remove(index)}>

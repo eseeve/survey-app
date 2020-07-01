@@ -11,7 +11,7 @@ const optionSchema = new mongoose.Schema(
 
 const questionSchema = new mongoose.Schema(
   {
-    type: { type: String, required: true },
+    type: { type: String, required: true, enum: ['MultipleChoice', 'CheckBoxes'] },
     title: { type: String, minlength: 3, required: true },
     options: { type: [optionSchema], required: true },
   }

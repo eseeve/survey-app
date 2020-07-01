@@ -82,19 +82,19 @@ const UserSurveys = () => {
       </Grid>
       <Notification />
       {
-        surveys.length === 0 ? <div>You have no surveys.</div> :
+        surveys.length === 0 ? <div style={{marginBottom: '10px'}}>You have no surveys.</div> :
         <Segment.Group>
         {surveys.map(survey =>
             <Segment key={survey.id} >
               {survey.name}
-              <Button floated='right' color='red' size='tiny' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
+              <Button floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
               <div>Responses: {survey.answers}</div>
               <p style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>View results</Link></p>
             </Segment>
           )}
         </Segment.Group>
       }
-      <Button style={{marginTop: '20px', marginBottom: '10px'}} color='red' size='tiny' onClick={handleRemoveUser}>Delete Your Account</Button>
+      <Button color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
     </div>
   )
 }
