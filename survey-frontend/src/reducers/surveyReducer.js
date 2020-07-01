@@ -39,7 +39,6 @@ export const createSurvey = (survey) => {
 
 export const answerSurvey = (survey, values) => {
   return async dispatch => {
-    console.log(values)
     survey.questions.map(question => {
       if (question.type === 'MultipleChoice') {
         question.options.map(o => values[question.title] === o.option ? o.votes += 1 : o)
@@ -47,8 +46,7 @@ export const answerSurvey = (survey, values) => {
         question.options.map(o => values[question.title][o.option] === true ? o.votes += 1 : o)
       }
       return question
-    }
-    )
+    })
     const toAnswer = { ...survey, answers: survey.answers + 1 }
     const data = await surveyService.update(toAnswer)
     dispatch({

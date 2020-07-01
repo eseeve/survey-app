@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
-import { TextField, SelectField } from '../FormField'
+import { TextField } from '../FormField'
 import validate from './validate'
 
 const Options = ({ fields, meta: { error } }) => (
