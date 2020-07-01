@@ -8,9 +8,15 @@ const api = supertest(app)
 const Survey = require('../models/survey')
 const User = require('../models/user')
 
-describe('when there is initially some surveys saved', () => {
+describe('when there is initially some surveys and users saved', () => {
   beforeEach(async () => {
     await Survey.deleteMany({})
+    await User.deleteMany({})
+
+    const passwordHash = await bcrypt.hash('sekret', 10)
+    const user = new User({ name: 'test', username: 'root', passwordHash })
+
+    await user.save()
 
     const surveyObjects = helper.initialSurveys
       .map(survey => new Survey(survey))
@@ -42,8 +48,11 @@ describe('when there is initially some surveys saved', () => {
 
   test('a survey can be updated', async () => {
     let response = await api.get('/api/surveys')
+    let userResponse = await api.get('/api/users')
     const surveyToUpdate = response.body[0]
-    surveyToUpdate.name = 'Testing Survey Update'
+    const user = userResponse.body[0]
+    surveyToUpdate.answers = 1
+    surveyToUpdate.user = user
 
     await api
       .put(`/api/surveys/${surveyToUpdate.id}`)
@@ -51,10 +60,8 @@ describe('when there is initially some surveys saved', () => {
       .expect(200)
 
     response = await api.get('/api/surveys')
-    const names = response.body.map(r => r.name)
-    expect(names).toContain(
-      'Testing Survey Update'
-    )
+    const answers = response.body.map(r => r.answers)
+    expect(answers).toContain(1)
   })
 
   describe('viewing a specific survey', () => {
@@ -311,13 +318,27 @@ describe('when there is initially some surveys saved', () => {
   })
 
   describe('when there is initially one user at db', () => {
+    let headers
+    let user
+
     beforeEach(async () => {
-      await User.deleteMany({})
+      const newUser = {
+        username: 'janedoez',
+        name: 'Jane Z. Doe',
+        password: 'password',
+      }
 
-      const passwordHash = await bcrypt.hash('sekret', 10)
-      const user = new User({ username: 'root', passwordHash })
+      user = await api
+        .post('/api/users')
+        .send(newUser)
 
-      await user.save()
+      const result = await api
+        .post('/api/login')
+        .send(newUser)
+
+      headers = {
+        'Authorization': `bearer ${result.body.token}`
+      }
     })
 
     test('creation succeeds with a fresh username', async () => {
@@ -398,7 +419,35 @@ describe('when there is initially some surveys saved', () => {
         .expect(400)
         .expect('Content-Type', /application\/json/)
 
-      expect(result.body.error).toContain('password must have min length of 3')
+      expect(result.body.error).toContain('password must have min length of 5')
+    })
+
+    test('deletion succeeds with correct authorization', async () => {
+      const initialUsers = await helper.usersInDb()
+      const userToDelete = user.body
+
+      const result = await api
+        .delete(`/api/users/${userToDelete.id}`)
+        .set(headers)
+        .expect(204)
+
+      const usersAtEnd = await helper.usersInDb()
+      expect(usersAtEnd.length).toBe(initialUsers.length - 1)
+
+      const names = usersAtEnd.map(r => r.name)
+      expect(names).not.toContain(result.name)
+    })
+
+    test('deletion fails without correct authorization', async () => {
+      const initialUsers = await helper.usersInDb()
+      const userToDelete = user.body
+
+      await api
+        .delete(`/api/users/${userToDelete.id}`)
+        .expect(401)
+
+      const usersAtEnd = await helper.usersInDb()
+      expect(usersAtEnd.length).toBe(initialUsers.length)
     })
   })
 })
