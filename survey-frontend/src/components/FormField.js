@@ -17,10 +17,10 @@ export const PasswordField = ({ input, placeholder, label, meta: { touched, erro
   </Form.Field>
 )
 
-export const SelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
+/*export const SelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
     <Form.Dropdown>
     <label style={{fontSize: '16px'}}>{label}</label>
     <input {...input} type='dropdown' style={{marginBottom: '5px'}} />
     {touched && error && <div style={{color: 'red'}}>{error}</div>}
     </Form.Dropdown> 
-)
+)*/

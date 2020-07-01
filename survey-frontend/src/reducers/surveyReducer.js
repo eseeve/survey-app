@@ -39,8 +39,15 @@ export const createSurvey = (survey) => {
 
 export const answerSurvey = (survey, values) => {
   return async dispatch => {
-    survey.questions.map(question =>
-      question.options.map(o => values[question.title] === o.option ? o.votes += 1 : o)
+    console.log(values)
+    survey.questions.map(question => {
+      if (question.type === 'MultipleChoice') {
+        question.options.map(o => values[question.title] === o.option ? o.votes += 1 : o)
+      } else if (question.type === 'CheckBoxes') {
+        question.options.map(o => values[question.title][o.option] === true ? o.votes += 1 : o)
+      }
+      return question
+    }
     )
     const toAnswer = { ...survey, answers: survey.answers + 1 }
     const data = await surveyService.update(toAnswer)

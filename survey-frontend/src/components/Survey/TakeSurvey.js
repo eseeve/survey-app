@@ -2,7 +2,35 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Form, Button } from 'semantic-ui-react'
 
-const Option = ({ option, title }) => {
+const CheckBoxesOption = ({ option, title }) => {
+  return (
+    <div style={{marginTop: '5px'}}>
+      <label>
+        <Field
+          name={`${title}.${option.option}`}
+          component="input"
+          type="checkbox"
+        />{' '}
+        {option.option}
+      </label>
+    </div>
+  )
+}
+
+const CheckBoxesQuestion = ({ question }) => {
+  return (
+    <div style={{marginTop: '10px', marginBottom: '10px'}}>
+      <strong style={{fontSize: '16px'}}>{question.title}</strong>
+      <div>
+        {question.options.map(o =>
+          <CheckBoxesOption key={o.option} option={o} title={question.title}/>
+        )}
+      </div>
+    </div>
+  )
+}
+
+const MultipleChoiceOption = ({ option, title }) => {
   return (
     <div style={{marginTop: '5px'}}>
       <label>
@@ -18,13 +46,13 @@ const Option = ({ option, title }) => {
   )
 }
 
-const Question = ({ question }) => {
+const MultipleChoiceQuestion = ({ question }) => {
   return (
     <div style={{marginTop: '10px', marginBottom: '10px'}}>
       <strong style={{fontSize: '16px'}}>{question.title}</strong>
       <div>
         {question.options.map(o =>
-          <Option key={o.option} option={o} title={question.title}/>
+          <MultipleChoiceOption key={o.option} option={o} title={question.title}/>
         )}
       </div>
     </div>
@@ -35,7 +63,9 @@ const Questions = ({ questions }) => {
   return (
     <div>
       {questions.map(q =>
-        <Question key={q.title} question={q} />
+        q.type === 'MultipleChoice'
+        ? <MultipleChoiceQuestion key={q.title} question={q} />
+        : <CheckBoxesQuestion key={q.title} question={q} />
       )}
     </div>
   )
