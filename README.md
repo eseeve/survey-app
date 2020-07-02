@@ -24,4 +24,6 @@
 | 31.6       | 3         | Käyttäjien hallinta (poistaminen)  |
 |            | 3         | CheckBoxes kysymystyypin lisäys  |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
-| Yht.       | 47        | | 
+| 1.7        | 1         | CheckBoxes vastausten UI  |
+|            | 2         | NewSurvey-lomakkeen parantelu  |
+| Yht.       | 50        | | 
