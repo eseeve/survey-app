@@ -32,12 +32,7 @@ const Options = ({ fields, meta: { error } }) => (
   </div>
 )
 
-const Questions = ({ fields, meta: { error, submitFailed }, classes }) => {
-  const options = [
-    { key: 'MultipleChoice', text: 'Multiple Choice', value: 'MultipleChoice' },
-    { key: 'CheckBoxes', text: 'Check Boxes', value: 'CheckBoxes' },
-  ]
-  return (
+const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
   <div>
       {fields.map((question, index) => (
         <Segment key={index}>
@@ -52,15 +47,12 @@ const Questions = ({ fields, meta: { error, submitFailed }, classes }) => {
             />
           </Grid.Column>
           <Grid.Column>
-            <Field
-              classes={classes} 
-              name={`${question}.type`} 
-              component='select' 
-              label='Question Type'
-            >
-              <option value='MultipleChoice'>Multiple Choice</option>
-              <option value='CheckBoxes'>'Check Boxes</option>
+            <label style={{fontSize: '16px'}}>Question type</label>
+            <Field name={`${question}.type`} component="select" placeholder='Question Type' >
+              <option value="MultipleChoice">Multiple Choice</option>
+              <option value="CheckBoxes">CheckBoxes</option>
             </Field>
+            {touched && error && <div style={{color: 'red'}}>{error}</div>}
           </Grid.Column>
           <Grid.Column>
             <Button icon floated='right' size='tiny' color='red' type='button' onClick={() => fields.remove(index)}>
@@ -78,8 +70,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, classes }) => {
     </Button>
     {submitFailed && error && <div style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
   </div>
-  )
-}
+)
 
 const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
   return (

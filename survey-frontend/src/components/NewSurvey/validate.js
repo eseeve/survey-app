@@ -16,6 +16,10 @@ const validate = values => {
         questionErrors.title = 'Required'
         questionsArrayErrors[questionIndex] = questionErrors
       }
+      if (!question || !question.type) {
+        questionErrors.type = 'Required'
+        questionsArrayErrors[questionIndex] = questionErrors
+      }
       if (question.title && question.title.length < 3) {
         questionErrors.title = 'Question title too short'
         questionsArrayErrors[questionIndex] = questionErrors
