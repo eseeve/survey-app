@@ -12,6 +12,25 @@ const Question = ({ question, total }) => {
     ]
   })
   data.unshift(['Option', 'Votes'])
+  if (question.type === 'MultipleChoice') {
+    return (
+      <div>
+        <h4>{question.title}</h4>
+        <div>{total} responses</div>
+        <Chart
+          width={'500px'}
+          height={'300px'}
+          chartType="PieChart"
+          loader={<div>Loading Chart</div>}
+          options={{
+            tooltip: { trigger: 'selection' },
+          }}
+          data={data}
+        />
+      </div>
+    )
+  }
+  
   return (
     <div>
       <h4>{question.title}</h4>
@@ -19,10 +38,10 @@ const Question = ({ question, total }) => {
       <Chart
         width={'500px'}
         height={'300px'}
-        chartType="PieChart"
+        chartType="BarChart"
         loader={<div>Loading Chart</div>}
         options={{
-          tooltip: { trigger: 'selection' },
+          legend: { position: 'none' },
         }}
         data={data}
       />
