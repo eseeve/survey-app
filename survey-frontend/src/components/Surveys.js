@@ -15,6 +15,10 @@ const Surveys = () => {
     return null
   }
 
+  if (surveys && surveys.length === 0) {
+    return <div>No surveys yet.</div>
+  }
+
   return(
     <div>
       <Segment.Group>
