@@ -28,10 +28,6 @@ const UserSurveys = () => {
   }
 
   const handleRemoveUser = () => {
-    const UserException = {
-      name: 'UserException',
-      message: 'User not found'
-    }
     const ok = window.confirm(
       `Are you sure you want to delete your account? All your surveys will be also deleted. This action is permanent!`
     )
@@ -50,10 +46,10 @@ const UserSurveys = () => {
           storage.logoutUser()
           history.push('/')
         } else {
-          throw new UserException()
+          throw 'User not found' //eslint-disable-line
         }
       } catch (e) {
-        dispatch(setNotification('Something went wrong: ' + e.message, 5, 'error')) 
+        dispatch(setNotification('Something went wrong', 5, 'error')) 
       }
     }
   }

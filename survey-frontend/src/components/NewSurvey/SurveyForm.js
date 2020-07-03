@@ -62,6 +62,11 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
                   value: 'Checkboxes',
                   key: 'Checkboxes',
                 },
+                {
+                  text: 'Linear Scale',
+                  value: 'LinearScale',
+                  key: 'LinearScale',
+                },
               ]}
             >
             </Field>
