@@ -24,7 +24,7 @@ const NewSurvey = () => {
       }
   }
 
-  const handleClick = () => {
+  const handleHomeClick = () => {
     history.push('/')
   }
 
@@ -35,7 +35,7 @@ const NewSurvey = () => {
           <Header as='h1' >Create new survey</Header>
         </Grid.Column>
         <Grid.Column >
-          <Button floated='right' primary size='small' type='button' onClick={handleClick} >
+          <Button floated='right' primary size='small' type='button' onClick={handleHomeClick} >
             Home
           </Button>
       </Grid.Column>

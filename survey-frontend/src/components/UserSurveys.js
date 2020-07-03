@@ -54,8 +54,14 @@ const UserSurveys = () => {
     }
   }
 
-  const handleClick = () => {
+  const handleHomeClick = () => {
     history.push('/')
+  }
+
+  const handleCopyLink = (event, survey) => {
+    event.preventDefault()
+    navigator.clipboard.writeText(window.location.href.concat(`/${survey.id}`))
+    dispatch(setNotification(`Link to '${survey.name}' copied to clipboard!`, 5))
   }
 
   if (!allSurveys) {
@@ -71,7 +77,7 @@ const UserSurveys = () => {
           <Header as='h1' >Surveys by {user.name}</Header>
         </Grid.Column>
         <Grid.Column >
-          <Button floated='right' primary size='small' type='button' onClick={handleClick} >
+          <Button floated='right' primary size='small' type='button' onClick={handleHomeClick} >
             Home
           </Button>
         </Grid.Column>
@@ -84,8 +90,9 @@ const UserSurveys = () => {
             <Segment key={survey.id} >
               {survey.name}
               <Button floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
+              <Button style={{marginRight: '10px'}} floated='right' primary size='small' onClick={(event) => handleCopyLink(event, survey)}>Copy link</Button>
               <div>Responses: {survey.answers}</div>
-              <p style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>View results</Link></p>
+              <div style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>View results</Link></div>
             </Segment>
           )}
         </Segment.Group>
