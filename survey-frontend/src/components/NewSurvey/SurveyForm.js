@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
-import { TextField } from '../FormField'
+import { TextField, SelectField } from '../FormField'
 import validate from './validate'
 
 const Options = ({ fields, meta: { error } }) => (
@@ -47,10 +47,23 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
             />
           </Grid.Column>
           <Grid.Column>
-            <label style={{fontSize: '16px'}}>Question type</label>
-            <Field name={`${question}.type`} component="select" placeholder='Question Type' >
-              <option value="MultipleChoice">Multiple Choice</option>
-              <option value="CheckBoxes">CheckBoxes</option>
+            <Field 
+              name={`${question}.type`} 
+              component={SelectField} 
+              label='Question Type'
+              options={[
+                {
+                  text: 'Multiple Choice',
+                  value: 'MultipleChoice',
+                  key: 'MultipleChoice',
+                },
+                {
+                  text: 'Checkboxes',
+                  value: 'Checkboxes',
+                  key: 'Checkboxes',
+                },
+              ]}
+            >
             </Field>
             {touched && error && <div style={{color: 'red'}}>{error}</div>}
           </Grid.Column>

@@ -29,6 +29,7 @@ export const initializeSurveys = () => {
 
 export const createSurvey = (survey) => {
   return async dispatch => {
+    console.log(survey)
     const data = await surveyService.create(survey)
     dispatch({
       type: 'CREATE_SURVEY',

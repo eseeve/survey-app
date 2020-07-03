@@ -13,9 +13,13 @@ const NewSurvey = () => {
 
   const handleSubmit = (values) => {
     console.log(values)
-    dispatch(createSurvey(values))
-    dispatch(setNotification(`New survey '${values.name}' created!`, 5))
-    history.push('/')
+    try {
+      dispatch(createSurvey(values))
+      dispatch(setNotification(`New survey '${values.name}' created!`, 5))
+      history.push('/')
+    } catch (e) {
+      dispatch(setNotification(`Something went wrong`, 5, 'error'))
+    }
   }
 
   const handleClick = () => {
