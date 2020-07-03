@@ -26,4 +26,6 @@
 |            | 2         | Uusien toiminnallisuuksien ideointi |
 | 2.7        | 1         | CheckBoxes vastausten UI  |
 |            | 2         | NewSurvey-lomakkeen parantelu  |
-| Yht.       | 50        | | 
+| 3.7        | 2         | NewSurvey-lomakkeen parantelu, UserSurvey-sivulle linkit kyselyihin  |
+|            | 2         | React Routerin korjaus Herokussa  |
+| Yht.       | 54        | | 
