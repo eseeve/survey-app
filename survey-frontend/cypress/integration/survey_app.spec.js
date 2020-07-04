@@ -1,4 +1,3 @@
-import storage from '../../src/utils/storage'
 describe('Survey app', function() {
   describe('When not signed up', function() {
     beforeEach(function() {
@@ -27,6 +26,9 @@ describe('Survey app', function() {
       cy.contains('Cancel').click()
     })
     it('User can sign up', function() {
+      cy.server()
+      cy.route('POST', '/api/users').as('new-user')
+
       cy.contains('Not a user yet? Click here!')
       cy.contains('here').click()
       cy.contains('Sign up for Survey App')
@@ -36,8 +38,14 @@ describe('Survey app', function() {
         cy.get('#password').type('salasana')
         cy.get('#confirmPassword').type('salasana')
         cy.contains('Sign up').click()
+        cy.wait('@new-user')
       })
       cy.contains('Account created succesfully!')
+      cy.window()
+        .its('store')
+        .invoke('getState')
+        .its('users')
+        .should('have.length', 1)
     })
   })
   describe('When signed up', function() {
@@ -94,7 +102,10 @@ describe('Survey app', function() {
           .its('user')
           .should('deep.equal', null)
       })
-      it('Survey can be created', function() {
+      it('Survey can be created with multiple choice question', function() {
+        cy.server()
+        cy.route('POST', '/api/surveys').as('new-survey')
+
         cy.contains('Create a new survey').click()
         cy.get('form').within(function() {
           cy.get('#name').type('Test Survey')
@@ -106,8 +117,38 @@ describe('Survey app', function() {
           cy.get('#add-option').click()
           cy.get('input:last').type('Option 2')
           cy.get('#submit').click()
+          cy.wait('@new-survey')
         })
         cy.contains("New survey 'Test Survey' created!")
+        cy.window()
+          .its('store')
+          .invoke('getState')
+          .its('surveys')
+          .should('have.length', 1)
+      })
+      it('Survey can be created with checkbox question', function() {
+        cy.server()
+        cy.route('POST', '/api/surveys').as('new-survey')
+
+        cy.contains('Create a new survey').click()
+        cy.get('form').within(function() {
+          cy.get('#name').type('Test Survey')
+          cy.get('#add-question').click()
+          cy.get('input:last').type('Question 1')
+          cy.get('.dropdown-menu').click().type('{downarrow}{enter}')
+          cy.get('#add-option').click()
+          cy.get('input:last').type('Option 1')
+          cy.get('#add-option').click()
+          cy.get('input:last').type('Option 2')
+          cy.get('#submit').click()
+          cy.wait('@new-survey')
+        })
+        cy.contains("New survey 'Test Survey' created!")
+        cy.window()
+          .its('store')
+          .invoke('getState')
+          .its('surveys')
+          .should('have.length', 1)
       })
       describe('When database contains a survey', function() {
         beforeEach(function() {
