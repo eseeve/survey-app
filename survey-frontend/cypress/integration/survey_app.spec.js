@@ -1,3 +1,4 @@
+import storage from '../../src/utils/storage'
 describe('Survey app', function() {
   describe('When not signed up', function() {
     beforeEach(function() {
@@ -93,7 +94,7 @@ describe('Survey app', function() {
           .its('user')
           .should('deep.equal', null)
       })
-      it.only('Survey can be created', function() {
+      it('Survey can be created', function() {
         cy.contains('Create a new survey').click()
         cy.get('form').within(function() {
           cy.get('#name').type('Test Survey')
@@ -107,6 +108,52 @@ describe('Survey app', function() {
           cy.get('#submit').click()
         })
         cy.contains("New survey 'Test Survey' created!")
+      })
+      describe.only('When database contains a survey', function() {
+        beforeEach(function() {
+          cy.createSurvey({
+            name: 'Food Survey',
+            questions: [
+              {
+                type: 'MultipleChoice',
+                title: 'What is your favorite ice cream?',
+                options: [
+                  {
+                    option: 'Vanilla',
+                  },
+                  {
+                    option: 'Chocolate',
+                  },
+                  {
+                    option: 'Strawberry',
+                  }
+                ]
+              },
+              {
+                type: 'MultipleChoice',
+                title: 'What is your favorite restaurant?',
+                options: [
+                  {
+                    option: 'Blanko',
+                  },
+                  {
+                    option: 'Tintå',
+                  },
+                  {
+                    option: 'Nerå',
+                  }
+                ]
+              }
+            ]
+          })
+        })
+        it('Survey can be answered', function() {
+          cy.get('#take-survey').click()
+          cy.get('.survey-radio').eq(1).click()
+          cy.get('.survey-radio').eq(3).click()
+          cy.contains('Submit').click()
+          cy.contains("Your answers to the survey 'Food Survey' were saved!")
+        })
       })
     })
   })

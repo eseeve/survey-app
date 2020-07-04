@@ -35,6 +35,7 @@ const MultipleChoiceOption = ({ option, title }) => {
     <div style={{marginTop: '5px'}}>
       <label>
         <Field
+          className='survey-radio'
           name={`${title}`}
           component="input"
           type="radio"

@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add('createSurvey', ({ name, questions }) => {
+  cy.request({
+    url: 'http://localhost:3001/api/surveys',
+    method: 'POST',
+    body: { name, questions },
+    headers: {
+      'Authorization': `bearer ${JSON.parse(localStorage.getItem('loggedSurveyAppUser')).token}`
+    }
+  })
+
+  cy.visit('http://localhost:3000')
+})
