@@ -8,12 +8,14 @@ const LoginForm = ({ handleSubmit, submitting }) => {
     <div>
       <Form onSubmit={handleSubmit}>
         <Field
+          id='username'
           name='username'
           label='Username'
           placeholder='Username'
           component={TextField}
         />
         <Field
+          id='password'
           name='password'
           label='Password'
           placeholder='Password'

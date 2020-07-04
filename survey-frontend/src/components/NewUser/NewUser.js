@@ -25,7 +25,7 @@ const NewUser = () => {
     } else {
       delete values.confirmPassword
       dispatch(createUser(values))
-      dispatch(setNotification(`Account created succesfully!`, 5))
+      dispatch(setNotification('Account created succesfully!', 5))
       history.push('/')
     }
   }
