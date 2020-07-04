@@ -109,7 +109,7 @@ describe('Survey app', function() {
         })
         cy.contains("New survey 'Test Survey' created!")
       })
-      describe.only('When database contains a survey', function() {
+      describe('When database contains a survey', function() {
         beforeEach(function() {
           cy.createSurvey({
             name: 'Food Survey',
@@ -146,6 +146,7 @@ describe('Survey app', function() {
               }
             ]
           })
+          cy.visit('http://localhost:3000')
         })
         it('Survey can be answered', function() {
           cy.get('#take-survey').click()
