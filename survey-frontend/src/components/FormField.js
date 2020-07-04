@@ -20,13 +20,15 @@ export const PasswordField = ({ input, placeholder, label, meta: { touched, erro
 export const SelectField = props => (
     <Form.Field>
       <label style={{fontSize: '16px'}}>{props.label}</label>
-      <Dropdown selection {...props.input}
-                value={props.input.value}
-                onChange={(param,data) => props.input.onChange(data.value)}
-                placeholder={props.label}
-                options={props.options}
-                style={{marginBottom: '5px'}}
-       />
-       {props.meta.touched && props.meta.error && <div style={{color: 'red'}}>{props.meta.error}</div>}
+      <Dropdown
+        className='dropdown-menu'
+        selection {...props.input}
+        value={props.input.value}
+        onChange={(param,data) => props.input.onChange(data.value)}
+        placeholder={props.label}
+        options={props.options}
+        style={{marginBottom: '5px'}}
+      />
+      {props.meta.touched && props.meta.error && <div style={{color: 'red'}}>{props.meta.error}</div>}
      </Form.Field>
 )

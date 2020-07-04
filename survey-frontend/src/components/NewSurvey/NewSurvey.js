@@ -15,13 +15,9 @@ const NewSurvey = () => {
   const history = useHistory()
 
   const handleSubmit = (values) => {
-      dispatch(createSurvey(values))
-      if (initialSurveys.length > surveyLength) {
-        dispatch(setNotification(`New survey '${values.name}' created!`, 5))
-        history.push('/')
-      } else {
-        dispatch(setNotification(`Something went wrong`, 5, 'error'))
-      }
+    dispatch(createSurvey(values))
+    dispatch(setNotification(`New survey '${values.name}' created!`, 5))
+    history.push('/')
   }
 
   const handleHomeClick = () => {

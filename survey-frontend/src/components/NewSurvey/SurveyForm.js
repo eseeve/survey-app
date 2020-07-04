@@ -26,7 +26,7 @@ const Options = ({ fields, meta: { error } }) => (
         )
       )}
     </Grid>
-    <Button size='tiny' style={{marginTop: '20px'}} type='button' onClick={() => fields.push()}>
+    <Button id='add-option' size='tiny' style={{marginTop: '20px'}} type='button' onClick={() => fields.push()}>
         Add Option
     </Button>
   </div>
@@ -78,7 +78,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
         </Segment>
       )
     )}
-    <Button primary size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
+    <Button id='add-question' primary size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
       Add Question
     </Button>
     {submitFailed && error && <div style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
@@ -96,7 +96,7 @@ const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
       />
       <FieldArray name='questions' component={Questions} />
       <div>
-        <Button color='green' size='small' type='submit' disabled={submitting}>
+        <Button id='submit' color='green' size='small' type='submit' disabled={submitting}>
           Submit
         </Button>
         <Button floated='right' color='red' size='small' type='button' disabled={pristine || submitting} onClick={reset}>
