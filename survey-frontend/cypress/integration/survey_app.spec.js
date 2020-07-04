@@ -248,6 +248,18 @@ describe('Survey app', function() {
             .its('surveys')
             .should('have.length', 0)
         })
+        describe('When new user is created and logged in', function() {
+          beforeEach(function() {
+            cy.createUser({ name: 'Tiina Testaaja', username: 'testi1', password: 'secret'})
+            cy.login({ username: 'testi1', password: 'secret' })
+            cy.visit('http://localhost:3000')
+          })
+          it('My surveys page is empty', function() {
+            cy.get('#my-surveys').click()
+            cy.contains('Surveys by Tiina Testaaja')
+            cy.contains('You have no surveys.')
+          })
+        })
       })
     })
   })

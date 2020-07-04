@@ -33,3 +33,19 @@ Cypress.Commands.add('createSurvey', ({ name, questions }) => {
     }
   })
 })
+
+Cypress.Commands.add('createUser', ({ name, username, password }) => {
+  cy.request({
+    url: 'http://localhost:3001/api/users',
+    method: 'POST',
+    body: { name, username, password },
+  })
+})
+
+Cypress.Commands.add('login', ({ username, password }) => {
+  cy.request('POST', 'http://localhost:3001/api/login', {
+    username, password
+  }).then(({ body }) => {
+    localStorage.setItem('loggedSurveyAppUser', JSON.stringify(body))
+  })
+})

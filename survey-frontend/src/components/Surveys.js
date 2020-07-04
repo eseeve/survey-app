@@ -27,7 +27,6 @@ const Surveys = () => {
               {survey.name}
               <Button id='take-survey' primary as={Link} to={`/surveys/${survey.id}`} floated='right'>Take survey</Button>
               <div>Created by {survey.user.name}</div>
-              <p style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>View results</Link></p>
             </Segment>
           )}
       </Segment.Group>
