@@ -7,11 +7,16 @@ describe('Survey app', function() {
     it('Login page can be opened', function() {
       cy.contains('Login to application')
     })
-    it('App should have the right initial state', function() {
+    it('App should have no users or surveys', function() {
       cy.window()
         .its('store')
         .invoke('getState')
         .its('users')
+        .should('have.length', 0)
+        cy.window()
+        .its('store')
+        .invoke('getState')
+        .its('surveys')
         .should('have.length', 0)
     })
     it('Sign up form can be opened and closed', function() {
@@ -61,6 +66,33 @@ describe('Survey app', function() {
         cy.contains('Login').click()
       })
       cy.contains('Wrong username or password')
+    })
+    describe('When logged in', function() {
+      beforeEach(function() {
+        cy.request('POST', 'http://localhost:3001/api/login', {
+          username: 'testi', password: 'salasana'
+        }).then(response => {
+          localStorage.setItem('loggedSurveyAppUser', JSON.stringify(response.body))
+          cy.visit('http://localhost:3000')
+        })
+      })
+      it('User is saved to store', function() {
+        const user = JSON.parse(localStorage.getItem('loggedSurveyAppUser'))
+        cy.window()
+          .its('store')
+          .invoke('getState')
+          .its('user')
+          .should('deep.equal', user)
+      })
+      it('User can logout', function() {
+        cy.contains('Logout').click()
+        cy.contains('Login to application')
+        cy.window()
+          .its('store')
+          .invoke('getState')
+          .its('user')
+          .should('deep.equal', null)
+      })
     })
   })
 })
