@@ -9,4 +9,10 @@ router.post('/reset', async (request, response) => {
   response.status(204).end()
 })
 
+router.post('/resetsurveys', async (request, response) => {
+  await Survey.deleteMany({})
+
+  response.status(204).end()
+})
+
 module.exports = router

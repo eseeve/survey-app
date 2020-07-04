@@ -111,6 +111,7 @@ describe('Survey app', function() {
       })
       describe('When database contains a survey', function() {
         beforeEach(function() {
+          cy.request('POST', 'http://localhost:3001/api/testing/resetsurveys')
           cy.createSurvey({
             name: 'Food Survey',
             questions: [
@@ -168,20 +169,43 @@ describe('Survey app', function() {
         })
         it('Survey can be deleted', function() {
           cy.get('#my-surveys').click()
-          cy.contains('Surveys by Teemu Testaaja')
-          cy.contains('Food Survey')
           cy.contains('Delete Survey').click()
           cy.get('html').should('contain', "Survey 'Food Survey' deleted.")
           cy.get('html').should('contain', 'You have no surveys.')
         })
-        it.only('Results can be viewed', function() {
+        it('Results can be viewed', function() {
           cy.get('#my-surveys').click()
-          cy.contains('Surveys by Teemu Testaaja')
-          cy.contains('Food Survey')
           cy.contains('View results').click()
           cy.get('html').should('contain', 'Food Survey')
           cy.get('html').should('contain', 'No answers yet.')
           cy.get('html').should('contain', 'Created by Teemu Testaaja')
+        })
+        it('Results contain data from answers', function() {
+          cy.get('#take-survey').click()
+          cy.get('.survey-radio').eq(1).click()
+          cy.get('.survey-radio').eq(3).click()
+          cy.contains('Submit').click()
+          cy.get('#my-surveys').click()
+          cy.contains('View results').click()
+          cy.get('html').should('contain', '1 responses')
+          cy.get('html').should('contain', 'What is your favorite ice cream?')
+          cy.get('html').should('contain', 'Chocolate')
+        })
+        it('User can be deleted and user surveys are deleted with it', function() {
+          cy.get('#my-surveys').click()
+          cy.get('#delete-account').click()
+          cy.get('html').should('contain', "Your account 'testi' and your surveys have been deleted.")
+          cy.reload()
+          cy.window()
+            .its('store')
+            .invoke('getState')
+            .its('users')
+            .should('have.length', 0)
+          cy.window()
+            .its('store')
+            .invoke('getState')
+            .its('surveys')
+            .should('have.length', 0)
         })
       })
     })

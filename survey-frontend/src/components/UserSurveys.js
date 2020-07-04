@@ -97,7 +97,7 @@ const UserSurveys = () => {
           )}
         </Segment.Group>
       }
-      <Button color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
+      <Button id='delete-account' color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
     </div>
   )
 }

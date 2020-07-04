@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Header, Button, Grid } from 'semantic-ui-react'
 
@@ -9,8 +9,6 @@ import Notification from '../Notification'
 import { setNotification } from '../../reducers/notificationReducer'
 
 const NewSurvey = () => {
-  const initialSurveys = useSelector(state => state.surveys)
-  const surveyLength = initialSurveys.length
   const dispatch = useDispatch()
   const history = useHistory()
 
