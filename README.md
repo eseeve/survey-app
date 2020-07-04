@@ -28,4 +28,6 @@
 |            | 2         | NewSurvey-lomakkeen parantelu  |
 | 3.7        | 2         | NewSurvey-lomakkeen parantelu, UserSurvey-sivulle linkit kyselyihin  |
 |            | 2         | React Routerin korjaus Herokussa  |
-| Yht.       | 54        | | 
+| 4.7        | 8         | End to End -testaus  |
+|            | 2         | Uusien toiminnallisuuksien ideointi |
+| Yht.       | 64        | | 

@@ -69,5 +69,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## To-do list
 * Slider question
-* CheckBox question
-* CheckBox chart
+* Night mode
