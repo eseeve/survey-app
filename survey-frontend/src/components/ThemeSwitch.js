@@ -33,8 +33,8 @@ const ThemeSwitch = () => {
   return (
   <div>  
    <Button onClick={handleClick}>
-      dark theme:
-      <span aria-hidden="true">{theme === 'dark' ? 'on' : 'off'}</span>
+      Dark mode: 
+      <span aria-hidden="true">{theme === 'dark' ? ' on' : ' off'}</span>
    </Button>
    <style media={theme === 'dark' ? 'screen' : 'none'}>
       {theme === 'dark' ? css.trim() : css}

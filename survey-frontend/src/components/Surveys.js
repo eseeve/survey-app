@@ -25,7 +25,7 @@ const Surveys = () => {
         {surveys.map(survey =>
             <Segment key={survey.id} >
               {survey.name}
-              <Button id='take-survey' primary as={Link} to={`/surveys/${survey.id}`} floated='right'>Take survey</Button>
+              <Button id='take-survey' as={Link} to={`/surveys/${survey.id}`} floated='right'>Take survey</Button>
               <div>Created by {survey.user.name}</div>
             </Segment>
           )}

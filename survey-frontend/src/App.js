@@ -2,7 +2,7 @@ import React, { useEffect  } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
-import { Button, Container, Header, Grid, Menu, Dropdown } from 'semantic-ui-react'
+import { Button, Container, Header, Grid, Dropdown } from 'semantic-ui-react'
 
 import { setNotification } from './reducers/notificationReducer'
 import { initializeSurveys } from './reducers/surveyReducer'
@@ -72,25 +72,25 @@ const App = () => {
             <UserSurveys />
           </Route>
           <Route path="/">
-            <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns={2}>
-              <Grid.Column >
+            <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
+              <Grid.Column width={14} >
                 <Header as='h1' >Survey App</Header>
               </Grid.Column>
               <Grid.Column style={{marginTop: '5px'}}>
-                <Dropdown floated='right' text='Menu'>
+                <Dropdown text='Menu'>
                     <Dropdown.Menu>
                       <Dropdown.Item>
-                      <Button primary size='small' type='button' onClick={handleLogout} >
-                        Logout
-                      </Button>
-                      </Dropdown.Item>
-                      <Dropdown.Item>
-                      <Button id='my-surveys' primary size='small' basic as={Link} to={'/surveys'}>
+                      <Button id='my-surveys' as={Link} to={'/surveys'}>
                         My Surveys
                       </Button>
                       </Dropdown.Item>
                       <Dropdown.Item>
                         <ThemeSwitch />
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <Button size='small' type='button' onClick={handleLogout} >
+                          Logout
+                        </Button>
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -98,7 +98,7 @@ const App = () => {
             </Grid>
             <Notification />
             <Surveys />
-            <Button style={{marginTop: '10px'}} primary as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
+            <Button style={{marginTop: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
           </Route>
         </Switch>
       </Container>
