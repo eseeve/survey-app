@@ -30,4 +30,7 @@
 |            | 2         | React Routerin korjaus Herokussa  |
 | 4.7        | 8         | End to End -testaus  |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
-| Yht.       | 64        | | 
+| 6.7        | 4         | Dark mode |
+|            | 4         | Menu |
+|            | 2         | Refaktorointi |
+| Yht.       | 74        | | 
