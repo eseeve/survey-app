@@ -79,7 +79,9 @@ const App = () => {
                 <Button floated='right' primary size='small' type='button' onClick={handleLogout} >
                   Logout
                 </Button>
-                <Button id='my-surveys' floated='right' size='small' color='blue' basic as={Link} to={'/surveys'}>My Surveys</Button>
+                <Button id='my-surveys' primary floated='right' size='small' basic as={Link} to={'/surveys'}>
+                  My Surveys
+                </Button>
               </Grid.Column>
             </Grid>
             <Notification />
