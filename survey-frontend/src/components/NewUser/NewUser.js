@@ -1,11 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { useHistory } from 'react-router-dom'
-import { Header, Button, Grid } from 'semantic-ui-react'
+import { useHistory, Link } from 'react-router-dom'
+import { Header, Button, Grid, Dropdown } from 'semantic-ui-react'
 
 import { createUser } from '../../reducers/usersReducer'
 import { setNotification } from '../../reducers/notificationReducer'
+import ThemeSwitch from '../ThemeSwitch'
 import UserForm from './UserForm'
 
 const NewUser = () => {
@@ -30,21 +31,26 @@ const NewUser = () => {
     }
   }
 
-  const handleClick = () => {
-    history.push('/')
-  }
-
   return (
     <div>
-      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns={2}>
-        <Grid.Column >
+      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
+        <Grid.Column width={14}>
           <Header as='h1' >Sign up for Survey App</Header>
         </Grid.Column>
-        <Grid.Column >
-          <Button floated='right' primary size='small' type='button' onClick={handleClick} >
-            Cancel
-          </Button>
-      </Grid.Column>
+        <Grid.Column style={{marginTop: '5px'}}>
+        <Dropdown text='Menu'>
+          <Dropdown.Menu>
+            <Dropdown.Item>
+              <Button id='my-surveys' as={Link} to={'/'}>
+                Home
+              </Button>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <ThemeSwitch />
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        </Grid.Column>
       </Grid>
       <UserForm onSubmit={handleSubmit} />
     </div>

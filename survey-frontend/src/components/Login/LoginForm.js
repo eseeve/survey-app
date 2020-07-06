@@ -21,7 +21,7 @@ const LoginForm = ({ handleSubmit, submitting }) => {
           placeholder='Password'
           component={PasswordField}
         />
-        <Button primary size='small' type='submit' disabled={submitting}>
+        <Button size='small' type='submit' disabled={submitting}>
           Login
         </Button>
       </Form>

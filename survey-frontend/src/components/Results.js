@@ -84,7 +84,7 @@ const Results = () => {
         </Grid.Column>
       </Grid>
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions questions={survey.questions} total={total}/>}
-      <div>Created by {survey.user.name}</div>
+      <div style={{marginBottom: '20px'}}>Created by {survey.user.name}</div>
     </div>
   )
 }

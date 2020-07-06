@@ -29,9 +29,9 @@ const Menu = ({ link }) => {
     <Dropdown text='Menu'>
       <Dropdown.Menu>
         <Dropdown.Item>
-        <Button id='my-surveys' as={Link} to={route}>
-          {link}
-        </Button>
+          <Button id='my-surveys' as={Link} to={route}>
+            {link}
+          </Button>
         </Dropdown.Item>
         <Dropdown.Item>
           <ThemeSwitch />
