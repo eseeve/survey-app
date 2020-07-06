@@ -1,31 +1,43 @@
 import React, { useState, useEffect } from 'react'
+import { Button } from 'semantic-ui-react'
 
 import storage from '../utils/storage'
 
 const ThemeSwitch = () => {
-  const [ theme, setTheme ] = useState(false)
+  const [ theme, setTheme ] = useState('light')
 
   useEffect(() => {
-    setTheme(storage.loadTheme())
+    if (storage.loadTheme() === 'dark') {
+      setTheme('dark')
+    } else {
+      setTheme('light')
+    }
   }, [])
 
   const handleClick = (event) => {
     event.preventDefault()
-    theme ? setTheme(false) : setTheme(true)
-    storage.saveTheme(theme)
+    if (theme === 'light') {
+      setTheme('dark')
+      storage.saveTheme('dark')
+    } else {
+      setTheme('light')
+      storage.saveTheme('light')
+    }
   }
   const css =  `  
-  html { filter: invert(100%); background: #121212; }  
+  html { background-color: #eee;
+  filter: invert(95%); }
+  body { background-color: #eee;}  
   * { background-color: inherit }
-  img:not([src*=".svg"]), video { filter: invert(100%) }`
+  img:not([src*=".svg"]), video { filter: invert(95%) }`
   return (
   <div>  
-   <button aria-pressed={theme} onClick={handleClick}>
+   <Button onClick={handleClick}>
       dark theme:
-      <span aria-hidden="true">{theme ? 'on' : 'off'}</span>
-   </button>
-   <style media={theme ? 'screen' : 'none'}>
-      {theme ? css.trim() : css}
+      <span aria-hidden="true">{theme === 'dark' ? 'on' : 'off'}</span>
+   </Button>
+   <style media={theme === 'dark' ? 'screen' : 'none'}>
+      {theme === 'dark' ? css.trim() : css}
    </style>
   </div> 
   ) 

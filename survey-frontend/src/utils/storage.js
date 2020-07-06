@@ -4,7 +4,7 @@ const saveTheme = (theme) =>
   localStorage.setItem('ThemeSwitch', theme)
 
 const loadTheme = () =>
-  localStorage.getItem('ThemeSwitch') || false
+  localStorage.getItem('ThemeSwitch')
 
 const saveUser = (user) =>
   localStorage.setItem(storageKey, JSON.stringify(user))

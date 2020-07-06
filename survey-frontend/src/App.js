@@ -2,7 +2,7 @@ import React, { useEffect  } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
-import { Button, Container, Header, Grid } from 'semantic-ui-react'
+import { Button, Container, Header, Grid, Menu, Dropdown } from 'semantic-ui-react'
 
 import { setNotification } from './reducers/notificationReducer'
 import { initializeSurveys } from './reducers/surveyReducer'
@@ -76,14 +76,24 @@ const App = () => {
               <Grid.Column >
                 <Header as='h1' >Survey App</Header>
               </Grid.Column>
-              <Grid.Column >
-                <Button floated='right' primary size='small' type='button' onClick={handleLogout} >
-                  Logout
-                </Button>
-                <Button id='my-surveys' primary floated='right' size='small' basic as={Link} to={'/surveys'}>
-                  My Surveys
-                </Button>
-                <ThemeSwitch />
+              <Grid.Column style={{marginTop: '5px'}}>
+                <Dropdown floated='right' text='Menu'>
+                    <Dropdown.Menu>
+                      <Dropdown.Item>
+                      <Button primary size='small' type='button' onClick={handleLogout} >
+                        Logout
+                      </Button>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                      <Button id='my-surveys' primary size='small' basic as={Link} to={'/surveys'}>
+                        My Surveys
+                      </Button>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <ThemeSwitch />
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
               </Grid.Column>
             </Grid>
             <Notification />
