@@ -1,5 +1,11 @@
 const storageKey = 'loggedSurveyAppUser'
 
+const saveTheme = (theme) => 
+  localStorage.setItem('ThemeSwitch', theme)
+
+const loadTheme = () =>
+  localStorage.getItem('ThemeSwitch') || false
+
 const saveUser = (user) =>
   localStorage.setItem(storageKey, JSON.stringify(user))
 
@@ -12,5 +18,7 @@ const logoutUser = () =>
 export default {
   saveUser,
   loadUser,
-  logoutUser
+  logoutUser,
+  saveTheme,
+  loadTheme
 }

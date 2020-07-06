@@ -36,7 +36,7 @@ const NewUser = () => {
 
   return (
     <div>
-      <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
+      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns={2}>
         <Grid.Column >
           <Header as='h1' >Sign up for Survey App</Header>
         </Grid.Column>

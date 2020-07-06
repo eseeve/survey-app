@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <div>
-      <Header as='h1' style={{marginTop: '10px'}}>Login to application</Header>
+      <Header as='h1' style={{paddingTop: '10px'}}>Login to application</Header>
       <Notification />
       <LoginForm onSubmit={handleSubmit}/>
       <div style={{marginTop: '10px'}}>Not a user yet? Click <Link to={`/signup`}>here</Link>!</div>

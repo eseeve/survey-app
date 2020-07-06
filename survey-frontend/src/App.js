@@ -18,10 +18,11 @@ import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
 import Results from './components/Results'
 import Login from './components/Login/Login'
+import ThemeSwitch from './components/ThemeSwitch'
 
 
 const App = () => {
-  const user = useSelector(state =>  state.user)
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -71,7 +72,7 @@ const App = () => {
             <UserSurveys />
           </Route>
           <Route path="/">
-            <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
+            <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns={2}>
               <Grid.Column >
                 <Header as='h1' >Survey App</Header>
               </Grid.Column>
@@ -82,6 +83,7 @@ const App = () => {
                 <Button id='my-surveys' primary floated='right' size='small' basic as={Link} to={'/surveys'}>
                   My Surveys
                 </Button>
+                <ThemeSwitch />
               </Grid.Column>
             </Grid>
             <Notification />
