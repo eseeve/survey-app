@@ -2,12 +2,11 @@ import React, { useEffect  } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
-import { Button, Container, Header, Grid, Dropdown } from 'semantic-ui-react'
+import { Button, Container, Header, Grid } from 'semantic-ui-react'
 
-import { setNotification } from './reducers/notificationReducer'
 import { initializeSurveys } from './reducers/surveyReducer'
 import { initializeUsers } from './reducers/usersReducer'
-import { login, logout } from './reducers/userReducer'
+import { login } from './reducers/userReducer'
 import storage from './utils/storage'
 
 import NewSurvey from './components/NewSurvey/NewSurvey'
@@ -18,7 +17,7 @@ import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
 import Results from './components/Results'
 import Login from './components/Login/Login'
-import ThemeSwitch from './components/ThemeSwitch'
+import Menu from './components/Menu'
 
 
 const App = () => {
@@ -33,12 +32,6 @@ const App = () => {
       dispatch(login(user))
     }
   }, [dispatch])
-
-  const handleLogout = () => {
-    dispatch(logout())
-    dispatch(setNotification('You have logged out.', 5))
-    storage.logoutUser()
-  }
 
   if ( !user ) {
     return (
@@ -77,23 +70,7 @@ const App = () => {
                 <Header as='h1' >Survey App</Header>
               </Grid.Column>
               <Grid.Column style={{marginTop: '5px'}}>
-                <Dropdown text='Menu'>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>
-                      <Button id='my-surveys' as={Link} to={'/surveys'}>
-                        My Surveys
-                      </Button>
-                      </Dropdown.Item>
-                      <Dropdown.Item>
-                        <ThemeSwitch />
-                      </Dropdown.Item>
-                      <Dropdown.Item>
-                        <Button size='small' type='button' onClick={handleLogout} >
-                          Logout
-                        </Button>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
+                <Menu link='My Surveys' />
               </Grid.Column>
             </Grid>
             <Notification />

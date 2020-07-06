@@ -1,11 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { Header, Button, Grid } from 'semantic-ui-react'
+import { Header, Grid } from 'semantic-ui-react'
 
 import { createSurvey } from '../../reducers/surveyReducer'
 import SurveyForm from './SurveyForm'
 import Notification from '../Notification'
+import Menu from '../Menu'
 import { setNotification } from '../../reducers/notificationReducer'
 
 const NewSurvey = () => {
@@ -18,21 +19,15 @@ const NewSurvey = () => {
     history.push('/')
   }
 
-  const handleHomeClick = () => {
-    history.push('/')
-  }
-
   return (
     <div>
-      <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
-        <Grid.Column >
+      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
+        <Grid.Column width={14}>
           <Header as='h1' >Create new survey</Header>
         </Grid.Column>
-        <Grid.Column >
-          <Button floated='right' primary size='small' type='button' onClick={handleHomeClick} >
-            Home
-          </Button>
-      </Grid.Column>
+        <Grid.Column style={{marginTop: '5px'}}>
+          <Menu link='Home' />
+        </Grid.Column>
       </Grid>
       <Notification />
       <SurveyForm onSubmit={handleSubmit} />

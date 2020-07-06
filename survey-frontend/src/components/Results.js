@@ -1,8 +1,10 @@
 import React from 'react'
 import { useSelector  } from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom'
-import { Button, Header, Grid } from 'semantic-ui-react'
+import { useParams } from 'react-router-dom'
+import { Header, Grid } from 'semantic-ui-react'
 import Chart from "react-google-charts"
+
+import Menu from './Menu'
 
 const Question = ({ question, total }) => {
   let data = question.options.map(o => {
@@ -61,14 +63,9 @@ const Questions = ({ questions, total }) => {
 
 const Results = () => {
   const surveys = useSelector(state => state.surveys)
-  const history = useHistory()
 
   const id = useParams().id
   const survey = surveys.find(s => s.id === id)
-
-  const handleClick = () => {
-    history.push('/')
-  }
 
   if (!survey) {
     return null
@@ -78,14 +75,12 @@ const Results = () => {
 
   return(
     <div>
-      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns={2}>
-        <Grid.Column >
+      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
+        <Grid.Column width={14} >
           <Header as='h1' >{survey.name}</Header>
         </Grid.Column>
-        <Grid.Column >
-          <Button floated='right' primary size='small' type='button' onClick={handleClick} >
-            Home
-          </Button>
+        <Grid.Column style={{marginTop: '5px'}}>
+          <Menu link='Home' />
         </Grid.Column>
       </Grid>
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions questions={survey.questions} total={total}/>}

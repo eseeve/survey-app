@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { Segment, Grid, Button, Header } from 'semantic-ui-react'
 
+import Menu from './Menu'
 import Notification from './Notification'
 import storage from '../utils/storage'
 
@@ -54,10 +55,6 @@ const UserSurveys = () => {
     }
   }
 
-  const handleHomeClick = () => {
-    history.push('/')
-  }
-
   const handleCopyLink = (event, survey) => {
     event.preventDefault()
     navigator.clipboard.writeText(window.location.href.concat(`/${survey.id}`))
@@ -72,14 +69,12 @@ const UserSurveys = () => {
 
   return(
     <div>
-      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns={2}>
-        <Grid.Column >
+      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
+        <Grid.Column width={14}>
           <Header as='h1' >Surveys by {user.name}</Header>
         </Grid.Column>
-        <Grid.Column >
-          <Button floated='right' primary size='small' type='button' onClick={handleHomeClick} >
-            Home
-          </Button>
+        <Grid.Column style={{marginTop: '5px'}}>
+          <Menu link='Home' />
         </Grid.Column>
       </Grid>
       <Notification />
@@ -90,7 +85,7 @@ const UserSurveys = () => {
             <Segment key={survey.id} >
               {survey.name}
               <Button floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
-              <Button style={{marginRight: '10px'}} floated='right' primary size='small' onClick={(event) => handleCopyLink(event, survey)}>Copy link</Button>
+              <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLink(event, survey)}>Copy link</Button>
               <div>Responses: {survey.answers}</div>
               <div style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>View results</Link></div>
             </Segment>

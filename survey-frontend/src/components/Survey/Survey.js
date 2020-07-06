@@ -1,12 +1,14 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
-import { Header, Grid, Button } from 'semantic-ui-react'
+import { Header, Grid } from 'semantic-ui-react'
+import { SubmissionError } from 'redux-form'
 
 import { answerSurvey } from '../../reducers/surveyReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import TakeSurvey from './TakeSurvey'
-import { SubmissionError } from 'redux-form'
+import Menu from '../Menu'
+
 
 const Survey = () => {
   const surveys = useSelector(state => state.surveys)
@@ -28,24 +30,18 @@ const Survey = () => {
     }
   }
 
-  const handleHomeClick = () => {
-    history.push('/')
-  }
-
   if (!survey) {
     return null
   }
 
   return (
     <div>
-      <Grid style={{marginTop: '10px', marginBottom: '10px'}} columns={2}>
-        <Grid.Column >
+      <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
+        <Grid.Column width={14}>
           <Header as='h1' >{survey.name}</Header>
         </Grid.Column>
-        <Grid.Column >
-          <Button floated='right' primary size='small' type='button' onClick={handleHomeClick} >
-            Home
-          </Button>
+        <Grid.Column style={{marginTop: '5px'}} >
+          <Menu link='Home' />
         </Grid.Column>
       </Grid>
       <TakeSurvey survey={survey} onSubmit={handleSubmit}/>

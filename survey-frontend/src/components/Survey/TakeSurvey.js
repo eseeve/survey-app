@@ -84,7 +84,7 @@ const TakeSurvey = ({ survey, handleSubmit, submitting, error }) => {
         <Questions questions={survey.questions} />
         {error && <div style={{color: 'red'}}>{error}</div>}
         <div>
-          <Button primary size='small' style={{marginTop: '10px'}} type="submit" disabled={submitting}>
+          <Button size='small' style={{marginTop: '10px'}} type="submit" disabled={submitting}>
             Submit
           </Button>
         </div>

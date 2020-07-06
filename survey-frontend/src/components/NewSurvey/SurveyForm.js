@@ -36,7 +36,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
   <div>
       {fields.map((question, index) => (
         <Segment key={index}>
-          <Grid columns={3}>
+          <Grid columns={3} style={{marginBottom: '10px'}}>
           <Grid.Row key={index}>
           <Grid.Column>
             <Field
@@ -78,7 +78,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
         </Segment>
       )
     )}
-    <Button id='add-question' primary size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
+    <Button id='add-question' size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
       Add Question
     </Button>
     {submitFailed && error && <div style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
