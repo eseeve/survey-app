@@ -26,6 +26,7 @@ const Question = ({ question, total }) => {
           loader={<div>Loading Chart</div>}
           options={{
             tooltip: { trigger: 'selection' },
+            backgroundColor: '#eee'
           }}
           data={data}
         />

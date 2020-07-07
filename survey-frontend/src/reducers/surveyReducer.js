@@ -2,7 +2,7 @@ import surveyService from '../services/surveys'
 
 const byAnswers = (s1, s2) => s2.answers - s1.answers
 
-const surveyReducer = (state = [], action) => {
+const reducer = (state = [], action) => {
   switch(action.type) {
   case 'INIT_SURVEYS':
     return action.data.sort(byAnswers)
@@ -67,4 +67,4 @@ export const removeSurvey = (survey) => {
   }
 }
 
-export default surveyReducer
+export default reducer

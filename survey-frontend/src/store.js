@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 
 import notificationReducer from './reducers/notificationReducer'
 import surveyReducer from './reducers/surveyReducer'
+import themeReducer from './reducers/themeReducer'
 import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers ({
   users: usersReducer,
   notification: notificationReducer,
   user: userReducer,
+  theme: themeReducer,
   form: formReducer
 })
 

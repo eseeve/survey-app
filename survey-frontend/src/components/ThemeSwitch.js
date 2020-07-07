@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector  } from 'react-redux'
 import { Button } from 'semantic-ui-react'
 
+import { changeTheme } from '../reducers/themeReducer'
 import storage from '../utils/storage'
 
 const ThemeSwitch = () => {
-  const [ theme, setTheme ] = useState('light')
+  const theme = useSelector(state => state.theme)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (storage.loadTheme() === 'dark') {
-      setTheme('dark')
+      dispatch(changeTheme('dark'))
     } else {
-      setTheme('light')
+      dispatch(changeTheme('light'))
     }
   }, [])
 
   const handleClick = (event) => {
     event.preventDefault()
     if (theme === 'light') {
-      setTheme('dark')
+      dispatch(changeTheme('dark'))
       storage.saveTheme('dark')
     } else {
-      setTheme('light')
+      dispatch(changeTheme('light'))
       storage.saveTheme('light')
     }
   }
