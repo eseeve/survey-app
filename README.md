@@ -33,4 +33,6 @@
 | 6.7        | 4         | Dark mode |
 |            | 4         | Menu |
 |            | 2         | Refaktorointi |
-| Yht.       | 74        | | 
+| 7.7        | 4         | Dark mode parantelu ja UI muutoksia |
+|            | 2         | Tutustuminen teemoihin ja eri CSS-tyyleihin |
+| Yht.       | 80        | | 
