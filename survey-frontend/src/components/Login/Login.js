@@ -49,7 +49,7 @@ const Login = () => {
       
       <Notification />
       <LoginForm onSubmit={handleSubmit}/>
-      <div style={{marginTop: '10px'}}>Not a user yet? Click <Link to={`/signup`}>here</Link>!</div>
+      <div style={{marginTop: '10px'}}>Not a user yet? Click <Link className='link' to={`/signup`}>here</Link>!</div>
     </div>
   )
 }

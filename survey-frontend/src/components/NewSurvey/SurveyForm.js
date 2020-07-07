@@ -65,10 +65,10 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
               ]}
             >
             </Field>
-            {touched && error && <div style={{color: 'red'}}>{error}</div>}
+            {touched && error && <div className='error' style={{color: 'red'}}>{error}</div>}
           </Grid.Column>
           <Grid.Column>
-            <Button icon floated='right' size='tiny' color='red' type='button' onClick={() => fields.remove(index)}>
+            <Button className='red-button' icon floated='right' size='tiny' color='red' type='button' onClick={() => fields.remove(index)}>
               <Icon name='trash' />
             </Button>
           </Grid.Column>
@@ -81,7 +81,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
     <Button id='add-question' size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
       Add Question
     </Button>
-    {submitFailed && error && <div style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
+    {submitFailed && error && <div className='error' style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
   </div>
 )
 
@@ -96,10 +96,10 @@ const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
       />
       <FieldArray name='questions' component={Questions} />
       <div>
-        <Button id='submit' color='green' size='small' type='submit' disabled={submitting}>
+        <Button className='green-button' id='submit' color='green' size='small' type='submit' disabled={submitting}>
           Submit
         </Button>
-        <Button floated='right' color='red' size='small' type='button' disabled={pristine || submitting} onClick={reset}>
+        <Button className='red-button' floated='right' color='red' size='small' type='button' disabled={pristine || submitting} onClick={reset}>
           Clear Values
         </Button>
       </div>

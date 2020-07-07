@@ -33,7 +33,7 @@ const UserForm = ({ handleSubmit, submitting }) => {
           placeholder='Confirm Password'
           component={PasswordField}
         />
-        <Button size='small' type='submit' disabled={submitting}>
+        <Button className='green-button' color='green' size='small' type='submit' disabled={submitting}>
           Sign up
         </Button>
       </Form>

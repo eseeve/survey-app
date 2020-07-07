@@ -32,7 +32,10 @@ const ThemeSwitch = () => {
   img:not([src*=".svg"]),
   video { filter: invert(95%) }
   .red-button { filter: invert(100%) }
-  .teal-button { filter: invert(100%) }`
+  .teal-button { filter: invert(100%) }
+  .green-button { filter: invert(100%) }
+  .link { filter: invert(100%) }
+  .notification { filter: invert(100%) `
   return (
   <div>  
    <Button onClick={handleClick}>
