@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector  } from 'react-redux'
 import { Button } from 'semantic-ui-react'
 
@@ -15,7 +15,7 @@ const ThemeSwitch = () => {
     } else {
       dispatch(changeTheme('light'))
     }
-  }, [])
+  }, [dispatch])
 
   const handleClick = (event) => {
     event.preventDefault()
@@ -38,6 +38,7 @@ const ThemeSwitch = () => {
   .teal-button { filter: invert(100%) }
   .green-button { filter: invert(100%) }
   .link { filter: invert(100%) }
+  .chart { filter: invert(100%) }
   .notification { filter: invert(100%) `
   return (
   <div>  
