@@ -1,23 +1,36 @@
 import React from 'react'
 import { Form, Dropdown } from 'semantic-ui-react'
+import { useSelector } from 'react-redux'
 
-export const TextField = ({ input, placeholder, label, meta: { touched, error } }) => (
-  <Form.Field>
-    <label style={{fontSize: '16px'}}>{label}</label>
-    <input id={input.name} {...input} type='text' style={{marginBottom: '5px'}} placeholder={placeholder}/>
-    {touched && error && <div style={{color: 'red'}}>{error}</div>}
-  </Form.Field>
-)
+export const TextField = ({ input, placeholder, label, meta: { touched, error } }) => {
+  const theme = useSelector(state => state.theme)
+  const color = theme === 'dark' ? 'teal' : 'red'
+  return (
+    <Form.Field>
+      <label style={{fontSize: '16px'}}>{label}</label>
+      <input id={input.name} {...input} type='text' style={{marginBottom: '5px'}} placeholder={placeholder}/>
+      {touched && error && <div className='error' style={{color}}>{error}</div>}
+    </Form.Field>
+  )
+}
+  
 
-export const PasswordField = ({ input, placeholder, label, meta: { touched, error } }) => (
-  <Form.Field>
-    <label style={{fontSize: '16px'}}>{label}</label>
-    <input id={input.name} {...input} type='password' style={{marginBottom: '5px'}} placeholder={placeholder}/>
-    {touched && error && <div style={{color: 'red'}}>{error}</div>}
-  </Form.Field>
-)
+export const PasswordField = ({ input, placeholder, label, meta: { touched, error } }) => {
+  const theme = useSelector(state => state.theme)
+  const color = theme === 'dark' ? 'teal' : 'red'
+  return (
+    <Form.Field>
+      <label style={{fontSize: '16px'}}>{label}</label>
+      <input id={input.name} {...input} type='password' style={{marginBottom: '5px'}} placeholder={placeholder}/>
+      {touched && error && <div className='error' style={{color}}>{error}</div>}
+    </Form.Field>
+  )
+}
 
-export const SelectField = props => (
+export const SelectField = props => {
+  const theme = useSelector(state => state.theme)
+  const color = theme === 'dark' ? 'teal' : 'red'
+  return(
     <Form.Field>
       <label style={{fontSize: '16px'}}>{props.label}</label>
       <Dropdown
@@ -29,6 +42,7 @@ export const SelectField = props => (
         options={props.options}
         style={{marginBottom: '5px'}}
       />
-      {props.meta.touched && props.meta.error && <div style={{color: 'red'}}>{props.meta.error}</div>}
+      {props.meta.touched && props.meta.error && <div className='error' style={{color}}>{props.meta.error}</div>}
      </Form.Field>
 )
+}

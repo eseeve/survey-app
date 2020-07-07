@@ -40,6 +40,7 @@ const ThemeSwitch = () => {
   .link { filter: invert(100%) }
   .chart { filter: invert(100%) }
   .notification { filter: invert(100%) `
+
   return (
   <div>  
    <Button onClick={handleClick}>

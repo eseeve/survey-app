@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Form, Button } from 'semantic-ui-react'
 
@@ -73,6 +74,8 @@ const Questions = ({ questions }) => {
 }
 
 const TakeSurvey = ({ survey, handleSubmit, submitting, error }) => {
+  const theme = useSelector(state => state.theme)
+  const color = theme === 'dark' ? 'teal' : 'red'
 
   if (!survey) {
     return null
@@ -82,7 +85,7 @@ const TakeSurvey = ({ survey, handleSubmit, submitting, error }) => {
     <div>
       <Form onSubmit={handleSubmit}>
         <Questions questions={survey.questions} />
-        {error && <div style={{color: 'red'}}>{error}</div>}
+        {error && <div style={{color}}>{error}</div>}
         <div>
           <Button className='green-button' color='green' size='small' style={{marginTop: '10px'}} type="submit" disabled={submitting}>
             Submit

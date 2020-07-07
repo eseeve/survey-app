@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
@@ -32,8 +33,11 @@ const Options = ({ fields, meta: { error } }) => (
   </div>
 )
 
-const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
-  <div>
+const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
+  const theme = useSelector(state => state.theme)
+  const color = theme === 'dark' ? 'teal' : 'red'
+  return (
+    <div>
       {fields.map((question, index) => (
         <Segment key={index}>
           <Grid columns={3} style={{marginBottom: '10px'}}>
@@ -65,7 +69,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
               ]}
             >
             </Field>
-            {touched && error && <div className='error' style={{color: 'red'}}>{error}</div>}
+            {touched && error && <div className='error' style={{color}}>{error}</div>}
           </Grid.Column>
           <Grid.Column>
             <Button className='red-button' icon floated='right' size='tiny' color='red' type='button' onClick={() => fields.remove(index)}>
@@ -81,9 +85,10 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) => (
     <Button id='add-question' size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
       Add Question
     </Button>
-    {submitFailed && error && <div className='error' style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
+    {submitFailed && error && <div className='error' style={{color, marginBottom: '10px'}}>{error}</div>}
   </div>
-)
+  )
+}
 
 const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
   return (
