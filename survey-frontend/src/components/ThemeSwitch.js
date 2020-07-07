@@ -29,7 +29,10 @@ const ThemeSwitch = () => {
   filter: invert(95%); }
   body { background-color: #eee;}  
   * { background-color: inherit }
-  img:not([src*=".svg"]), video { filter: invert(95%) }`
+  img:not([src*=".svg"]),
+  video { filter: invert(95%) }
+  .red-button { filter: invert(100%) }
+  .teal-button { filter: invert(100%) }`
   return (
   <div>  
    <Button onClick={handleClick}>

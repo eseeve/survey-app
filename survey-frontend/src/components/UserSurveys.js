@@ -84,7 +84,7 @@ const UserSurveys = () => {
         {surveys.map(survey =>
             <Segment key={survey.id} >
               {survey.name}
-              <Button floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
+              <Button className='red-button' floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
               <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLink(event, survey)}>Copy link</Button>
               <div>Responses: {survey.answers}</div>
               <div style={{marginTop: '3px'}}><Link to={`/surveys/${survey.id}/results`}>View results</Link></div>
@@ -92,7 +92,7 @@ const UserSurveys = () => {
           )}
         </Segment.Group>
       }
-      <Button id='delete-account' color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
+      <Button className='red-button' id='delete-account' color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
     </div>
   )
 }

@@ -75,7 +75,7 @@ const App = () => {
             </Grid>
             <Notification />
             <Surveys />
-            <Button style={{marginTop: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
+            <Button className='teal-button' color='teal' style={{marginTop: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
           </Route>
         </Switch>
       </Container>
