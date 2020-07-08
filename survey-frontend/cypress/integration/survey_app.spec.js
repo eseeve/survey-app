@@ -23,7 +23,8 @@ describe('Survey app', function() {
       cy.contains('Not a user yet? Click here!')
       cy.contains('here').click()
       cy.contains('Sign up for Survey App')
-      cy.contains('Cancel').click()
+      cy.contains('Menu').click()
+      cy.contains('Home').click()
     })
     it('User can sign up', function() {
       cy.server()
@@ -94,6 +95,7 @@ describe('Survey app', function() {
           .should('deep.equal', user)
       })
       it('User can logout', function() {
+        cy.contains('Menu').click()
         cy.contains('Logout').click()
         cy.contains('Login to application')
         cy.window()
@@ -204,17 +206,20 @@ describe('Survey app', function() {
           cy.contains('You must answer to all questions')
         })
         it('Survey appears in my surveys', function() {
+          cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.contains('Surveys by Teemu Testaaja')
           cy.contains('Food Survey')
         })
         it('Survey can be deleted', function() {
+          cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.contains('Delete Survey').click()
           cy.get('html').should('contain', "Survey 'Food Survey' deleted.")
           cy.get('html').should('contain', 'You have no surveys.')
         })
         it('Results can be viewed', function() {
+          cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.contains('View results').click()
           cy.get('html').should('contain', 'Food Survey')
@@ -226,6 +231,7 @@ describe('Survey app', function() {
           cy.get('.survey-radio').eq(1).click()
           cy.get('.survey-radio').eq(3).click()
           cy.contains('Submit').click()
+          cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.contains('View results').click()
           cy.get('html').should('contain', '1 responses')
@@ -233,6 +239,7 @@ describe('Survey app', function() {
           cy.get('html').should('contain', 'Chocolate')
         })
         it('User can be deleted and user surveys are deleted with it', function() {
+          cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.get('#delete-account').click()
           cy.get('html').should('contain', "Your account 'testi' and your surveys have been deleted.")
@@ -255,6 +262,7 @@ describe('Survey app', function() {
             cy.visit('http://localhost:3000')
           })
           it('My surveys page is empty', function() {
+            cy.contains('Menu').click()
             cy.get('#my-surveys').click()
             cy.contains('Surveys by Tiina Testaaja')
             cy.contains('You have no surveys.')
