@@ -19,14 +19,36 @@ const CheckBoxesOption = ({ option, title }) => {
 }
 
 const CheckBoxesQuestion = ({ question }) => {
+  const [ open, setOpen ] = useState('')
+
+  const handleChange = (event) => {
+    setOpen(event.target.value)
+  }
+
   return (
     <div style={{marginTop: '10px', marginBottom: '10px'}}>
       <strong style={{fontSize: '16px'}}>{question.title}</strong>
       <div>
-        {question.options.map(o =>
+        {question.options.filter(o => !o.custom).map(o =>
           <CheckBoxesOption key={o.option} option={o} title={question.title}/>
         )}
       </div>
+      {question.isOpen && (
+        <div style={{marginTop: '5px'}}>
+        <label>
+        <Field
+          name={`${question.title}.${open}`}
+          component='input'
+          type='checkbox'
+        />{' '}
+          <Input
+            placeholder='Other...'
+            value={open}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      )}
     </div>
   )
 }

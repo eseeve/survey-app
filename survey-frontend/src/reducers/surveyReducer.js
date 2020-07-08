@@ -42,11 +42,17 @@ export const answerSurvey = (survey, values) => {
     survey.questions.map(question => {
       if (question.type === 'MultipleChoice') {
         question.options.map(o => values[question.title] === o.option ? o.votes += 1 : o)
+        if (question.isOpen && question.options.every(o => o.option !== values[question.title])) {
+          question.options.push({ option: values[question.title], votes: 1, custom: true })
+        }
       } else if (question.type === 'Checkboxes') {
         question.options.map(o => values[question.title][o.option] === true ? o.votes += 1 : o)
-      }
-      if (question.isOpen && question.options.every(o => o.option !== values[question.title])) {
-        question.options.push({ option: values[question.title], votes: 1, custom: true })
+        console.log(values)
+        console.log(survey)
+        if (question.isOpen && question.options.every(o => o.option !== values[question.title])) {
+          console.log(values[question.title].key)
+          question.options.push({ option: values[question.title], votes: 1, custom: true })
+        }
       }
       return question
     })
