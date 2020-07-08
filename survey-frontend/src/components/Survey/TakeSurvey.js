@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Input } from 'semantic-ui-react'
 
 const CheckBoxesOption = ({ option, title }) => {
   return (
@@ -9,8 +9,8 @@ const CheckBoxesOption = ({ option, title }) => {
       <label>
         <Field
           name={`${title}.${option.option}`}
-          component="input"
-          type="checkbox"
+          component='input'
+          type='checkbox'
         />{' '}
         {option.option}
       </label>
@@ -38,8 +38,8 @@ const MultipleChoiceOption = ({ option, title }) => {
         <Field
           className='survey-radio'
           name={`${title}`}
-          component="input"
-          type="radio"
+          component='input'
+          type='radio'
           value={option.option}
         />{' '}
         {option.option}
@@ -49,6 +49,11 @@ const MultipleChoiceOption = ({ option, title }) => {
 }
 
 const MultipleChoiceQuestion = ({ question }) => {
+  const [ open, setOpen ] = useState('')
+
+  const handleChange = (event) => {
+    setOpen(event.target.value)
+  }
 
   return (
     <div style={{marginTop: '10px', marginBottom: '10px'}}>
@@ -62,9 +67,16 @@ const MultipleChoiceQuestion = ({ question }) => {
         <div style={{marginTop: '5px'}}>
         <label>
           <Field
-            placeholder='Other...'
+            className='survey-radio'
             name={`${question.title}`}
             component='input'
+            type='radio'
+            value={open}
+          />{' '}
+          <Input
+            placeholder='Other...'
+            value={open}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -99,7 +111,7 @@ const TakeSurvey = ({ survey, handleSubmit, submitting, error }) => {
         <Questions questions={survey.questions} />
         {error && <div style={{color}}>{error}</div>}
         <div>
-          <Button className='green-button' color='green' size='small' style={{marginTop: '10px'}} type="submit" disabled={submitting}>
+          <Button className='green-button' color='green' size='small' style={{marginTop: '10px'}} type='submit' disabled={submitting}>
             Submit
           </Button>
         </div>
