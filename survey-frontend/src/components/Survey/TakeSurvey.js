@@ -49,14 +49,26 @@ const MultipleChoiceOption = ({ option, title }) => {
 }
 
 const MultipleChoiceQuestion = ({ question }) => {
+
   return (
     <div style={{marginTop: '10px', marginBottom: '10px'}}>
       <strong style={{fontSize: '16px'}}>{question.title}</strong>
       <div>
-        {question.options.map(o =>
+        {question.options.filter(o => !o.custom).map(o =>
           <MultipleChoiceOption key={o.option} option={o} title={question.title}/>
         )}
       </div>
+      {question.isOpen && (
+        <div style={{marginTop: '5px'}}>
+        <label>
+          <Field
+            placeholder='Other...'
+            name={`${question.title}`}
+            component='input'
+          />
+        </label>
+      </div>
+      )}
     </div>
   )
 }

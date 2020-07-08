@@ -5,6 +5,7 @@ mongoose.set('useFindAndModify', false)
 const optionSchema = new mongoose.Schema(
   {
     option: { type: String, required: true },
+    custom: { type: Boolean, required: true , default: false },
     votes: { type: Number, required: true },
   }
 )
