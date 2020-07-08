@@ -79,6 +79,16 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
           </Grid.Row>
           </Grid>
           <FieldArray name={`${question}.options`} component={Options} />
+          <div style={{ paddingTop: '10px' }}>
+            <label>
+              <Field
+                name={`${question}.isOpen`}
+                component="input"
+                type="checkbox"
+              />{' '}
+              Add 'other'
+            </label>
+          </div>
         </Segment>
       )
     )}
