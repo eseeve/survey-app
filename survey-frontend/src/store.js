@@ -8,6 +8,7 @@ import surveyReducer from './reducers/surveyReducer'
 import themeReducer from './reducers/themeReducer'
 import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
+import filterReducer from './reducers/filterReducer'
 
 
 const rootReducer = combineReducers ({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers ({
   notification: notificationReducer,
   user: userReducer,
   theme: themeReducer,
+  filter: filterReducer,
   form: formReducer
 })
 
