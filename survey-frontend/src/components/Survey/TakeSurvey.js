@@ -36,11 +36,11 @@ const CheckBoxesQuestion = ({ question }) => {
       {question.isOpen && (
         <div style={{marginTop: '5px'}}>
         <label>
-        <Field
-          name={`${question.title}.${open}`}
-          component='input'
-          type='checkbox'
-        />{' '}
+          <Field
+            name={`${question.title}.${open}`}
+            component='input'
+            type='checkbox'
+          />{' '}
           <Input
             placeholder='Other...'
             value={open}

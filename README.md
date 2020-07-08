@@ -35,4 +35,5 @@
 |            | 2         | Refaktorointi |
 | 7.7        | 4         | Dark mode parantelu ja UI muutoksia |
 |            | 2         | Tutustuminen teemoihin ja eri CSS-tyyleihin |
-| Yht.       | 80        | | 
+| 8.7        | 4         | Avoin vastauskenttä kysymyksiin ja Search Bar |
+| Yht.       | 84        | | 
