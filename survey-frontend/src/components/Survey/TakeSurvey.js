@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { Form, Button, Input } from 'semantic-ui-react'
+import { Form, Button, Input, Grid } from 'semantic-ui-react'
 
 const CheckBoxesOption = ({ option, title }) => {
   return (
@@ -71,8 +71,7 @@ const MultipleChoiceOption = ({ option, title }) => {
           component='input'
           type='radio'
           value={option.option}
-        />{' '}
-        {option.option}
+        />{' '} {option.option}
       </label>
     </div>
   )
@@ -125,13 +124,47 @@ const MultipleChoiceQuestion = ({ question }) => {
   )
 }
 
+const LinearScaleOption = ({ option, title }) => {
+  return (
+    <div style={{marginTop: '5px'}}>
+      <label>
+        {option.option} <br/>
+        <Field
+          className='survey-radio'
+          name={`${title}`}
+          component='input'
+          type='radio'
+          value={option.option}
+        />
+      </label> 
+    </div>
+  )
+}
+
+const LinearScaleQuestion = ({ question }) => {
+  return (
+    <div style={{marginTop: '10px', marginBottom: '10px'}}>
+      <strong style={{fontSize: '16px'}}>{question.title}</strong>
+      <Grid columns='equal'>
+        {question.options.filter(o => !o.custom).map(o =>
+        <Grid.Column key={o.option}>
+          <LinearScaleOption option={o} title={question.title}/>
+        </Grid.Column>
+        )}
+      </Grid>
+    </div>
+  )
+}
+
 const Questions = ({ questions }) => {
   return (
     <div>
       {questions.map(q =>
-        q.type === 'MultipleChoice'
-        ? <MultipleChoiceQuestion key={q.title} question={q} />
-        : <CheckBoxesQuestion key={q.title} question={q} />
+      <div key={q.title}>
+        {q.type === 'MultipleChoice' && <MultipleChoiceQuestion question={q} />}
+        {q.type === 'Checkbox' && <CheckBoxesQuestion question={q} />}
+        {q.type === 'LinearScale' && <LinearScaleQuestion question={q} />}
+      </div>
       )}
     </div>
   )
