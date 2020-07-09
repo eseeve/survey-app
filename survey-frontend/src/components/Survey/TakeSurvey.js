@@ -72,10 +72,14 @@ const MultipleChoiceOption = ({ option, title }) => {
 
 const MultipleChoiceQuestion = ({ question }) => {
   const [ open, setOpen ] = useState('')
+  const [ option, setOption] = useState('')
 
-  const handleChange = (event) => {
-    setOpen(event.target.value)
+  const handleOptionAdd = () => {
+    if (open.trim().length === 0) return
+    setOpen('')
+    setOption(open)
   }
+
 
   return (
     <div style={{marginTop: '10px', marginBottom: '10px'}}>
@@ -85,23 +89,29 @@ const MultipleChoiceQuestion = ({ question }) => {
           <MultipleChoiceOption key={o.option} option={o} title={question.title}/>
         )}
       </div>
-      {question.isOpen && (
+      {(question.isOpen && option === '') && (
         <div style={{marginTop: '5px'}}>
-        <label>
-          <Field
-            className='survey-radio'
-            name={`${question.title}`}
-            component='input'
-            type='radio'
-            value={open}
-          />{' '}
           <Input
             placeholder='Other...'
             value={open}
-            onChange={handleChange}
+            onChange={(e) => setOpen(e.target.value)}
           />
-        </label>
-      </div>
+          <Button style={{marginLeft: '5px'}} size='tiny' onClick={handleOptionAdd}>Add</Button>
+          </div>
+      )}
+      {(question.isOpen && option !== '') && (
+        <div style={{marginTop: '5px'}}>
+          <label>
+            <Field
+              className='survey-radio'
+              name={`${question.title}`}
+              component='input'
+              type='radio'
+              value={option}
+            />{' '}
+            {option}
+          </label>
+        </div>
       )}
     </div>
   )

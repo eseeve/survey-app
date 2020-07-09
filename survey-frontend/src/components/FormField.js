@@ -44,5 +44,5 @@ export const SelectField = props => {
       />
       {props.meta.touched && props.meta.error && <div className='error' style={{color}}>{props.meta.error}</div>}
      </Form.Field>
-)
+  )
 }

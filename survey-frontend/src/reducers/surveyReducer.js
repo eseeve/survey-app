@@ -47,12 +47,6 @@ export const answerSurvey = (survey, values) => {
         }
       } else if (question.type === 'Checkboxes') {
         question.options.map(o => values[question.title][o.option] === true ? o.votes += 1 : o)
-        console.log(values)
-        console.log(survey)
-        if (question.isOpen && question.options.every(o => o.option !== values[question.title])) {
-          console.log(values[question.title].key)
-          question.options.push({ option: values[question.title], votes: 1, custom: true })
-        }
       }
       return question
     })
