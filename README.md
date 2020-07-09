@@ -36,4 +36,6 @@
 | 7.7        | 4         | Dark mode parantelu ja UI muutoksia |
 |            | 2         | Tutustuminen teemoihin ja eri CSS-tyyleihin |
 | 8.7        | 4         | Avoin vastauskenttä kysymyksiin ja Search Bar |
-| Yht.       | 84        | | 
+| 9.7        | 2         | Avointen vastauskenttien parantelu ja korjaus |
+|            | 6         | Linear Scale- kysymystyypin lisäys, validointi ja testaus |
+| Yht.       | 92        | | 
