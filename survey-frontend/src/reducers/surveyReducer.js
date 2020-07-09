@@ -47,6 +47,15 @@ export const answerSurvey = (survey, values) => {
         }
       } else if (question.type === 'Checkboxes') {
         question.options.map(o => values[question.title][o.option] === true ? o.votes += 1 : o)
+        const optionNames = Object.getOwnPropertyNames(values[question.title])
+        if (question.isOpen) {
+          for (let i = 0; i < optionNames.length;i++) {
+            const name = optionNames[i]
+            if (question.options.every(o => o.option !== name)) {
+              question.options.push({ option: name, votes: 1, custom: true })
+            }
+          }
+        }
       }
       return question
     })
