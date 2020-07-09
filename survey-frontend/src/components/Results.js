@@ -40,6 +40,30 @@ const Question = ({ theme, question, total }) => {
     )
   }
   
+  if (question.type === 'LinearScale') {
+    return (
+      <div>
+        <h4>{question.title}</h4>
+        <div>{total} responses</div>
+        <Chart
+          className='chart'
+          width={'500px'}
+          height={'300px'}
+          chartType="BarChart"
+          loader={<div>Loading Chart</div>}
+          options={{
+            orientation: 'horizontal',
+            legend: { position: 'none' },
+            hAxis: { textStyle: { color: textColor } },
+            vAxis: { textStyle: { color: textColor } },
+            backgroundColor
+          }}
+          data={data}
+        />
+      </div>
+    )
+  }
+  
   return (
     <div>
       <h4>{question.title}</h4>
