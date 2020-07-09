@@ -14,15 +14,17 @@ const NewSurvey = () => {
   const history = useHistory()
 
   const handleSubmit = (values) => {
-    for (let i = 0; i < values.linearScales.length; i++) {
-      let options = []
-      for (let j = values.linearScales[i].options.beginning; j <= values.linearScales[i].options.end; j++) {
-        options.push({ option: j })
+    if (values.linearScales && values.linearScales.length) {
+      for (let i = 0; i < values.linearScales.length; i++) {
+        let options = []
+        for (let j = values.linearScales[i].beginning; j <= values.linearScales[i].end; j++) {
+          options.push({ option: j })
+        }
+        if (!values.questions) { values.questions = [] }
+        values.questions.push({ options, title: values.linearScales[i].title, type: 'LinearScale'})
       }
-      if (!values.questions) { values.questions = [] }
-      values.questions.push({ options, title: values.linearScales[i].title, type: 'LinearScale'})
+      delete values.linearScales
     }
-    delete values.linearScales
     dispatch(createSurvey(values))
     dispatch(setNotification(`New survey '${values.name}' created!`, 5))
     history.push('/')

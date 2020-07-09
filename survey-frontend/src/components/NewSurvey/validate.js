@@ -46,6 +46,27 @@ const validate = values => {
       errors.questions = questionsArrayErrors
     }
   }
+  if (values.linearScales) {
+    const questionsArrayErrors = []
+    values.linearScales.forEach((question, questionIndex) => {
+      const questionErrors = {}
+      if (!question || !question.title) {
+        questionErrors.title = 'Required'
+        questionsArrayErrors[questionIndex] = questionErrors
+      }
+      if (!question || (question.beginning === undefined)) {
+        questionErrors.beginning = 'Required'
+        questionsArrayErrors[questionIndex] = questionErrors
+      }
+      if (!question || !question.end) {
+        questionErrors.end = 'Required'
+        questionsArrayErrors[questionIndex] = questionErrors
+      }
+    })
+    if (questionsArrayErrors.length) {
+      errors.linearScales = questionsArrayErrors
+    }
+  }
   return errors
 }
 

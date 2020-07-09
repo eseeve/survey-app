@@ -32,7 +32,7 @@ const LinearScales = ({ fields, meta: { error, submitFailed }, touched }) =>  {
           <Grid.Row>
           <Grid.Column>
             <Field 
-              name={`${question}.options.beginning`} 
+              name={`${question}.beginning`} 
               component={SelectField} 
               label='Beginning'
               options={[
@@ -53,7 +53,7 @@ const LinearScales = ({ fields, meta: { error, submitFailed }, touched }) =>  {
           </Grid.Column>
           <Grid.Column>
             <Field 
-              name={`${question}.options.end`} 
+              name={`${question}.end`} 
               component={SelectField} 
               label='End'
               options={[
@@ -112,7 +112,7 @@ const LinearScales = ({ fields, meta: { error, submitFailed }, touched }) =>  {
         </Segment>
       )
     )}
-    <Button id='add-question' size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
+    <Button id='add-linear' size='small' type='button' style={{marginBottom: '10px'}} onClick={() => fields.push({})}>
       Add Linear Scale
     </Button>
     {submitFailed && error && <div className='error' style={{color, marginBottom: '10px'}}>{error}</div>}
@@ -179,11 +179,6 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
                   text: 'Checkboxes',
                   value: 'Checkboxes',
                   key: 'Checkboxes',
-                },
-                {
-                  text: 'Linear Scale',
-                  value: 'LinearScale',
-                  key: 'LinearScale',
                 },
               ]}
             >
