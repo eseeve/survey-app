@@ -20,10 +20,6 @@ const validate = values => {
         questionErrors.type = 'Required'
         questionsArrayErrors[questionIndex] = questionErrors
       }
-      if (question.title && question.title.length < 3) {
-        questionErrors.title = 'Question title too short'
-        questionsArrayErrors[questionIndex] = questionErrors
-      }
       if (question && question.options && question.options.length) {
         const optionArrayErrors = []
         question.options.forEach((option, optionIndex) => {

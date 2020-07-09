@@ -40,7 +40,7 @@ export const createSurvey = (survey) => {
 export const answerSurvey = (survey, values) => {
   return async dispatch => {
     survey.questions.map(question => {
-      if (question.type === 'MultipleChoice') {
+      if (question.type === 'MultipleChoice' || question.type === 'LinearScale') {
         question.options.map(o => values[question.title] === o.option ? o.votes += 1 : o)
         if (question.isOpen && question.options.every(o => o.option !== values[question.title])) {
           question.options.push({ option: values[question.title], votes: 1, custom: true })

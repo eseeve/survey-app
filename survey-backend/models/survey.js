@@ -13,7 +13,7 @@ const optionSchema = new mongoose.Schema(
 const questionSchema = new mongoose.Schema(
   {
     type: { type: String, required: true, enum: ['MultipleChoice', 'Checkboxes', 'LinearScale'] },
-    title: { type: String, minlength: 3, required: true },
+    title: { type: String, required: true },
     options: { type: [optionSchema], required: true },
     isOpen:  { type: Boolean, required: true , default: false },
   }

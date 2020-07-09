@@ -19,6 +19,7 @@ const NewSurvey = () => {
       for (let j = values.linearScales[i].options.beginning; j <= values.linearScales[i].options.end; j++) {
         options.push({ option: j })
       }
+      if (!values.questions) { values.questions = [] }
       values.questions.push({ options, title: values.linearScales[i].title, type: 'LinearScale'})
     }
     delete values.linearScales
