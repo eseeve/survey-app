@@ -162,7 +162,7 @@ const Questions = ({ questions }) => {
       {questions.map(q =>
       <div key={q.title}>
         {q.type === 'MultipleChoice' && <MultipleChoiceQuestion question={q} />}
-        {q.type === 'Checkbox' && <CheckBoxesQuestion question={q} />}
+        {q.type === 'Checkboxes' && <CheckBoxesQuestion question={q} />}
         {q.type === 'LinearScale' && <LinearScaleQuestion question={q} />}
       </div>
       )}

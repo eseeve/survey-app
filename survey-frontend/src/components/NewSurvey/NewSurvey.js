@@ -15,12 +15,12 @@ const NewSurvey = () => {
 
   const handleSubmit = (values) => {
     if (values.linearScales && values.linearScales.length) {
+      if (values.questions.length === 0) { values.questions = [] }
       for (let i = 0; i < values.linearScales.length; i++) {
         let options = []
         for (let j = values.linearScales[i].beginning; j <= values.linearScales[i].end; j++) {
           options.push({ option: j })
         }
-        if (!values.questions) { values.questions = [] }
         values.questions.push({ options, title: values.linearScales[i].title, type: 'LinearScale'})
       }
       delete values.linearScales

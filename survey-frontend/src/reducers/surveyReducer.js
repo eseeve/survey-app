@@ -1,15 +1,19 @@
 import surveyService from '../services/surveys'
 
-const byAnswers = (s1, s2) => s2.answers - s1.answers
+const byMostAnswers = (s1, s2) => s2.answers - s1.answers
+const byLeastAnswers = (s1, s2) => s1.answers - s2.answers
+const byUser = (s1, s2) => s1.user.name.localeCompare(s2.user.name)
 
 const reducer = (state = [], action) => {
   switch(action.type) {
   case 'INIT_SURVEYS':
-    return action.data.sort(byAnswers)
+    return action.data.sort(byMostAnswers)
+  case 'SORT_SURVEYS':
+    return state.sort(action.data)
   case 'CREATE_SURVEY':
     return [...state, action.data]
   case 'ANSWER_SURVEY':
-    return state.map(s => s.id === action.data.id ? action.data : s).sort(byAnswers)
+    return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   case 'REMOVE_SURVEY':
     return state.filter(s => s.id !== action.survey.id)
   default:
@@ -75,6 +79,23 @@ export const removeSurvey = (survey) => {
       type: 'REMOVE_SURVEY',
       data,
       survey
+    })
+  }
+}
+
+export const sortSurveys = (sort) => {
+  let data
+  if (sort === 'byLeastAnswers') {
+    data = byLeastAnswers
+  } else if (sort === 'byUser') {
+    data = byUser
+  } else {
+    data = byMostAnswers
+  }
+  return async dispatch => {
+    dispatch({
+      type: 'SORT_SURVEYS',
+      data
     })
   }
 }

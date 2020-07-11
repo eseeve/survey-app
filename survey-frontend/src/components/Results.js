@@ -115,7 +115,7 @@ const Questions = ({ theme, questions, total }) => {
       <div key={q.title}>
         {q.type === 'LinearScale' && <LinearScaleQuestion theme={theme} question={q} total={total} />}
         {q.type === 'MultipleChoice' && <MultipleChoiceQuestion theme={theme} question={q} total={total} />}
-        {q.type === 'Checkbox' && <CheckboxQuestion theme={theme} question={q} total={total} />}
+        {q.type === 'Checkboxes' && <CheckboxQuestion theme={theme} question={q} total={total} />}
       </div>
       )}
     </div>
