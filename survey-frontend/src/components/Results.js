@@ -6,64 +6,51 @@ import Chart from "react-google-charts"
 
 import Menu from './Menu'
 
-const Question = ({ theme, question, total }) => {
+const MultipleChoiceQuestion = ({ theme, question, total }) => {
   let data = question.options.map(o => {
     return [
       o.option,
       o.votes
     ]
   })
+  data.unshift(['Option', 'Votes'])
 
   const backgroundColor = theme === 'dark' ? '#111111' : 'white'
   const textColor = theme === 'dark' ? '#eeeeee' : 'black'
 
+  return (
+    <div>
+      <h4>{question.title}</h4>
+      <div>{total} responses</div>
+      <Chart
+        className='chart'
+        width={'500px'}
+        height={'300px'}
+        chartType="PieChart"
+        loader={<div>Loading Chart</div>}
+        options={{
+          tooltip: { trigger: 'selection' },
+          legend: { textStyle: { color: textColor } },
+          backgroundColor
+        }}
+        data={data}
+      />
+    </div>
+  )
+}
+
+const CheckboxQuestion = ({ theme, question, total }) => {
+  let data = question.options.map(o => {
+    return [
+      o.option,
+      o.votes
+    ]
+  })
   data.unshift(['Option', 'Votes'])
-  if (question.type === 'MultipleChoice') {
-    return (
-      <div>
-        <h4>{question.title}</h4>
-        <div>{total} responses</div>
-        <Chart
-          className='chart'
-          width={'500px'}
-          height={'300px'}
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          options={{
-            tooltip: { trigger: 'selection' },
-            legend: { textStyle: { color: textColor } },
-            backgroundColor
-          }}
-          data={data}
-        />
-      </div>
-    )
-  }
-  
-  if (question.type === 'LinearScale') {
-    return (
-      <div>
-        <h4>{question.title}</h4>
-        <div>{total} responses</div>
-        <Chart
-          className='chart'
-          width={'500px'}
-          height={'300px'}
-          chartType="BarChart"
-          loader={<div>Loading Chart</div>}
-          options={{
-            orientation: 'horizontal',
-            legend: { position: 'none' },
-            hAxis: { textStyle: { color: textColor } },
-            vAxis: { textStyle: { color: textColor } },
-            backgroundColor
-          }}
-          data={data}
-        />
-      </div>
-    )
-  }
-  
+
+  const backgroundColor = theme === 'dark' ? '#111111' : 'white'
+  const textColor = theme === 'dark' ? '#eeeeee' : 'black'
+
   return (
     <div>
       <h4>{question.title}</h4>
@@ -86,11 +73,50 @@ const Question = ({ theme, question, total }) => {
   )
 }
 
+const LinearScaleQuestion = ({ theme, question, total }) => {
+  let data = question.options.map(o => {
+    return [
+      o.option,
+      o.votes
+    ]
+  })
+  data.unshift(['Option', 'Votes'])
+
+  const backgroundColor = theme === 'dark' ? '#111111' : 'white'
+  const textColor = theme === 'dark' ? '#eeeeee' : 'black'
+
+  return (
+    <div>
+      <h4>{question.title}</h4>
+      <div>{total} responses</div>
+      <Chart
+        className='chart'
+        width={'500px'}
+        height={'300px'}
+        chartType="BarChart"
+        loader={<div>Loading Chart</div>}
+        options={{
+          orientation: 'horizontal',
+          legend: { position: 'none' },
+          hAxis: { textStyle: { color: textColor } },
+          vAxis: { textStyle: { color: textColor } },
+          backgroundColor
+        }}
+        data={data}
+      />
+    </div>
+  )
+}
+
 const Questions = ({ theme, questions, total }) => {
   return (
     <div>
       {questions.map(q =>
-        <Question theme={theme} key={q.title} question={q} total={total} />
+      <div key={q.title}>
+        {q.type === 'LinearScale' && <LinearScaleQuestion theme={theme} question={q} total={total} />}
+        {q.type === 'MultipleChoice' && <MultipleChoiceQuestion theme={theme} question={q} total={total} />}
+        {q.type === 'Checkbox' && <CheckboxQuestion theme={theme} question={q} total={total} />}
+      </div>
       )}
     </div>
   )

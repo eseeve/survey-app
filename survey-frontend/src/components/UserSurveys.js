@@ -14,9 +14,9 @@ import { setNotification } from '../reducers/notificationReducer'
 
 const UserSurveys = () => {
   const allSurveys = useSelector(state => state.surveys)
-  const dispatch  = useDispatch()
-  const user = useSelector(state => state.user)
   const users = useSelector(state => state.users)
+  const user = useSelector(state => state.user)
+  const dispatch  = useDispatch()
   const history = useHistory()
 
   const handleRemoveSurvey = (event, survey) => {

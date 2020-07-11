@@ -1,10 +1,11 @@
 const storageKey = 'loggedSurveyAppUser'
+const themeKey = 'ThemeSwitch'
 
 const saveTheme = (theme) => 
-  localStorage.setItem('ThemeSwitch', theme)
+  localStorage.setItem(themeKey, theme)
 
 const loadTheme = () =>
-  localStorage.getItem('ThemeSwitch')
+  localStorage.getItem(themeKey)
 
 const saveUser = (user) =>
   localStorage.setItem(storageKey, JSON.stringify(user))
