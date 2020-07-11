@@ -197,6 +197,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
           <div style={{ paddingTop: '10px' }}>
             <label>
               <Field
+                id='make-open'
                 name={`${question}.isOpen`}
                 component="input"
                 type="checkbox"

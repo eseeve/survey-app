@@ -173,6 +173,31 @@ describe('Survey app', function() {
           .its('surveys')
           .should('have.length', 1)
       })
+      it('Survey can be created with open multiple choice question', function() {
+        cy.server()
+        cy.route('POST', '/api/surveys').as('new-survey')
+
+        cy.contains('Create a new survey').click()
+        cy.get('form').within(function() {
+          cy.get('#name').type('Test Survey')
+          cy.get('#add-question').click()
+          cy.get('input').eq(1).type('Question 1')
+          cy.get('.dropdown-menu').click().type('{enter}')
+          cy.get('#add-option').click()
+          cy.get('input').eq(2).type('Option 1')
+          cy.get('#add-option').click()
+          cy.get('input').eq(3).type('Option 2')
+          cy.get('#make-open').click()
+          cy.get('#submit').click()
+          cy.wait('@new-survey')
+        })
+        cy.contains("New survey 'Test Survey' created!")
+        cy.window()
+          .its('store')
+          .invoke('getState')
+          .its('surveys')
+          .should('have.length', 1)
+      })
       describe('When database contains a survey', function() {
         beforeEach(function() {
           cy.request('POST', 'http://localhost:3001/api/testing/resetsurveys')
