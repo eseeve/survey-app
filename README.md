@@ -38,4 +38,6 @@
 | 8.7        | 4         | Avoin vastauskenttä kysymyksiin ja Search Bar |
 | 9.7        | 2         | Avointen vastauskenttien parantelu ja korjaus |
 |            | 6         | Linear Scale- kysymystyypin lisäys, validointi ja testaus |
-| Yht.       | 92        | | 
+| 11.7       | 2         | Refaktorointi ja Survey sort |
+|            | 2         | Uusien toiminnallisuuksien ideointi |
+| Yht.       | 96        | | 
