@@ -64,11 +64,11 @@ router.delete('/:id', async (request, response) => {
   const user = await User.findById(decodedToken.id)
   const quiz = await Quiz.findById(request.params.id)
   if (quiz.user.toString() !== user.id.toString()) {
-    return response.status(401).json({ error: 'only the creator can delete quizs' })
+    return response.status(401).json({ error: 'only the creator can delete quizzes' })
   }
 
   await quiz.remove()
-  user.quizs = user.quizs.filter(s => s.id.toString() !== request.params.id.toString())
+  user.quizzes = user.quizzes.filter(s => s.id.toString() !== request.params.id.toString())
   await user.save()
   response.status(204).end()
 })

@@ -7,11 +7,13 @@ const api = supertest(app)
 
 const Survey = require('../models/survey')
 const User = require('../models/user')
+const Quiz = require('../models/quiz')
 
-describe('when there is initially some surveys and users saved', () => {
+describe('when there is initially some surveys, quizzes and users saved', () => {
   beforeEach(async () => {
     await Survey.deleteMany({})
     await User.deleteMany({})
+    await Quiz.deleteMany({})
 
     const passwordHash = await bcrypt.hash('sekret', 10)
     const user = new User({ name: 'test', username: 'root', passwordHash })
@@ -20,21 +22,33 @@ describe('when there is initially some surveys and users saved', () => {
 
     const surveyObjects = helper.initialSurveys
       .map(survey => new Survey(survey))
-    const promiseArray = surveyObjects.map(survey => survey.save())
-    await Promise.all(promiseArray)
+    const surveyPromiseArray = surveyObjects.map(survey => survey.save())
+    await Promise.all(surveyPromiseArray)
+
+    const quizObjects = helper.initialQuizzes
+      .map(quiz => new Quiz(quiz))
+    const quizPromiseArray = quizObjects.map(quiz => quiz.save())
+    await Promise.all(quizPromiseArray)
   })
 
-  test('surveys are returned as json', async () => {
+  test('surveys and quizzes are returned as json', async () => {
     await api
       .get('/api/surveys')
       .expect(200)
       .expect('Content-Type', /application\/json/)
+
+    await api
+      .get('/api/quizzes')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
   })
 
-  test('all surveys are returned', async () => {
-    const response = await api.get('/api/surveys')
+  test('all surveys and quizzes are returned', async () => {
+    const surveyResponse = await api.get('/api/surveys')
+    const quizResponse = await api.get('/api/quizzes')
 
-    expect(response.body.length).toBe(helper.initialSurveys.length)
+    expect(surveyResponse.body.length).toBe(helper.initialSurveys.length)
+    expect(quizResponse.body.length).toBe(helper.initialQuizzes.length)
   })
 
   test('a specific survey is within the returned surveys', async () => {
@@ -43,6 +57,15 @@ describe('when there is initially some surveys and users saved', () => {
     const names = response.body.map(r => r.name)
     expect(names).toContain(
       'Animal Survey'
+    )
+  })
+
+  test('a specific quiz is within the returned quizzes', async () => {
+    const response = await api.get('/api/quizzes')
+
+    const names = response.body.map(r => r.name)
+    expect(names).toContain(
+      'Animal Quiz'
     )
   })
 
@@ -64,6 +87,24 @@ describe('when there is initially some surveys and users saved', () => {
     expect(answers).toContain(1)
   })
 
+  test('a quiz can be updated', async () => {
+    let response = await api.get('/api/quizzes')
+    let userResponse = await api.get('/api/users')
+    const quizToUpdate = response.body[0]
+    const user = userResponse.body[0]
+    quizToUpdate.answers = 1
+    quizToUpdate.user = user
+
+    await api
+      .put(`/api/quizzes/${quizToUpdate.id}`)
+      .send(quizToUpdate)
+      .expect(200)
+
+    response = await api.get('/api/quizzes')
+    const answers = response.body.map(r => r.answers)
+    expect(answers).toContain(1)
+  })
+
   describe('viewing a specific survey', () => {
 
     test('succeeds with a valid id', async () => {
@@ -80,7 +121,7 @@ describe('when there is initially some surveys and users saved', () => {
     })
 
     test('fails with statuscode 404 if survey does not exist', async () => {
-      const validNonexistingId = await helper.nonExistingId()
+      const validNonexistingId = await helper.nonExistingSurveyId()
 
       await api
         .get(`/api/surveys/${validNonexistingId}`)
@@ -96,8 +137,41 @@ describe('when there is initially some surveys and users saved', () => {
     })
   })
 
+  describe('viewing a specific quiz', () => {
+
+    test('succeeds with a valid id', async () => {
+      const quizzesAtStart = await helper.quizzesInDb()
+
+      const quizToView = quizzesAtStart[0]
+
+      const resultQuiz = await api
+        .get(`/api/quizzes/${quizToView.id}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+
+      expect(resultQuiz.body).toEqual(quizToView)
+    })
+
+    test('fails with statuscode 404 if survey does not exist', async () => {
+      const validNonexistingId = await helper.nonExistingQuizId()
+
+      await api
+        .get(`/api/quizzes/${validNonexistingId}`)
+        .expect(404)
+    })
+
+    test('fails with statuscode 400 id is invalid', async () => {
+      const invalidId = '5a3d5da59070081a82a3445'
+
+      await api
+        .get(`/api/quizzes/${invalidId}`)
+        .expect(400)
+    })
+  })
+
   describe('addition of a new survey', () => {
     let headers
+    let user
 
     beforeEach(async () => {
       const newUser = {
@@ -114,6 +188,8 @@ describe('when there is initially some surveys and users saved', () => {
         .post('/api/login')
         .send(newUser)
 
+      user = result.body
+
       headers = {
         'Authorization': `bearer ${result.body.token}`
       }
@@ -122,11 +198,12 @@ describe('when there is initially some surveys and users saved', () => {
     test('succeeds with valid data and token', async () => {
       const newSurvey = {
         name: 'Drink Survey',
+        userId: user.id,
         answers: 0,
         questions: [
           {
-            type: 'MultipleChoice ',
-            title: 'What is your favorite cold drink? ',
+            type: 'MultipleChoice',
+            title: 'What is your favorite cold drink?',
             options: [
               {
                 option: 'Lemonade',
@@ -143,8 +220,8 @@ describe('when there is initially some surveys and users saved', () => {
             ]
           },
           {
-            type: 'MultipleChoice ',
-            title: 'What is your favorite hot drink? ',
+            type: 'MultipleChoice',
+            title: 'What is your favorite hot drink?',
             options: [
               {
                 option: 'Hot Cocoa',
@@ -255,8 +332,8 @@ describe('when there is initially some surveys and users saved', () => {
           answers: 0,
           questions: [
             {
-              type: 'MultipleChoice ',
-              title: 'What is your favorite cold drink? ',
+              type: 'MultipleChoice',
+              title: 'What is your favorite cold drink?',
               options: [
                 {
                   option: 'Lemonade',
@@ -273,8 +350,8 @@ describe('when there is initially some surveys and users saved', () => {
               ]
             },
             {
-              type: 'MultipleChoice ',
-              title: 'What is your favorite hot drink? ',
+              type: 'MultipleChoice',
+              title: 'What is your favorite hot drink?',
               options: [
                 {
                   option: 'Hot Cocoa',
@@ -313,6 +390,189 @@ describe('when there is initially some surveys and users saved', () => {
 
         const names = surveysAtEnd.map(r => r.name)
         expect(names).not.toContain(surveyToDelete.name)
+      })
+    })
+  })
+
+  describe('addition of a new quiz', () => {
+    let headers
+    let user
+
+    beforeEach(async () => {
+      const newUser = {
+        username: 'janedoez',
+        name: 'Jane Z. Doe',
+        password: 'password',
+      }
+
+      await api
+        .post('/api/users')
+        .send(newUser)
+
+      const result = await api
+        .post('/api/login')
+        .send(newUser)
+
+      user = result.body
+
+      headers = {
+        'Authorization': `bearer ${result.body.token}`
+      }
+    })
+
+    test('succeeds with valid data and token', async () => {
+      const newQuiz = {
+        name: 'Drink quiz',
+        userId: user.id,
+        answers: 0,
+        questions: [
+          {
+            title: 'Which of these drinks is served usually cold?',
+            correctIndex: 2,
+            options: [
+              {
+                option: 'Tea',
+                votes: 0
+              },
+              {
+                option: 'Coffee',
+                votes: 0
+              },
+              {
+                option: 'Kombucha',
+                votes: 0
+              }
+            ]
+          }
+        ]
+      }
+
+      await api
+        .post('/api/quizzes')
+        .send(newQuiz)
+        .set(headers)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+
+
+      const quizzesAtEnd = await helper.quizzesInDb()
+      expect(quizzesAtEnd.length).toBe(helper.initialQuizzes.length + 1)
+
+      const names = quizzesAtEnd.map(s => s.name)
+      expect(names).toContain(
+        'Drink quiz'
+      )
+    })
+
+    test('fails with status code 400 if data invalid', async () => {
+      const newQuiz = {
+        questions: [
+          {
+            type: 'MultipleChoice ',
+            title: 'What is your favorite hot drink? ',
+            options: [
+              'Hot Cocoa',
+              'Coffee',
+              'Tea',
+            ]
+          }
+        ]
+      }
+
+      await api
+        .post('/api/quizzes')
+        .send(newQuiz)
+        .set(headers)
+        .expect(400)
+        .expect('Content-Type', /application\/json/)
+
+      const quizzesAtEnd = await helper.quizzesInDb()
+
+      expect(quizzesAtEnd.length).toBe(helper.initialQuizzes.length)
+    })
+
+    test('fails with status code 401 if token is missing', async () => {
+      const newQuiz = {
+        name: 'Drink quiz',
+        userId: user.id,
+        answers: 0,
+        questions: [
+          {
+            title: 'Which of these drinks is served usually cold?',
+            correctIndex: 2,
+            options: [
+              {
+                option: 'Tea',
+                votes: 0
+              },
+              {
+                option: 'Coffee',
+                votes: 0
+              },
+              {
+                option: 'Kombucha',
+                votes: 0
+              }
+            ]
+          }
+        ]
+      }
+
+      await api
+        .post('/api/quizzes')
+        .send(newQuiz)
+        .expect(401)
+        .expect('Content-Type', /application\/json/)
+    })
+
+    describe('deletion of a quiz', () => {
+      let result
+      beforeEach(async () => {
+        const newQuiz = {
+          name: 'Drink quiz',
+          userId: user.id,
+          answers: 0,
+          questions: [
+            {
+              title: 'Which of these drinks is served usually cold?',
+              correctIndex: 2,
+              options: [
+                {
+                  option: 'Tea',
+                  votes: 0
+                },
+                {
+                  option: 'Coffee',
+                  votes: 0
+                },
+                {
+                  option: 'Kombucha',
+                  votes: 0
+                }
+              ]
+            }
+          ]
+        }
+        result = await api
+          .post('/api/quizzes')
+          .send(newQuiz)
+          .set(headers)
+      })
+
+      test('succeeds with status code 204 if id is valid and authorized', async () => {
+        const quizToDelete =  result.body
+        const initialQuizzes = await helper.quizzesInDb()
+
+        await api
+          .delete(`/api/quizzes/${quizToDelete.id}`)
+          .set(headers)
+          .expect(204)
+
+        const quizzesAtEnd = await helper.surveysInDb()
+        expect(quizzesAtEnd.length).toBe(initialQuizzes.length - 1)
+
+        const names = quizzesAtEnd.map(r => r.name)
+        expect(names).not.toContain(quizToDelete.name)
       })
     })
   })
