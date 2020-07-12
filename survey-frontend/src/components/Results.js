@@ -1,10 +1,14 @@
 import React from 'react'
-import { useSelector  } from 'react-redux'
+import { useSelector, useDispatch  } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { Header, Grid } from 'semantic-ui-react'
+import { Header, Grid, Button } from 'semantic-ui-react'
 import Chart from "react-google-charts"
 
 import Menu from './Menu'
+import Notification from './Notification' 
+
+import { resetSurvey } from '../reducers/surveyReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const MultipleChoiceQuestion = ({ theme, question, total }) => {
   let data = question.options.map(o => {
@@ -125,9 +129,19 @@ const Questions = ({ theme, questions, total }) => {
 const Results = () => {
   const surveys = useSelector(state => state.surveys)
   const theme = useSelector(state => state.theme)
+  const dispatch = useDispatch()
 
   const id = useParams().id
   const survey = surveys.find(s => s.id === id)
+
+  const handleRemoveResponses = (event, survey) => {
+    event.preventDefault()
+    const ok = window.confirm(`Delete all responses from survey ${survey.name}?`)
+    if (ok) {
+      dispatch(resetSurvey(survey))
+      dispatch(setNotification(`All responses from survey '${survey.name}' deleted.`, 5))
+    }
+  }
 
   if (!survey) {
     return null
@@ -145,8 +159,10 @@ const Results = () => {
           <Menu link='Home' />
         </Grid.Column>
       </Grid>
+      <Notification />
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions theme={theme} questions={survey.questions} total={total}/>}
       <div style={{marginBottom: '20px'}}>Created by {survey.user.name}</div>
+      <Button className='red-button' id='delete-account' color='red' size='small' onClick={(event) => handleRemoveResponses(event, survey)}>Delete Responses</Button>
     </div>
   )
 }

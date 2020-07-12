@@ -16,6 +16,8 @@ const reducer = (state = [], action) => {
     return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   case 'REMOVE_SURVEY':
     return state.filter(s => s.id !== action.survey.id)
+  case 'RESET_SURVEY':
+    return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   default:
     return state
   }
@@ -79,6 +81,17 @@ export const removeSurvey = (survey) => {
       type: 'REMOVE_SURVEY',
       data,
       survey
+    })
+  }
+}
+
+export const resetSurvey = (survey) => {
+  return async dispatch => {
+    survey.answers = 0
+    survey.questions.map(q => q.options.map(o => o.votes = 0))
+    dispatch({
+      type: 'RESET_SURVEY',
+      data: survey
     })
   }
 }
