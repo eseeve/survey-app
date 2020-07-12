@@ -5,21 +5,19 @@ mongoose.set('useFindAndModify', false)
 const optionSchema = new mongoose.Schema(
   {
     option: { type: String, required: true },
-    custom: { type: Boolean, required: true , default: false },
     votes: { type: Number, required: true },
   }
 )
 
 const questionSchema = new mongoose.Schema(
   {
-    type: { type: String, required: true, enum: ['MultipleChoice', 'Checkboxes', 'LinearScale'] },
     title: { type: String, required: true },
     options: { type: [optionSchema], required: true },
-    isOpen:  { type: Boolean, required: true , default: false },
+    correctIndex: { type: Number, required: true }
   }
 )
 
-const surveySchema = new mongoose.Schema(
+const quizSchema = new mongoose.Schema(
   {
     name: { type: String, minlength: 3, required: true },
     questions: { type: [questionSchema], maxlength: 20, required: true },
@@ -46,7 +44,7 @@ questionSchema.set('toJSON', {
   }
 })
 
-surveySchema.set('toJSON', {
+quizSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -54,4 +52,4 @@ surveySchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Survey', surveySchema)
+module.exports = mongoose.model('Quiz', quizSchema)
