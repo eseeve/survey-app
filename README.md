@@ -40,4 +40,7 @@
 |            | 6         | Linear Scale- kysymystyypin lisäys, validointi ja testaus |
 | 11.7       | 2         | Refaktorointi ja Survey sort |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
-| Yht.       | 96        | | 
+| 12.7       | 1         | Kyselyiden vastausten poistamisen toiminnallisuus |
+|            | 2         | Quiz Schema ja router, backend muutoksia |
+|            | 2         | Backend testaus |
+| Yht.       | 101       | | 
