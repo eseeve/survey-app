@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 
 import notificationReducer from './reducers/notificationReducer'
 import surveyReducer from './reducers/surveyReducer'
+import quizReducer from './reducers/quizReducer'
 import themeReducer from './reducers/themeReducer'
 import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
@@ -18,6 +19,7 @@ const rootReducer = combineReducers ({
   user: userReducer,
   theme: themeReducer,
   filter: filterReducer,
+  quizzes: quizReducer,
   form: formReducer
 })
 

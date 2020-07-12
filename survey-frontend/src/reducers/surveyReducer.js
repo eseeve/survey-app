@@ -87,11 +87,12 @@ export const removeSurvey = (survey) => {
 
 export const resetSurvey = (survey) => {
   return async dispatch => {
-    survey.answers = 0
     survey.questions.map(q => q.options.map(o => o.votes = 0))
+    const toReset = { ...survey, answers: 0 }
+    const data = await surveyService.update(toReset)
     dispatch({
       type: 'RESET_SURVEY',
-      data: survey
+      data
     })
   }
 }

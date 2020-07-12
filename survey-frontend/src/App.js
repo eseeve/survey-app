@@ -6,6 +6,7 @@ import { Button, Container, Header, Grid } from 'semantic-ui-react'
 
 import { initializeSurveys } from './reducers/surveyReducer'
 import { initializeUsers } from './reducers/usersReducer'
+import { initializeQuizzes } from './reducers/quizReducer'
 import { login } from './reducers/userReducer'
 import storage from './utils/storage'
 
@@ -18,6 +19,7 @@ import Surveys from './components/Surveys'
 import Results from './components/Results'
 import Login from './components/Login/Login'
 import Menu from './components/Menu'
+import Quizzes from './components/Quizzes'
 
 
 const App = () => {
@@ -26,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeSurveys())
+    dispatch(initializeQuizzes())
     dispatch(initializeUsers())
     const user = storage.loadUser()
     if (user) {
@@ -75,6 +78,7 @@ const App = () => {
             </Grid>
             <Notification />
             <Surveys />
+            <Quizzes style={{ marginTop: '10px' }}/>
             <Button className='teal-button' color='teal' style={{marginTop: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
           </Route>
         </Switch>
