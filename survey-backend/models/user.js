@@ -15,6 +15,12 @@ const userSchema = mongoose.Schema({
       ref: 'Survey'
     }
   ],
+  quizzes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Quiz'
+    }
+  ],
 })
 
 userSchema.set('toJSON', {

@@ -10,6 +10,7 @@ const config = require('./utils/config')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
 const surveysRouter = require('./controllers/surveys')
+const quizzesRouter = require('./controllers/quizzes')
 const loginRouter = require('./controllers/login')
 const usersRouter = require('./controllers/users')
 
@@ -36,6 +37,7 @@ app.use(express.static(path.resolve(__dirname, '../survey-frontend/build')))
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/surveys', surveysRouter)
+app.use('/api/quizzes', quizzesRouter)
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')

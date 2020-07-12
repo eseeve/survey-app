@@ -8,6 +8,7 @@ router.get('/', async (request, response) => {
   const users = await User
     .find({})
     .populate('surveys', { name: 1,  answers: 1 })
+    .populate('quizzes', { name: 1,  answers: 1 })
   response.json(users.map(u => u.toJSON()))
 })
 
