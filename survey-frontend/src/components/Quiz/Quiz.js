@@ -10,6 +10,19 @@ import Menu from '../Menu'
 import { answerQuiz } from '../../reducers/quizReducer'
 import Notification from '../Notification'
 
+const Score = ({ quiz }) => {
+  return (
+    <div>
+      <h3>Correct answers</h3>
+        {quiz.questions.map(q => 
+          <div key={q.id}>
+            <h4>{q.title}</h4>
+            <div>Correct answer: {q.options[q.correct].option}</div>
+          </div>
+        )}
+    </div>
+  )
+}
 
 const Quiz = () => {
   const [ score, setScore ] = useState(null)
@@ -59,9 +72,10 @@ const Quiz = () => {
         </Grid.Column>
       </Grid>
       <Notification />
-      <div>
-        You got {score}/{quiz.questions.length} answers correct
+      <div style={{marginBottom: '10px'}}>
+        You got {score}/{quiz.questions.length} answers correct.
       </div>
+      <Score quiz={quiz} />
       <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} onClick={handleClick} floated='left'>Back to quizzes</Button>
     </div>
     )
