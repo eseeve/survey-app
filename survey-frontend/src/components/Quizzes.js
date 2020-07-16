@@ -37,6 +37,7 @@ const Quizzes = () => {
         {quizzes.map(quiz =>
             <Segment key={quiz.id} >
               {quiz.name}
+              <Button className='teal-button' color='teal' id='take-quiz' as={Link} to={`/quizzes/${quiz.id}`} floated='right'>Take quiz</Button>
               <div>Created by {quiz.user.name}</div>
             </Segment>
           )}

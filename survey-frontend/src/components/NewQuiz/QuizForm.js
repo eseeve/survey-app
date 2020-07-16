@@ -31,23 +31,23 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
               options={[
                 {
                   text: 'A',
-                  value: 'a',
-                  key: 'a',
+                  value: '0',
+                  key: '0',
                 },
                 {
                   text: 'B',
-                  value: 'b',
-                  key: 'b',
+                  value: '1',
+                  key: '1',
                 },
                 {
                   text: 'C',
-                  value: 'c',
-                  key: 'c',
+                  value: '2',
+                  key: '2',
                 },
                 {
                   text: 'D',
-                  value: 'd',
-                  key: 'd',
+                  value: '3',
+                  key: '3',
                 },
               ]}
             >
@@ -62,25 +62,25 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
           </Grid.Row>
           </Grid>
           <Field
-            name={`${question}.a.option`}
+            name={`${question}.options.0.option`}
             placeholder='Option A'
             component={TextField}
             label='Option A'
           />
           <Field
-            name={`${question}.b.option`}
+            name={`${question}.options.1.option`}
             placeholder='Option B'
             component={TextField}
             label='Option B'
           />
           <Field
-            name={`${question}.c.option`}
+            name={`${question}.options.2.option`}
             placeholder='Option C'
             component={TextField}
             label='Option C'
           />
           <Field
-            name={`${question}.d.option`}
+            name={`${question}.options.3.option`}
             placeholder='Option D'
             component={TextField}
             label='Option '

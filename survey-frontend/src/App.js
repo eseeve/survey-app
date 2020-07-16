@@ -20,6 +20,7 @@ import Surveys from './components/Surveys'
 import Results from './components/Results'
 import Login from './components/Login/Login'
 import Quizzes from './components/Quizzes'
+import Quiz from './components/Quiz/Quiz'
 
 
 const App = () => {
@@ -69,6 +70,9 @@ const App = () => {
           </Route>
           <Route path="/surveys/:id">
             <Survey />
+          </Route>
+          <Route path="/quizzes/:id">
+            <Quiz />
           </Route>
           <Route path="/quizzes">
             <AppHeader />

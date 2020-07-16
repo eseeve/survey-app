@@ -8,6 +8,8 @@ const reducer = (state = [], action) => {
     return action.data.sort(byMostAnswers)
   case 'CREATE_QUIZ':
     return [...state, action.data]
+  case 'ANSWER_QUIZ':
+    return state.map(q => q.id === action.data.id ? action.data : q).sort(byMostAnswers)
   case 'REMOVE_QUIZ':
     return state.filter(q => q.id !== action.quiz.id)
   default:
@@ -30,6 +32,19 @@ export const createQuiz = (quiz) => {
     const data = await quizService.create(quiz)
     dispatch({
       type: 'CREATE_QUIZ',
+      data
+    })
+  }
+}
+
+export const answerQuiz = (quiz, values) => {
+  return async dispatch => {
+    quiz.questions.map(question => 
+      question.options.map(o => values[question.title] === o.option ? o.votes += 1 : o))
+    const toAnswer = { ...quiz, answers: quiz.answers + 1 }
+    const data = await quizService.update(toAnswer)
+    dispatch({
+      type: 'ANSWER_QUIZ',
       data
     })
   }

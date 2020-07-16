@@ -12,11 +12,8 @@ const quizOptionSchema = new mongoose.Schema(
 const quizQuestionSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    a: { type: quizOptionSchema, required: true },
-    b: { type: quizOptionSchema, required: true },
-    c: { type: quizOptionSchema, required: true },
-    d: { type: quizOptionSchema, required: true },
-    correct: { type: String, required: true, enum: ['a', 'b', 'c', 'd'] }
+    options: { type: [quizOptionSchema], required: true },
+    correct: { type: Number, required: true, enum: [0, 1, 2, 3] }
   }
 )
 
