@@ -13,6 +13,7 @@ import storage from './utils/storage'
 import AppHeader from './components/AppHeader'
 import NewSurvey from './components/NewSurvey/NewSurvey'
 import NewUser from './components/NewUser/NewUser'
+import NewQuiz from './components/NewQuiz/NewQuiz'
 import UserSurveys from './components/UserSurveys'
 import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
@@ -63,12 +64,16 @@ const App = () => {
           <Route path="/surveys/new">
             <NewSurvey />
           </Route>
+          <Route path="/quizzes/new">
+            <NewQuiz />
+          </Route>
           <Route path="/surveys/:id">
             <Survey />
           </Route>
           <Route path="/quizzes">
             <AppHeader />
             <Quizzes />
+            <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} as={Link} to={'/quizzes/new'} floated='left'>Create a new quiz</Button>
           </Route>
           <Route path="/">
             <AppHeader />

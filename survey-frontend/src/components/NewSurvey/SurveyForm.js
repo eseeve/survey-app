@@ -217,7 +217,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
   )
 }
 
-let SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
+const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Field
