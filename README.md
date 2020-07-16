@@ -44,4 +44,7 @@
 |            | 2         | Quiz Schema ja router, backend muutoksia |
 |            | 2         | Backend testaus |
 |            | 1         | Frontendin Quiz-komponentti, -service ja -reducer |
-| Yht.       | 102       | | 
+| 16.7       | 2         | Refaktorointi |
+|            | 3         | NewQuiz- componentti ja Quizin luominen |
+|            | 2         | Quiz tulosten näyttäminen |
+| Yht.       | 109       | | 
