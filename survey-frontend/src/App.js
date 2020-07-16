@@ -67,6 +67,18 @@ const App = () => {
           <Route path="/surveys">
             <UserSurveys />
           </Route>
+          <Route path="/quizzes">
+            <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
+              <Grid.Column width={14} >
+                <Header as='h1' >Survey App</Header>
+              </Grid.Column>
+              <Grid.Column style={{marginTop: '5px'}}>
+                <Menu link='My Surveys' />
+              </Grid.Column>
+            </Grid>
+            <Notification />
+            <Quizzes />
+          </Route>
           <Route path="/">
             <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
               <Grid.Column width={14} >
@@ -78,8 +90,7 @@ const App = () => {
             </Grid>
             <Notification />
             <Surveys />
-            <Quizzes style={{ marginTop: '10px' }}/>
-            <Button className='teal-button' color='teal' style={{marginTop: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
+            <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
           </Route>
         </Switch>
       </Container>

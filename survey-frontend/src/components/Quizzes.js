@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Segment } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Segment, Header, Grid, Button } from 'semantic-ui-react'
 
 const Quizzes = () => {
   const quizzes = useSelector(state => state.quizzes)
@@ -24,6 +25,14 @@ const Quizzes = () => {
 
   return(
     <div>
+      <Grid style={{paddingTop: '10px'}} columns={2}>
+        <Grid.Column>
+          <Header as='h2' >Quizzes</Header>
+        </Grid.Column>
+        <Grid.Column>
+          <Button floated='right' id='surveys' as={Link} to='/'>Surveys</Button>
+        </Grid.Column>
+      </Grid>
       <Segment.Group>
         {quizzes.map(quiz =>
             <Segment key={quiz.id} >

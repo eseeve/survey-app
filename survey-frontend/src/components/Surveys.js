@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Segment, Button } from 'semantic-ui-react'
+import { Segment, Button, Header, Grid } from 'semantic-ui-react'
 
 import SearchBar  from './SearchBar'
 
@@ -15,11 +15,7 @@ const Surveys = () => {
   if (!surveys || !users) {
     return null
   }
-
-  if (surveys && surveys.forEach(s => s.user !== undefined)) {
-    return null
-  }
-
+  
   if (surveys && surveys.length === 0) {
     return (
       <div>
@@ -31,14 +27,22 @@ const Surveys = () => {
 
   return(
     <div>
+      <Grid style={{paddingTop: '10px'}} columns={2}>
+        <Grid.Column>
+          <Header as='h2' >Surveys</Header>
+        </Grid.Column>
+        <Grid.Column>
+          <Button floated='right' id='quizzes' as={Link} to='/quizzes'>Quizzes</Button>
+        </Grid.Column>
+      </Grid>
       <SearchBar />
       <Segment.Group>
         {surveys.map(survey =>
-            <Segment key={survey.id} >
-              {survey.name}
-              <Button className='teal-button' color='teal' id='take-survey' as={Link} to={`/surveys/${survey.id}`} floated='right'>Take survey</Button>
-              <div>Created by {survey.user.name}</div>
-            </Segment>
+          <Segment key={survey.id}>
+            {survey.name}
+            <Button className='teal-button' color='teal' id='take-survey' as={Link} to={`/surveys/${survey.id}`} floated='right'>Take survey</Button>
+            <div>Created by {survey.user.name}</div>
+          </Segment>
           )}
       </Segment.Group>
     </div>

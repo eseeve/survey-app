@@ -43,5 +43,5 @@
 | 12.7       | 1         | Kyselyiden vastausten poistamisen toiminnallisuus |
 |            | 2         | Quiz Schema ja router, backend muutoksia |
 |            | 2         | Backend testaus |
-|            | 1         | Frontend, Quiz-komponentti, service ja reducer |
+|            | 1         | Frontendin Quiz-komponentti, -service ja -reducer |
 | Yht.       | 102       | | 
