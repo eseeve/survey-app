@@ -2,7 +2,7 @@ import React, { useEffect  } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Switch, Route, Link } from 'react-router-dom'
-import { Button, Container, Header, Grid } from 'semantic-ui-react'
+import { Button, Container } from 'semantic-ui-react'
 
 import { initializeSurveys } from './reducers/surveyReducer'
 import { initializeUsers } from './reducers/usersReducer'
@@ -10,15 +10,14 @@ import { initializeQuizzes } from './reducers/quizReducer'
 import { login } from './reducers/userReducer'
 import storage from './utils/storage'
 
+import AppHeader from './components/AppHeader'
 import NewSurvey from './components/NewSurvey/NewSurvey'
 import NewUser from './components/NewUser/NewUser'
-import Notification from './components/Notification'
 import UserSurveys from './components/UserSurveys'
 import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
 import Results from './components/Results'
 import Login from './components/Login/Login'
-import Menu from './components/Menu'
 import Quizzes from './components/Quizzes'
 
 
@@ -55,8 +54,11 @@ const App = () => {
     <div>
       <Container>
         <Switch>
-          <Route path="/surveys/:id/results">
+          <Route path="/mysurveys/:id/results">
             <Results />
+          </Route>
+          <Route path="/mysurveys">
+            <UserSurveys />
           </Route>
           <Route path="/surveys/new">
             <NewSurvey />
@@ -64,31 +66,12 @@ const App = () => {
           <Route path="/surveys/:id">
             <Survey />
           </Route>
-          <Route path="/surveys">
-            <UserSurveys />
-          </Route>
           <Route path="/quizzes">
-            <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
-              <Grid.Column width={14} >
-                <Header as='h1' >Survey App</Header>
-              </Grid.Column>
-              <Grid.Column style={{marginTop: '5px'}}>
-                <Menu link='My Surveys' />
-              </Grid.Column>
-            </Grid>
-            <Notification />
+            <AppHeader />
             <Quizzes />
           </Route>
           <Route path="/">
-            <Grid style={{paddingTop: '10px', marginBottom: '10px'}} columns='equal'>
-              <Grid.Column width={14} >
-                <Header as='h1' >Survey App</Header>
-              </Grid.Column>
-              <Grid.Column style={{marginTop: '5px'}}>
-                <Menu link='My Surveys' />
-              </Grid.Column>
-            </Grid>
-            <Notification />
+            <AppHeader />
             <Surveys />
             <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
           </Route>
