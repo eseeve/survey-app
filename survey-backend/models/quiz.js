@@ -5,15 +5,18 @@ mongoose.set('useFindAndModify', false)
 const quizOptionSchema = new mongoose.Schema(
   {
     option: { type: String, required: true },
-    votes: { type: Number, required: true },
+    votes: { type: Number, required: true }
   }
 )
 
 const quizQuestionSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
-    options: { type: [quizOptionSchema], required: true },
-    correctIndex: { type: Number, required: true }
+    a: { type: quizOptionSchema, required: true },
+    b: { type: quizOptionSchema, required: true },
+    c: { type: quizOptionSchema, required: true },
+    d: { type: quizOptionSchema, required: true },
+    correct: { type: String, required: true, enum: ['a', 'b', 'c', 'd'] }
   }
 )
 
@@ -28,13 +31,6 @@ const quizSchema = new mongoose.Schema(
     }
   }
 )
-
-quizOptionSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    delete returnedObject._id
-    delete returnedObject.__v
-  }
-})
 
 quizQuestionSchema.set('toJSON', {
   transform: (document, returnedObject) => {

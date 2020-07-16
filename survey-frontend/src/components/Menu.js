@@ -22,7 +22,7 @@ const Menu = ({ link }) => {
   if (link === 'Home') {
     route = '/'
   } else if (link === 'My Surveys') {
-    route = '/surveys'
+    route = '/mysurveys'
   }
 
   return (

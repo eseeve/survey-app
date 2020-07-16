@@ -14,9 +14,10 @@ const NewSurvey = () => {
   const history = useHistory()
 
   const handleSubmit = (values) => {
+    console.log(values)
     dispatch(createQuiz(values))
-    dispatch(setNotification(`New survey '${values.name}' created!`, 5))
-    history.push('/')
+    dispatch(setNotification(`New quiz '${values.name}' created!`, 5))
+    history.push('/quizzes')
   }
 
   return (

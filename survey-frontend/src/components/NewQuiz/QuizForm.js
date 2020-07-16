@@ -3,35 +3,8 @@ import { useSelector } from 'react-redux'
 import { Field, FieldArray, reduxForm  } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
-import { TextField } from '../FormField'
+import { TextField, SelectField } from '../FormField'
 import validate from './validate'
-
-const Options = ({ fields, meta: { error } }) => (
-  <div>
-    <Grid columns={2}>
-    {fields.map((option, index) => (
-        <Grid.Row key={index}>
-          <Grid.Column>
-          <Field
-            name={`${option}.option`}
-            placeholder={`option ${index + 1}`}
-            component={TextField}
-          />
-          </Grid.Column>
-          <Grid.Column>
-            <Button icon style={{marginTop: '7px'}} size='tiny' type='button' onClick={() => fields.remove(index)}>
-              <Icon name='close' />
-            </Button>
-          </Grid.Column>
-        </Grid.Row>
-        )
-      )}
-    </Grid>
-    <Button id='add-option' size='tiny' style={{marginTop: '20px'}} type='button' onClick={() => fields.push()}>
-        Add Option
-    </Button>
-  </div>
-)
 
 const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
   const theme = useSelector(state => state.theme)
@@ -51,13 +24,67 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
             />
           </Grid.Column>
           <Grid.Column>
+            <Field 
+              name={`${question}.correct`} 
+              component={SelectField} 
+              label='Correct option'
+              options={[
+                {
+                  text: 'A',
+                  value: 'a',
+                  key: 'a',
+                },
+                {
+                  text: 'B',
+                  value: 'b',
+                  key: 'b',
+                },
+                {
+                  text: 'C',
+                  value: 'c',
+                  key: 'c',
+                },
+                {
+                  text: 'D',
+                  value: 'd',
+                  key: 'd',
+                },
+              ]}
+            >
+            </Field>
+            {touched && error && <div className='error' style={{color}}>{error}</div>}
+          </Grid.Column>
+          <Grid.Column>
             <Button className='red-button' icon floated='right' size='tiny' color='red' type='button' onClick={() => fields.remove(index)}>
               <Icon name='trash' />
             </Button>
           </Grid.Column>
           </Grid.Row>
           </Grid>
-          <FieldArray name={`${question}.options`} component={Options} />
+          <Field
+            name={`${question}.a.option`}
+            placeholder='Option A'
+            component={TextField}
+            label='Option A'
+          />
+          <Field
+            name={`${question}.b.option`}
+            placeholder='Option B'
+            component={TextField}
+            label='Option B'
+          />
+          <Field
+            name={`${question}.c.option`}
+            placeholder='Option C'
+            component={TextField}
+            label='Option C'
+          />
+          <Field
+            name={`${question}.d.option`}
+            placeholder='Option D'
+            component={TextField}
+            label='Option '
+          />
         </Segment>
       )
     )}

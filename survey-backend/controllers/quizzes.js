@@ -32,7 +32,12 @@ router.post('/', async (request, response) => {
 
   if (!quiz.answers) {
     quiz.answers = 0
-    quiz.questions.map(q => q.options.map(o => o.votes = 0))
+    quiz.questions.map(q => {
+      q.a.votes = 0
+      q.b.votes = 0
+      q.c.votes = 0
+      q.d.votes = 0
+    })
   }
 
   quiz.user = user
