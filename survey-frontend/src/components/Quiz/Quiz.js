@@ -39,12 +39,14 @@ const Quiz = () => {
         _error: 'You must answer to all questions'
       })
     } else {
-      setScore(0)
+      let rightAnswers = 0
       quiz.questions.forEach(q => {
         if (q.options[q.correct].option === values[q.title]) {
-          setScore(score + 1)
+          rightAnswers += 1
         }
       })
+      quiz.scores.push(rightAnswers)
+      setScore(rightAnswers)
       dispatch(answerQuiz(quiz, values))
       dispatch(setNotification(`Your answers to the quiz '${quiz.name}' were saved!`, 5))
     }
