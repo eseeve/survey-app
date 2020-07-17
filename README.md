@@ -47,4 +47,7 @@
 | 16.7       | 2         | Refaktorointi |
 |            | 3         | NewQuiz- componentti ja Quizin luominen |
 |            | 2         | Quiz tulosten näyttäminen |
-| Yht.       | 109       | | 
+| 17.7       | 4         | QuizResults- Komponentti ja MySurveys- muutokset |
+|            | 2         | QuizScore- komponentti, refaktorointi |
+|            | 2         | Quiz- vastausten UI suunnittelu |
+| Yht.       | 117       | | 
