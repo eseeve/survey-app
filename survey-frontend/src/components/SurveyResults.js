@@ -102,7 +102,7 @@ const LinearScaleQuestion = ({ theme, question, total }) => {
         options={{
           orientation: 'horizontal',
           legend: { position: 'none' },
-          hAxis: { textStyle: { color: textColor } },
+          hAxis: { textStyle: { color: textColor }, gridlines: { count: 0 } },
           vAxis: { textStyle: { color: textColor } },
           backgroundColor
         }}
