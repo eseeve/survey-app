@@ -1,13 +1,56 @@
 import React from 'react'
+import { Header, Icon, Checkbox } from 'semantic-ui-react'
 
-const Question = ({ question, answers }) => {
-  if (answers[question.title] === question.options[question.correct].option) {
+const IncorrectAnswer = ({ option, answer, correctAnswer }) => {
+  if (answer === option.option) {
     return (
-      <h4>{question.title} correct</h4>
+      <Checkbox radio label={option.option} readOnly defaultChecked/>
+    )
+  } else if (correctAnswer === option.option) {
+    return (
+      <Checkbox radio label={option.option.concat(' ' + String.fromCharCode(10003))} readOnly/>
     )
   }
   return (
-    <h4>{question.title} incorrect</h4>
+    <Checkbox radio label={option.option} readOnly/>
+  )
+}
+
+const CorrectAnswer = ({ option, correctAnswer }) => {
+  if (correctAnswer === option.option) {
+    return (
+      <Checkbox radio label={option.option.concat(' ' + String.fromCharCode(10003))} readOnly defaultChecked/>
+    )
+  }
+  return (
+    <Checkbox radio label={option.option} readOnly/>
+  )
+}
+
+const Question = ({ question, answers }) => {
+  const correctAnswer = question.options[question.correct].option
+  const answer = answers[question.title]
+  if (answer === correctAnswer) {
+    return (
+      <div>
+        <Header as='h4'><Icon name='check' />{question.title} 1/1</Header>
+        {question.options.map(o =>
+          <div key={o.option}>
+            <CorrectAnswer option={o} title={question.title} correctAnswer={correctAnswer}/><br/>
+          </div>
+        )}
+      </div>
+    )
+  }
+  return (
+    <div>
+      <Header as='h4'><Icon name='close' />{question.title} 0/1</Header>
+      {question.options.map(o =>
+        <div key={o.option}>
+          <IncorrectAnswer option={o} title={question.title} answer={answer} correctAnswer={correctAnswer}/><br/>
+        </div>
+      )}
+    </div>
   )
 }
 

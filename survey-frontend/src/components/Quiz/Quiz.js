@@ -66,7 +66,7 @@ const Quiz = () => {
       <Notification />
       <Score quiz={quiz} answers={answers} />
       <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} onClick={handleClick} floated='left'>Back to quizzes</Button>
-      <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} onClick={() => window.location.reload(false)} floated='left'>Submit another response</Button>
+      <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} onClick={() => window.location.reload(false)} floated='left'>Take {quiz.name} again</Button>
     </div>
     )
   }
