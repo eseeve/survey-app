@@ -17,10 +17,11 @@ import NewQuiz from './components/NewQuiz/NewQuiz'
 import UserSurveys from './components/UserSurveys'
 import Survey from './components/Survey/Survey'
 import Surveys from './components/Surveys'
-import Results from './components/Results'
+import SurveyResults from './components/SurveyResults'
 import Login from './components/Login/Login'
 import Quizzes from './components/Quizzes'
 import Quiz from './components/Quiz/Quiz'
+import QuizResults from './components/QuizResults'
 
 
 const App = () => {
@@ -57,7 +58,10 @@ const App = () => {
       <Container>
         <Switch>
           <Route path="/surveys/:id/results">
-            <Results />
+            <SurveyResults />
+          </Route>
+          <Route path="/quizzes/:id/results">
+            <QuizResults />
           </Route>
           <Route path="/surveys/new">
             <NewSurvey />

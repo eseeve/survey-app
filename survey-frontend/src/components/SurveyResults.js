@@ -126,7 +126,7 @@ const Questions = ({ theme, questions, total }) => {
   )
 }
 
-const Results = () => {
+const SurveyResults = () => {
   const surveys = useSelector(state => state.surveys)
   const theme = useSelector(state => state.theme)
   const dispatch = useDispatch()
@@ -162,9 +162,9 @@ const Results = () => {
       <Notification />
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions theme={theme} questions={survey.questions} total={total}/>}
       <div style={{marginBottom: '20px'}}>Created by {survey.user.name}</div>
-      <Button className='red-button' id='delete-account' color='red' size='small' onClick={(event) => handleRemoveResponses(event, survey)}>Delete Responses</Button>
+      <Button style={{marginBottom: '10px'}} className='red-button' id='delete-responses' color='red' size='small' onClick={(event) => handleRemoveResponses(event, survey)}>Delete Responses</Button>
     </div>
   )
 }
 
-export default Results
+export default SurveyResults
