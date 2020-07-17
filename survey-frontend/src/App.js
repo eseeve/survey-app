@@ -56,11 +56,8 @@ const App = () => {
     <div>
       <Container>
         <Switch>
-          <Route path="/mysurveys/:id/results">
+          <Route path="/surveys/:id/results">
             <Results />
-          </Route>
-          <Route path="/mysurveys">
-            <UserSurveys />
           </Route>
           <Route path="/surveys/new">
             <NewSurvey />
@@ -73,6 +70,9 @@ const App = () => {
           </Route>
           <Route path="/quizzes/:id">
             <Quiz />
+          </Route>
+          <Route path="/surveys">
+            <UserSurveys />
           </Route>
           <Route path="/quizzes">
             <AppHeader />

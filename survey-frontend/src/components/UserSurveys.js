@@ -11,9 +11,11 @@ import { logout } from '../reducers/userReducer'
 import { removeUser } from '../reducers/usersReducer'
 import { removeSurvey } from '../reducers/surveyReducer'
 import { setNotification } from '../reducers/notificationReducer'
+import { removeQuiz } from '../reducers/quizReducer'
 
 const UserSurveys = () => {
   const allSurveys = useSelector(state => state.surveys)
+  const allQuizzes = useSelector(state => state.quizzes)
   const users = useSelector(state => state.users)
   const user = useSelector(state => state.user)
   const dispatch  = useDispatch()
@@ -25,6 +27,15 @@ const UserSurveys = () => {
     if (ok) {
       dispatch(removeSurvey(survey))
       dispatch(setNotification(`Survey '${survey.name}' deleted.`, 5))
+    }
+  }
+
+  const handleRemoveQuiz = (event, quiz) => {
+    event.preventDefault()
+    const ok = window.confirm(`Delete quiz ${quiz.name}?`)
+    if (ok) {
+      dispatch(removeQuiz(quiz))
+      dispatch(setNotification(`Quiz '${quiz.name}' deleted.`, 5))
     }
   }
 
@@ -41,6 +52,11 @@ const UserSurveys = () => {
               dispatch(removeSurvey(s))
             }
           })
+          allQuizzes.forEach(q => {
+            if (q.user.id === userToDelete.id) {
+              dispatch(removeQuiz(q))
+            }
+          })
           dispatch(removeUser(userToDelete))
           dispatch(setNotification(`Your account '${user.username}' and your surveys have been deleted.`, 5))
           dispatch(logout())
@@ -55,17 +71,24 @@ const UserSurveys = () => {
     }
   }
 
-  const handleCopyLink = (event, survey) => {
+  const handleCopyLinkSurvey = (event, survey) => {
     event.preventDefault()
     navigator.clipboard.writeText(window.location.href.concat(`/${survey.id}`))
-    dispatch(setNotification(`Link to '${survey.name}' copied to clipboard!`, 5))
+    dispatch(setNotification(`Link to '${survey.name}' copied to clipboard!`, 5))                 
   }
 
-  if (!allSurveys) {
+  const handleCopyLinkQuiz = (event, quiz) => {
+    event.preventDefault()
+    navigator.clipboard.writeText(window.location.href.slice(0, window.location.href.length-7).concat(`quizzes/${quiz.id}`))
+      dispatch(setNotification(`Link to '${quiz.name}' copied to clipboard!`, 5))                 
+  }
+
+  if (!allSurveys && !allQuizzes) {
     return null
   }
 
   const surveys = allSurveys.filter(s => s.user.username === user.username)
+  const quizzes = allQuizzes.filter(q => q.user.username === user.username)
 
   return(
     <div>
@@ -78,6 +101,7 @@ const UserSurveys = () => {
         </Grid.Column>
       </Grid>
       <Notification />
+      <Header as='h2'>Surveys</Header>
       {
         surveys.length === 0 ? <div style={{marginBottom: '10px'}}>You have no surveys.</div> :
         <Segment.Group>
@@ -85,9 +109,24 @@ const UserSurveys = () => {
             <Segment key={survey.id} >
               {survey.name}
               <Button className='red-button' floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
-              <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLink(event, survey)}>Copy link</Button>
+              <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLinkSurvey(event, survey)}>Copy link</Button>
               <div>Responses: {survey.answers}</div>
               <div style={{marginTop: '3px'}}><Link className='link' to={`/surveys/${survey.id}/results`}>View results</Link></div>
+            </Segment>
+          )}
+        </Segment.Group>
+      }
+      <Header as='h2'>Quizzes</Header>
+      {
+        quizzes.length === 0 ? <div style={{marginBottom: '10px'}}>You have no quizzes.</div> :
+        <Segment.Group>
+        {quizzes.map(quiz =>
+            <Segment key={quiz.id} >
+              {quiz.name}
+              <Button className='red-button' floated='right' color='red' size='small' onClick={(event) => handleRemoveQuiz(event, quiz)}>Delete Quiz</Button>
+              <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLinkQuiz(event, quiz)}>Copy link</Button>
+              <div>Responses: {quiz.answers}</div>
+              <div style={{marginTop: '3px'}}><Link className='link' to={`/quizzes/${quiz.id}/results`}>View results</Link></div>
             </Segment>
           )}
         </Segment.Group>
