@@ -9,23 +9,11 @@ import TakeQuiz from './TakeQuiz'
 import Menu from '../Menu'
 import { answerQuiz } from '../../reducers/quizReducer'
 import Notification from '../Notification'
-
-const Score = ({ quiz }) => {
-  return (
-    <div>
-      <h3>Correct answers</h3>
-        {quiz.questions.map(q => 
-          <div key={q.id}>
-            <h4>{q.title}</h4>
-            <div>Correct answer: {q.options[q.correct].option}</div>
-          </div>
-        )}
-    </div>
-  )
-}
+import Score from './Score'
 
 const Quiz = () => {
   const [ score, setScore ] = useState(null)
+  const [ answers, setAnswers ] = useState(null)
   const quizzes = useSelector(state => state.quizzes)
   const dispatch = useDispatch()
   const history = useHistory()
@@ -47,6 +35,7 @@ const Quiz = () => {
       })
       quiz.scores.push(rightAnswers)
       setScore(rightAnswers)
+      setAnswers(values)
       dispatch(answerQuiz(quiz, values))
       dispatch(setNotification(`Your answers to the quiz '${quiz.name}' were saved!`, 5))
     }
@@ -55,6 +44,7 @@ const Quiz = () => {
   const handleClick = (event) => {
     event.preventDefault()
     setScore(null)
+    setAnswers(null)
     history.push('/quizzes')
   }
 
@@ -74,10 +64,7 @@ const Quiz = () => {
         </Grid.Column>
       </Grid>
       <Notification />
-      <div style={{marginBottom: '10px'}}>
-        You got {score}/{quiz.questions.length} answers correct.
-      </div>
-      <Score quiz={quiz} />
+      <Score quiz={quiz} answers={answers} />
       <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} onClick={handleClick} floated='left'>Back to quizzes</Button>
       <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} onClick={() => window.location.reload(false)} floated='left'>Submit another response</Button>
     </div>
