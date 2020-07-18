@@ -50,4 +50,6 @@
 | 17.7       | 4         | QuizResults- Komponentti ja MySurveys- muutokset |
 |            | 2         | QuizScore- komponentti, refaktorointi |
 |            | 2         | Quiz- vastausten UI suunnittelu |
-| Yht.       | 117       | | 
+| 18.7       | 2         | Refaktorointi ja pieniä UI muutoksia |
+|            | 3         | QuizFormin validointi ja testaus |
+| Yht.       | 122       | | 
