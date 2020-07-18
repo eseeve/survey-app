@@ -1,11 +1,16 @@
 import quizService from '../services/quiz'
 
 const byMostAnswers = (q1, q2) => q2.answers - q1.answers
+const byLeastAnswers = (q1, q2) => q1.answers - q2.answers
+const byUser = (q1, q2) => q1.user.name.localeCompare(q2.user.name)
+
 
 const reducer = (state = [], action) => {
   switch(action.type) {
   case 'INIT_QUIZZES':
     return action.data.sort(byMostAnswers)
+  case 'SORT_QUIZZES':
+    return state.sort(action.data)
   case 'CREATE_QUIZ':
     return [...state, action.data]
   case 'ANSWER_QUIZ':
@@ -75,5 +80,21 @@ export const resetQuiz = (quiz) => {
   }
 }
 
+export const sortQuizzes = (sort) => {
+  let data
+  if (sort === 'byLeastAnswers') {
+    data = byLeastAnswers
+  } else if (sort === 'byUser') {
+    data = byUser
+  } else {
+    data = byMostAnswers
+  }
+  return async dispatch => {
+    dispatch({
+      type: 'SORT_QUIZZES',
+      data
+    })
+  }
+}
 
 export default reducer

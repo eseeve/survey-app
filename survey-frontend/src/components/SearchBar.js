@@ -3,21 +3,18 @@ import { useDispatch } from 'react-redux'
 import { sortSurveys } from '../reducers/surveyReducer'
 import { setFilter } from '../reducers/filterReducer'
 import { Input, Dropdown } from 'semantic-ui-react'
+import { sortQuizzes } from '../reducers/quizReducer'
 
 const SearchBar = () => {
   const dispatch = useDispatch()
 
   const handleChange = (event) => {
     dispatch(setFilter(event.target.value))
-
   }
 
   const handleSort = (e, { value }) => {
     dispatch(sortSurveys(value))
-  }
-
-  const style = {
-    marginBottom: 10
+    dispatch(sortQuizzes(value))
   }
 
   const options = [
@@ -27,7 +24,7 @@ const SearchBar = () => {
   ]
 
   return (
-    <div style={style}>
+    <div style={{marginBottom: '10px'}}>
       <Input style={{marginRight: '10px'}} placeholder='Search Surveys' onChange={handleChange} />
       <Dropdown text='Sort by' options={options} onChange={handleSort} />
     </div>
