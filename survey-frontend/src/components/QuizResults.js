@@ -145,7 +145,6 @@ const QuizResults = () => {
       </Grid>
       <Notification />
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions theme={theme} questions={quiz.questions} total={total} scores={quiz.scores}/>}
-      <div style={{marginTop: '10px', marginBottom: '20px'}}>Created by {quiz.user.name}</div>
       <Button style={{marginBottom: '10px'}} className='red-button' id='delete-responses' color='red' size='small' onClick={(event) => handleRemoveResponses(event, quiz)}>Delete Responses</Button>
     </div>
   )

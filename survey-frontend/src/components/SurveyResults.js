@@ -161,7 +161,6 @@ const SurveyResults = () => {
       </Grid>
       <Notification />
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions theme={theme} questions={survey.questions} total={total}/>}
-      <div style={{marginBottom: '20px'}}>Created by {survey.user.name}</div>
       <Button style={{marginBottom: '10px'}} className='red-button' id='delete-responses' color='red' size='small' onClick={(event) => handleRemoveResponses(event, survey)}>Delete Responses</Button>
     </div>
   )

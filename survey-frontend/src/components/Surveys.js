@@ -5,6 +5,17 @@ import { Segment, Button, Header, Grid } from 'semantic-ui-react'
 
 import SearchBar  from './SearchBar'
 
+const SurveyHeader = () => (
+  <Grid style={{paddingTop: '10px'}} columns={2}>
+    <Grid.Column>
+      <Header as='h2' >Surveys</Header>
+    </Grid.Column>
+    <Grid.Column>
+      <Button floated='right' id='quizzes' as={Link} to='/quizzes'>Quizzes</Button>
+    </Grid.Column>
+  </Grid>
+)
+
 const Surveys = () => {
   const surveys = useSelector(state => {
     const filter = state.filter.toLowerCase()
@@ -19,6 +30,7 @@ const Surveys = () => {
   if (surveys && surveys.length === 0) {
     return (
       <div>
+        <SurveyHeader />
         <SearchBar />
         <div>No surveys found.</div>
       </div>
@@ -27,14 +39,7 @@ const Surveys = () => {
 
   return(
     <div>
-      <Grid style={{paddingTop: '10px'}} columns={2}>
-        <Grid.Column>
-          <Header as='h2' >Surveys</Header>
-        </Grid.Column>
-        <Grid.Column>
-          <Button floated='right' id='quizzes' as={Link} to='/quizzes'>Quizzes</Button>
-        </Grid.Column>
-      </Grid>
+      <SurveyHeader />
       <SearchBar />
       <Segment.Group>
         {surveys.map(survey =>
