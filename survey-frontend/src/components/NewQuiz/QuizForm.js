@@ -18,9 +18,9 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
           <Grid.Column>
             <Field
               name={`${question}.title`}
-              placeholder='Question Title'
+              placeholder='Question title'
               component={TextField}
-              label='Question Title'
+              label='Question title'
             />
           </Grid.Column>
           <Grid.Column>
@@ -83,7 +83,7 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
             name={`${question}.options.3.option`}
             placeholder='Option D'
             component={TextField}
-            label='Option '
+            label='Option D'
           />
         </Segment>
       )
@@ -96,7 +96,9 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
   )
 }
 
-const QuizForm = ({ handleSubmit, pristine, reset, submitting }) => {
+const QuizForm = ({ handleSubmit, pristine, reset, submitting, error }) => {
+  const theme = useSelector(state => state.theme)
+  const color = theme === 'dark' ? 'teal' : 'red'
   return (
     <Form onSubmit={handleSubmit}>
       <Field
@@ -106,6 +108,7 @@ const QuizForm = ({ handleSubmit, pristine, reset, submitting }) => {
         component={TextField}
       />
       <FieldArray name='questions' component={Questions} />
+      {error && <div className='error' style={{color, marginBottom: '10px'}}>{error}</div>}
       <div>
         <Button className='green-button' id='submit' color='green' size='small' type='submit' disabled={submitting}>
           Submit

@@ -6,7 +6,7 @@ const validate = values => {
   if (values.name && values.name.length < 3) {
     errors.name = 'Survey name too short'
   }
-  if ((!values.questions || !values.questions.length) && (!values.linearScales || !values.linearScales.length)) {
+  if ((!values.questions || !values.questions.length)) {
     errors.questions = { _error: 'At least one question must be entered' }
   } else if (values.questions){
     const questionsArrayErrors = []
@@ -16,8 +16,8 @@ const validate = values => {
         questionErrors.title = 'Required'
         questionsArrayErrors[questionIndex] = questionErrors
       }
-      if (!question || !question.type) {
-        questionErrors.type = 'Required'
+      if (!question || !question.correct) {
+        questionErrors.correct = 'Required'
         questionsArrayErrors[questionIndex] = questionErrors
       }
     })

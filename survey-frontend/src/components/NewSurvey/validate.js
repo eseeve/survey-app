@@ -33,11 +33,11 @@ const validate = values => {
           questionErrors.options = optionArrayErrors
           questionsArrayErrors[questionIndex] = questionErrors
         }
-        if (question.options.length > 10) {
+        if (question.options.length > 20) {
           if (!questionErrors.options) {
             questionErrors.options = []
           }
-          questionErrors.options._error = 'No more than ten options allowed'
+          questionErrors.options._error = 'No more than twenty options allowed'
           questionsArrayErrors[questionIndex] = questionErrors
         }
       }

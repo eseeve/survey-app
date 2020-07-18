@@ -8,13 +8,20 @@ import QuizForm from './QuizForm'
 import Notification from '../Notification'
 import Menu from '../Menu'
 import { setNotification } from '../../reducers/notificationReducer'
+import { SubmissionError } from 'redux-form'
 
 const NewSurvey = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
   const handleSubmit = (values) => {
-    console.log(values)
+    values.questions.forEach(q => {
+      if (!q.options || q.options.length < 4) {
+        throw new SubmissionError({
+          _error: 'Fill out all options in all questions'
+        })
+      }
+    })
     dispatch(createQuiz(values))
     dispatch(setNotification(`New quiz '${values.name}' created!`, 5))
     history.push('/quizzes')

@@ -30,6 +30,14 @@ const quizSchema = new mongoose.Schema(
   }
 )
 
+quizOptionSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+
+
 quizQuestionSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
