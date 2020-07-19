@@ -25,7 +25,7 @@ const SearchBar = () => {
 
   return (
     <div style={{marginBottom: '10px'}}>
-      <Input style={{marginRight: '10px'}} placeholder='Search Surveys' onChange={handleChange} />
+      <Input style={{marginRight: '10px'}} placeholder='Search...' onChange={handleChange} />
       <Dropdown text='Sort by' options={options} onChange={handleSort} />
     </div>
   )

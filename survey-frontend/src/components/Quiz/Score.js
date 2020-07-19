@@ -32,8 +32,8 @@ const Question = ({ question, answers }) => {
   const answer = answers[question.title]
   if (answer === correctAnswer) {
     return (
-      <div>
-        <Header as='h4'><Icon name='check' />{question.title} 1/1</Header>
+      <div style={{marginBottom: '10px'}}>
+        <Header as='h4'><Icon color='green' name='check' />{question.title} 1/1</Header>
         {question.options.map(o =>
           <div key={o.option}>
             <CorrectAnswer option={o} title={question.title} correctAnswer={correctAnswer}/><br/>
@@ -43,8 +43,8 @@ const Question = ({ question, answers }) => {
     )
   }
   return (
-    <div>
-      <Header as='h4'><Icon name='close' />{question.title} 0/1</Header>
+    <div style={{marginBottom: '10px'}}> 
+      <Header as='h4'><Icon color='red' name='close' />{question.title} 0/1</Header>
       {question.options.map(o =>
         <div key={o.option}>
           <IncorrectAnswer option={o} title={question.title} answer={answer} correctAnswer={correctAnswer}/><br/>
