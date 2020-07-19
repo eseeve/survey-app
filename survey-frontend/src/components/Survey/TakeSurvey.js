@@ -89,7 +89,7 @@ const MultipleChoiceQuestion = ({ question }) => {
 
 
   return (
-    <div style={{marginTop: '10px', marginBottom: '10px'}}>
+    <div style={{marginTop: '10px', marginBottom: '12px'}}>
       <strong style={{fontSize: '16px'}}>{question.title}</strong>
       <div>
         {question.options.filter(o => !o.custom).map(o =>
@@ -143,11 +143,11 @@ const LinearScaleOption = ({ option, title }) => {
 
 const LinearScaleQuestion = ({ question }) => {
   return (
-    <div style={{marginTop: '10px', marginBottom: '10px'}}>
+    <div style={{marginTop: '10px', marginBottom: '12px'}}>
       <strong style={{fontSize: '16px'}}>{question.title}</strong>
       <Grid columns='equal'>
         {question.options.filter(o => !o.custom).map(o =>
-        <Grid.Column key={o.option}>
+        <Grid.Column style={{marginTop: '12px'}} key={o.option}>
           <LinearScaleOption option={o} title={question.title}/>
         </Grid.Column>
         )}

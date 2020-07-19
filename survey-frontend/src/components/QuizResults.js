@@ -96,8 +96,8 @@ const Questions = ({ theme, questions, total, scores }) => {
         options={{
           orientation: 'horizontal',
           legend: { position: 'none' },
-          hAxis: { title: 'Points scored', textStyle: { color: textColor }, gridlines: { count: 0 } },
-          vAxis: { title: 'Number of respondents', textStyle: { color: textColor } },
+          hAxis: { title: 'Points scored', titleTextStyle: { color: textColor }, textStyle: { color: textColor }, gridlines: { count: 0 } },
+          vAxis: { title: 'Number of respondents', titleTextStyle: { color: textColor },  textStyle: { color: textColor } },
           backgroundColor
         }}
         data={data}
