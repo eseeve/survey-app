@@ -96,7 +96,7 @@ const initialQuizzes = [
     questions: [
       {
         title: 'What is The largest country by area?',
-        correctIndex: 0,
+        correct: 0,
         options: [
           {
             option: 'Russia',
@@ -114,7 +114,7 @@ const initialQuizzes = [
       },
       {
         title: 'What is The largest country by population?',
-        correctIndex: 2,
+        correct: 2,
         options: [
           {
             option: 'Russia',
@@ -138,7 +138,7 @@ const initialQuizzes = [
     questions: [
       {
         title: 'Which dog breed is the largest?',
-        correctIndex: 2,
+        correct: 2,
         options: [
           {
             option: 'Corgi',

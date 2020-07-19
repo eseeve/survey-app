@@ -428,7 +428,7 @@ describe('when there is initially some surveys, quizzes and users saved', () => 
         questions: [
           {
             title: 'Which of these drinks is served usually cold?',
-            correctIndex: 2,
+            correct: 2,
             options: [
               {
                 option: 'Tea',
@@ -499,7 +499,7 @@ describe('when there is initially some surveys, quizzes and users saved', () => 
         questions: [
           {
             title: 'Which of these drinks is served usually cold?',
-            correctIndex: 2,
+            correct: 2,
             options: [
               {
                 option: 'Tea',
@@ -535,7 +535,7 @@ describe('when there is initially some surveys, quizzes and users saved', () => 
           questions: [
             {
               title: 'Which of these drinks is served usually cold?',
-              correctIndex: 2,
+              correct: 2,
               options: [
                 {
                   option: 'Tea',
