@@ -52,4 +52,6 @@
 |            | 2         | Quiz- vastausten UI suunnittelu |
 | 18.7       | 2         | Refaktorointi ja pieniä UI muutoksia |
 |            | 3         | QuizFormin validointi ja testaus |
-| Yht.       | 122       | | 
+| 19.7       | 1         | Backendin testien korjaus |
+|            | 2         | Frontendin UI testaus ja pieniä muutoksia |
+| Yht.       | 125       | | 
