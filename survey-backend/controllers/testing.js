@@ -5,8 +5,8 @@ const Quiz = require('../models/quiz')
 
 router.post('/reset', async (request, response) => {
   await Survey.deleteMany({})
-  await User.deleteMany({})
   await Quiz.deleteMany({})
+  await User.deleteMany({})
 
   response.status(204).end()
 })
