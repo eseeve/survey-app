@@ -57,7 +57,7 @@ const TakeQuiz = ({ quiz, handleSubmit, submitting, error }) => {
       <Form onSubmit={handleSubmit}>
         <Questions questions={quiz.questions} />
         {error && <div style={{color}}>{error}</div>}
-        <div>
+        <div style={{ marginBottom: '10px'}}>
           <Button className='green-button' color='green' size='small' style={{marginTop: '10px'}} type='submit' disabled={submitting}>
             Submit
           </Button>

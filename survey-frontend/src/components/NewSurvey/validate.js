@@ -46,7 +46,7 @@ const validate = values => {
       errors.questions = questionsArrayErrors
     }
   }
-  if (values.linearScales) {
+  if (values.linearScales && values.linearScales.length) {
     const questionsArrayErrors = []
     values.linearScales.forEach((question, questionIndex) => {
       const questionErrors = {}

@@ -198,7 +198,7 @@ describe('Survey app', function() {
           .its('surveys')
           .should('have.length', 1)
       })
-      describe('When database contains a survey', function() {
+      describe('When database contains surveys and quizzes', function() {
         beforeEach(function() {
           cy.request('POST', 'http://localhost:3001/api/testing/resetsurveys')
           cy.createSurvey({
@@ -222,6 +222,41 @@ describe('Survey app', function() {
               {
                 type: 'MultipleChoice',
                 title: 'What is your favorite restaurant?',
+                options: [
+                  {
+                    option: 'Blanko',
+                  },
+                  {
+                    option: 'Tintå',
+                  },
+                  {
+                    option: 'Nerå',
+                  }
+                ]
+              }
+            ]
+          })
+          cy.createQuiz({
+            name: 'Food Quiz',
+            questions: [
+              {
+                title: 'What is your favorite ice cream?',
+                correct: 0,
+                options: [
+                  {
+                    option: 'Vanilla',
+                  },
+                  {
+                    option: 'Chocolate',
+                  },
+                  {
+                    option: 'Strawberry',
+                  }
+                ]
+              },
+              {
+                title: 'What is your favorite restaurant?',
+                correct: 0,
                 options: [
                   {
                     option: 'Blanko',
