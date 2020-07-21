@@ -8,8 +8,8 @@
 | 30.5       | 1         | Repo init, lint config |
 | 31.5       | 2         | surveySchema, mongoose validointi ja surveysService |
 | 4.6        | 1         | Backendin testaus |
-|            | 1         | Frontend Redux init, Survey-komponentit |
-| 9.6        | 3         | NewSurvey-lomake ja sen validointi  |
+|            | 1         | Frontend Redux init, Survey- komponentit |
+| 9.6        | 3         | NewSurvey- lomake ja sen validointi  |
 | 10.6       | 2         | SurveyScheman muutos, Frontendin refaktorointi  |
 | 11.6       | 3         | Surveyn täyttäminen, vastausten tallentaminen ja notifikaatiot  |
 |            | 1         | Refaktorointi |
@@ -25,16 +25,16 @@
 |            | 3         | CheckBoxes kysymystyypin lisäys  |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
 | 2.7        | 1         | CheckBoxes vastausten UI  |
-|            | 2         | NewSurvey-lomakkeen parantelu  |
-| 3.7        | 2         | NewSurvey-lomakkeen parantelu, UserSurvey-sivulle linkit kyselyihin  |
+|            | 2         | NewSurvey- lomakkeen parantelu  |
+| 3.7        | 2         | NewSurvey- lomakkeen parantelu, UserSurvey-sivulle linkit kyselyihin  |
 |            | 2         | React Routerin korjaus Herokussa  |
-| 4.7        | 8         | End to End -testaus  |
+| 4.7        | 8         | End to End- testaus  |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
 | 6.7        | 4         | Dark mode |
 |            | 4         | Menu |
 |            | 2         | Refaktorointi |
 | 7.7        | 4         | Dark mode parantelu ja UI muutoksia |
-|            | 2         | Tutustuminen teemoihin ja eri CSS-tyyleihin |
+|            | 2         | Tutustuminen teemoihin ja eri CSS- tyyleihin |
 | 8.7        | 4         | Avoin vastauskenttä kysymyksiin ja Search Bar |
 | 9.7        | 2         | Avointen vastauskenttien parantelu ja korjaus |
 |            | 6         | Linear Scale- kysymystyypin lisäys, validointi ja testaus |
@@ -43,7 +43,7 @@
 | 12.7       | 1         | Kyselyiden vastausten poistamisen toiminnallisuus |
 |            | 2         | Quiz Schema ja router, backend muutoksia |
 |            | 2         | Backend testaus |
-|            | 1         | Frontendin Quiz-komponentti, -service ja -reducer |
+|            | 1         | Frontendin Quiz- komponentti, -service ja -reducer |
 | 16.7       | 2         | Refaktorointi |
 |            | 3         | NewQuiz- componentti ja Quizin luominen |
 |            | 2         | Quiz tulosten näyttäminen |
@@ -54,4 +54,6 @@
 |            | 3         | QuizFormin validointi ja testaus |
 | 19.7       | 1         | Backendin testien korjaus |
 |            | 2         | Frontendin UI testaus ja pieniä muutoksia |
-| Yht.       | 125       | | 
+| 21.7       | 8         | End to End- testaus ja UI- korjauksia  |
+|            | 2         | Uusien toiminnallisuuksien ideointi |
+| Yht.       | 135       | | 
