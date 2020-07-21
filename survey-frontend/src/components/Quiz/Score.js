@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector  } from 'react-redux'
 import { Header, Icon, Checkbox } from 'semantic-ui-react'
 
 const IncorrectAnswer = ({ option, answer, correctAnswer }) => {
@@ -28,12 +29,18 @@ const CorrectAnswer = ({ option, correctAnswer }) => {
 }
 
 const Question = ({ question, answers }) => {
+  const theme = useSelector(state => state.theme)
+
   const correctAnswer = question.options[question.correct].option
   const answer = answers[question.title]
+
+  const correctColor = theme === 'dark' ? 'pink' : 'green'
+  const incorrectColor = theme === 'dark' ? 'teal' : 'red'
+
   if (answer === correctAnswer) {
     return (
       <div style={{marginBottom: '10px'}}>
-        <Header as='h4'><Icon color='green' name='check' />{question.title} 1/1</Header>
+        <Header as='h4'><Icon className='score-icon' color={correctColor} name='check' />{question.title} 1/1</Header>
         {question.options.map(o =>
           <div key={o.option}>
             <CorrectAnswer option={o} title={question.title} correctAnswer={correctAnswer}/><br/>
@@ -44,7 +51,7 @@ const Question = ({ question, answers }) => {
   }
   return (
     <div style={{marginBottom: '10px'}}> 
-      <Header as='h4'><Icon color='red' name='close' />{question.title} 0/1</Header>
+      <Header as='h4'><Icon className='score-icon' color={incorrectColor} name='close' />{question.title} 0/1</Header>
       {question.options.map(o =>
         <div key={o.option}>
           <IncorrectAnswer option={o} title={question.title} answer={answer} correctAnswer={correctAnswer}/><br/>

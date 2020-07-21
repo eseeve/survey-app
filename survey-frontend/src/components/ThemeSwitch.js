@@ -39,7 +39,7 @@ const ThemeSwitch = () => {
   .green-button { filter: invert(100%) }
   .link { filter: invert(100%) }
   .chart { filter: invert(100%) }
-  .notification { filter: invert(100%) `
+  .notification { filter: invert(100%) } `
 
   return (
   <div>  

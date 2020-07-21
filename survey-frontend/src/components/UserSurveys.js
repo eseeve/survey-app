@@ -131,7 +131,7 @@ const UserSurveys = () => {
           )}
         </Segment.Group>
       }
-      <Button className='red-button' id='delete-account' color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
+      <Button style={{marginBottom: '10px'}} className='red-button' id='delete-account' color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
     </div>
   )
 }

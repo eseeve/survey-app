@@ -232,6 +232,7 @@ describe('Survey app', function() {
             questions: [
               {
                 type: 'MultipleChoice',
+                isOpen: true,
                 title: 'What is your favorite ice cream?',
                 options: [
                   {
@@ -306,6 +307,16 @@ describe('Survey app', function() {
           cy.contains('Submit').click()
           cy.contains("Your answers to the survey 'Food Survey' were saved!")
         })
+        it('open answer in survey can be answered', function() {
+          cy.get('#take-survey').click()
+          cy.get('input').eq(3).type('test')
+          cy.contains('Add').click()
+          cy.contains('test')
+          cy.get('.survey-radio').eq(3).click()
+          cy.get('.survey-radio').eq(5).click()
+          cy.contains('Submit').click()
+          cy.contains("Your answers to the survey 'Food Survey' were saved!")
+        })
         it('Quiz can be answered', function() {
           cy.get('#quizzes').click()
           cy.get('#take-quiz').click()
@@ -330,7 +341,7 @@ describe('Survey app', function() {
           cy.contains('Submit').click()
           cy.contains('You must answer to all questions')
         })
-        it('Surveys and quizzes appears in my surveys', function() {
+        it('Surveys and quizzes appear in my surveys', function() {
           cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.contains('Surveys by Teemu Testaaja')
