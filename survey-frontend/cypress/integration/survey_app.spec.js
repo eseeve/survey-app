@@ -199,7 +199,7 @@ describe('Survey app', function() {
           .should('have.length', 1)
       })
 
-      it.only('Quiz can be created', function() {
+      it('Quiz can be created', function() {
         cy.server()
         cy.route('POST', '/api/quizzes').as('new-quiz')
 
@@ -306,6 +306,17 @@ describe('Survey app', function() {
           cy.contains('Submit').click()
           cy.contains("Your answers to the survey 'Food Survey' were saved!")
         })
+        it.only('Quiz can be answered', function() {
+          cy.get('#quizzes').click()
+          cy.get('#take-quiz').click()
+          cy.get('.survey-radio').eq(1).click()
+          cy.get('.survey-radio').eq(3).click()
+          cy.contains('Submit').click()
+          cy.contains("Your score on Food Quiz")
+          cy.contains("Total Points: 1 / 2")
+          cy.contains("Back to quizzes").click()
+          cy.contains("Your answers to the quiz 'Food Quiz' were saved!")
+        })
         it('All the questions must be answered in the survey', function() {
           cy.get('#take-survey').click()
           cy.get('.survey-radio').eq(1).click()
@@ -372,6 +383,7 @@ describe('Survey app', function() {
             cy.get('#my-surveys').click()
             cy.contains('Surveys by Tiina Testaaja')
             cy.contains('You have no surveys.')
+            cy.contains('You have no quizzes.')
           })
         })
       })
