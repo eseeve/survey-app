@@ -198,6 +198,32 @@ describe('Survey app', function() {
           .its('surveys')
           .should('have.length', 1)
       })
+
+      it.only('Quiz can be created', function() {
+        cy.server()
+        cy.route('POST', '/api/quizzes').as('new-quiz')
+
+        cy.get('#quizzes').click()
+        cy.contains('Create a new quiz').click()
+        cy.get('form').within(function() {
+          cy.get('#name').type('Test Quiz')
+          cy.get('#add-question').click()
+          cy.get('input').eq(1).type('Question 1')
+          cy.get('.dropdown-menu').click().type('{enter}')
+          cy.get('input').eq(2).type('Option 1')
+          cy.get('input').eq(3).type('Option 2')
+          cy.get('input').eq(4).type('Option 3')
+          cy.get('input').eq(5).type('Option 4')
+          cy.get('#submit').click()
+          cy.wait('@new-quiz')
+        })
+        cy.contains("New quiz 'Test Quiz' created!")
+        cy.window()
+          .its('store')
+          .invoke('getState')
+          .its('quizzes')
+          .should('have.length', 1)
+      })
       describe('When database contains surveys and quizzes', function() {
         beforeEach(function() {
           cy.request('POST', 'http://localhost:3001/api/testing/resetsurveys')
@@ -305,7 +331,6 @@ describe('Survey app', function() {
           cy.contains('View results').click()
           cy.get('html').should('contain', 'Food Survey')
           cy.get('html').should('contain', 'No answers yet.')
-          cy.get('html').should('contain', 'Created by Teemu Testaaja')
         })
         it('Results contain data from answers', function() {
           cy.get('#take-survey').click()
