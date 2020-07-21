@@ -111,7 +111,7 @@ const UserSurveys = () => {
               <Button className='red-button' floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
               <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLinkSurvey(event, survey)}>Copy link</Button>
               <div>Responses: {survey.answers}</div>
-              <div style={{marginTop: '3px'}}><Link className='link' to={`/surveys/${survey.id}/results`}>View results</Link></div>
+              <div style={{marginTop: '3px'}}><Link id='results' className='link' to={`/surveys/${survey.id}/results`}>View results</Link></div>
             </Segment>
           )}
         </Segment.Group>
@@ -126,7 +126,7 @@ const UserSurveys = () => {
               <Button className='red-button' floated='right' color='red' size='small' onClick={(event) => handleRemoveQuiz(event, quiz)}>Delete Quiz</Button>
               <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLinkQuiz(event, quiz)}>Copy link</Button>
               <div>Responses: {quiz.answers}</div>
-              <div style={{marginTop: '3px'}}><Link className='link' to={`/quizzes/${quiz.id}/results`}>View results</Link></div>
+              <div style={{marginTop: '3px'}}><Link id='results' className='link' to={`/quizzes/${quiz.id}/results`}>View results</Link></div>
             </Segment>
           )}
         </Segment.Group>

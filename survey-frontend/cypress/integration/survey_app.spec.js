@@ -306,7 +306,7 @@ describe('Survey app', function() {
           cy.contains('Submit').click()
           cy.contains("Your answers to the survey 'Food Survey' were saved!")
         })
-        it.only('Quiz can be answered', function() {
+        it('Quiz can be answered', function() {
           cy.get('#quizzes').click()
           cy.get('#take-quiz').click()
           cy.get('.survey-radio').eq(1).click()
@@ -323,11 +323,20 @@ describe('Survey app', function() {
           cy.contains('Submit').click()
           cy.contains('You must answer to all questions')
         })
-        it('Survey appears in my surveys', function() {
+        it('All the questions must be answered in the quiz', function() {
+          cy.get('#quizzes').click()
+          cy.get('#take-quiz').click()
+          cy.get('.survey-radio').eq(1).click()
+          cy.contains('Submit').click()
+          cy.contains('You must answer to all questions')
+        })
+        it('Surveys and quizzes appears in my surveys', function() {
           cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.contains('Surveys by Teemu Testaaja')
           cy.contains('Food Survey')
+          cy.contains('Quizzes')
+          cy.contains('Food Quiz')
         })
         it('Survey can be deleted', function() {
           cy.contains('Menu').click()
@@ -336,11 +345,27 @@ describe('Survey app', function() {
           cy.get('html').should('contain', "Survey 'Food Survey' deleted.")
           cy.get('html').should('contain', 'You have no surveys.')
         })
+        it('Quiz can be deleted', function() {
+          cy.contains('Menu').click()
+          cy.get('#my-surveys').click()
+          cy.contains('Delete Quiz').click()
+          cy.get('html').should('contain', "Quiz 'Food Quiz' deleted.")
+          cy.get('html').should('contain', 'You have no quizzes.')
+        })
         it('Results can be viewed', function() {
           cy.contains('Menu').click()
           cy.get('#my-surveys').click()
-          cy.contains('View results').click()
+          cy.get('#results').click()
           cy.get('html').should('contain', 'Food Survey')
+          cy.get('html').should('contain', 'No answers yet.')
+          cy.contains('Menu').click()
+          cy.get('#my-surveys').click()
+          cy.contains('Menu').click()
+          cy.get('#my-surveys').click()
+          cy.contains('Delete Survey').click()
+          cy.wait(200)
+          cy.get('#results').click()
+          cy.get('html').should('contain', 'Food Quiz')
           cy.get('html').should('contain', 'No answers yet.')
         })
         it('Results contain data from answers', function() {
