@@ -56,4 +56,5 @@
 |            | 2         | Frontendin UI testaus ja pieniä muutoksia |
 | 21.7       | 8         | End to End- testaus ja UI- korjauksia  |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
-| Yht.       | 135       | | 
+| 22.7       | 4         | Tutustuminen tiedostojen tallentamiseen MongoDB ja React  |
+| Yht.       | 139       | | 
