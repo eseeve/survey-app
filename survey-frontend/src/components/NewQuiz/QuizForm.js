@@ -3,12 +3,15 @@ import { useSelector } from 'react-redux'
 import { Field, FieldArray, reduxForm  } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
-import { TextField, SelectField } from '../FormField'
+import { TextField, SelectField, FileInput } from '../FormField'
 import validate from './validate'
 
 const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
   const theme = useSelector(state => state.theme)
   const color = theme === 'dark' ? 'teal' : 'red'
+
+
+
   return (
     <div>
       {fields.map((question, index) => (
@@ -85,6 +88,11 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
             component={TextField}
             label='Option D'
           />
+          <Field
+            name='image'
+            component={FileInput}
+            label='File'
+          />
         </Segment>
       )
     )}
@@ -99,6 +107,24 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
 const QuizForm = ({ handleSubmit, pristine, reset, submitting, error }) => {
   const theme = useSelector(state => state.theme)
   const color = theme === 'dark' ? 'teal' : 'red'
+
+  var inputs = document.querySelectorAll( '.inputfile' )
+ 
+  Array.prototype.forEach.call( inputs, function( input ) {
+    var label = input.nextElementSibling,
+                labelVal = label.innerHTML
+  
+    input.addEventListener( 'change', function( e ) {
+      var fileName = ''
+  
+      if ( fileName ) {
+        label.querySelector( 'span' ).innerHTML = fileName;
+      } else {
+        label.innerHTML = labelVal;
+      }
+    })
+  })
+
   return (
     <Form onSubmit={handleSubmit}>
       <Field

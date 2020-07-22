@@ -15,6 +15,7 @@ const NewSurvey = () => {
   const history = useHistory()
 
   const handleSubmit = (values) => {
+  console.log(values)
     values.questions.forEach(q => {
       if (!q.options || q.options.length < 4) {
         throw new SubmissionError({

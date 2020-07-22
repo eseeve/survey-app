@@ -46,3 +46,25 @@ export const SelectField = props => {
      </Form.Field>
   )
 }
+
+const adaptFileEventToValue = delegate => e => delegate(e.target.files[0])
+
+export const FileInput = ({ 
+  input: { value: omitValue, onChange, onBlur, ...inputProps }, 
+  meta: omitMeta, 
+  ...props 
+}) => {
+  return (
+    <div>
+      <input
+        id='file'
+        onChange={adaptFileEventToValue(onChange)}
+        onBlur={adaptFileEventToValue(onBlur)}
+        type='file'
+        {...props.input}
+        {...props}
+      />
+    </div>
+  )
+}
+
