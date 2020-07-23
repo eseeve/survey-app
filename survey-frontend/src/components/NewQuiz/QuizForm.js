@@ -117,7 +117,7 @@ const QuizForm = ({ handleSubmit, pristine, reset, submitting, error }) => {
       />
       <FieldArray name='questions' component={Questions} />
       {error && <div className='error' style={{color, marginBottom: '10px'}}>{error}</div>}
-      <div>
+      <div style={{ marginBottom: '10px'}}>
         <Button className='green-button' id='submit' color='green' size='small' type='submit' disabled={submitting}>
           Submit
         </Button>

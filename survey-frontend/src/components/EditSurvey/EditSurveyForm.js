@@ -1,9 +1,11 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, connect } from 'react-redux'
 import { Field, FieldArray, reduxForm  } from 'redux-form'
+import { useParams, Link } from 'react-router-dom'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
 import { TextField, SelectField, TextAreaField } from '../FormField'
+import { load as loadSurvey } from '../../reducers/loadSurvey'
 import validate from './validate'
 
 const LinearScales = ({ fields, meta: { error, submitFailed }, touched }) =>  {
@@ -217,7 +219,16 @@ const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
   )
 }
 
-const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
+let EditSurveyForm = ({ handleSubmit, load, pristine, reset, submitting }) => {
+  const surveys = useSelector(state => state.surveys)
+
+  const id = useParams().id
+  const survey = surveys.find(s => s.id === id)
+
+  useEffect(() => {
+    load(survey)
+  }, [load, survey])
+
   return (
     <Form onSubmit={handleSubmit}>
       <Field
@@ -238,15 +249,24 @@ const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
         <Button className='green-button' id='submit' color='green' size='small' type='submit' disabled={submitting}>
           Submit
         </Button>
-        <Button className='red-button' floated='right' color='red' size='small' type='button' disabled={pristine || submitting} onClick={reset}>
-          Clear Values
+        <Button className='red-button' floated='right' color='red' size='small' type='button' as={Link} to={'/surveys'}>
+          Discard Changes
         </Button>
       </div>
     </Form>
   )
 }
 
-export default reduxForm({
-  form: 'newsurvey',
+EditSurveyForm = reduxForm({
+  form: 'editsurvey',
   validate
-})(SurveyForm)
+})(EditSurveyForm)
+
+EditSurveyForm = connect(
+  state => ({
+    initialValues: state.editSurvey.data
+  }),
+  { load: loadSurvey }
+)(EditSurveyForm)
+
+export default EditSurveyForm

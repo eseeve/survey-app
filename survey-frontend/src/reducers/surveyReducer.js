@@ -16,6 +16,8 @@ const reducer = (state = [], action) => {
     return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   case 'REMOVE_SURVEY':
     return state.filter(s => s.id !== action.survey.id)
+  case 'EDIT_SURVEY':
+    return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   case 'RESET_SURVEY':
     return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   default:
@@ -69,6 +71,16 @@ export const answerSurvey = (survey, values) => {
     const data = await surveyService.update(toAnswer)
     dispatch({
       type: 'ANSWER_SURVEY',
+      data
+    })
+  }
+}
+
+export const editSurvey = (values) => {
+  return async dispatch => {
+    const data = surveyService.update(values)
+    dispatch({
+      type: 'EDIT_SURVEY',
       data
     })
   }

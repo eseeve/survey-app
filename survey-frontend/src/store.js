@@ -10,7 +10,7 @@ import themeReducer from './reducers/themeReducer'
 import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
 import filterReducer from './reducers/filterReducer'
-
+import loadSurvey from './reducers/loadSurvey'
 
 const rootReducer = combineReducers ({
   surveys: surveyReducer,
@@ -20,6 +20,7 @@ const rootReducer = combineReducers ({
   theme: themeReducer,
   filter: filterReducer,
   quizzes: quizReducer,
+  editSurvey: loadSurvey,
   form: formReducer
 })
 

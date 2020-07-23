@@ -109,6 +109,7 @@ const UserSurveys = () => {
             <Segment key={survey.id} >
               {survey.name}
               <Button className='red-button' floated='right' color='red' size='small' onClick={(event) => handleRemoveSurvey(event, survey)}>Delete Survey</Button>
+              <Button className='teal-button' color='teal' style={{marginRight: '10px'}} floated='right' size='small' as={Link} to={`/surveys/${survey.id}/edit`}>Edit Survey</Button>
               <Button style={{marginRight: '10px'}} floated='right' size='small' onClick={(event) => handleCopyLinkSurvey(event, survey)}>Copy link</Button>
               <div>Responses: {survey.answers}</div>
               <div style={{marginTop: '3px'}}><Link id='results' className='link' to={`/surveys/${survey.id}/results`}>View results</Link></div>
