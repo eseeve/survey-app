@@ -44,6 +44,7 @@ const Survey = () => {
           <Menu link='Home' />
         </Grid.Column>
       </Grid>
+      <div>{survey.description}</div>
       <TakeSurvey survey={survey} onSubmit={handleSubmit}/>
     </div>
   )

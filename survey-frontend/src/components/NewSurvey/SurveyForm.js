@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Field, FieldArray, reduxForm  } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
-import { TextField, SelectField } from '../FormField'
+import { TextField, SelectField, TextAreaField } from '../FormField'
 import validate from './validate'
 
 const LinearScales = ({ fields, meta: { error, submitFailed }, touched }) =>  {
@@ -225,6 +225,12 @@ const SurveyForm = ({ handleSubmit, pristine, reset, submitting }) => {
         label='Survey name'
         placeholder='Survey name'
         component={TextField}
+      />
+      <Field
+        name='description'
+        label='Survey description (optional)'
+        placeholder='Survey description'
+        component={TextAreaField}
       />
       <FieldArray name='questions' component={Questions} />
       <FieldArray name='linearScales' component={LinearScales} />
