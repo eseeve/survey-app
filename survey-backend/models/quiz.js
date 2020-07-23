@@ -20,6 +20,7 @@ const quizQuestionSchema = new mongoose.Schema(
 const quizSchema = new mongoose.Schema(
   {
     name: { type: String, minlength: 3, required: true },
+    description: { type: String },
     questions: { type: [quizQuestionSchema], maxlength: 20, required: true },
     answers: { type: Number, required: true },
     scores: { type: [Number], required: true },

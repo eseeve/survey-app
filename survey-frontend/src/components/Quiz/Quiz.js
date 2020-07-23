@@ -81,6 +81,7 @@ const Quiz = () => {
           <Menu link='Home' />
         </Grid.Column>
       </Grid>
+      <div>{quiz.description}</div>
       <TakeQuiz quiz={quiz} onSubmit={handleSubmit}/>
     </div>
   )

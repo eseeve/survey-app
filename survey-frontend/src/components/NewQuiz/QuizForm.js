@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Field, FieldArray, reduxForm  } from 'redux-form'
 import { Button, Form, Segment, Icon, Grid } from 'semantic-ui-react'
 
-import { TextField, SelectField } from '../FormField'
+import { TextField, SelectField, TextAreaField } from '../FormField'
 import validate from './validate'
 
 const Questions = ({ fields, meta: { error, submitFailed }, touched }) =>  {
@@ -108,6 +108,12 @@ const QuizForm = ({ handleSubmit, pristine, reset, submitting, error }) => {
         label='Quiz name'
         placeholder='Quiz name'
         component={TextField}
+      />
+      <Field
+        name='description'
+        label='Quiz description (optional)'
+        placeholder='Quiz description'
+        component={TextAreaField}
       />
       <FieldArray name='questions' component={Questions} />
       {error && <div className='error' style={{color, marginBottom: '10px'}}>{error}</div>}
