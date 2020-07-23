@@ -57,4 +57,6 @@
 | 21.7       | 8         | End to End- testaus ja UI- korjauksia  |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
 | 22.7       | 4         | Tutustuminen tiedostojen tallentamiseen MongoDB ja React  |
-| Yht.       | 139       | | 
+| 23.7       | 2         | Surveylle ja Quizeille kuvaukset, riippuvuuksien päivitys  |
+|            | 4         | Surveyn muokkaus- lomake |
+| Yht.       | 145       | | 
