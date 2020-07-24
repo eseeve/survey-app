@@ -59,4 +59,7 @@
 | 22.7       | 4         | Tutustuminen tiedostojen tallentamiseen MongoDB ja React  |
 | 23.7       | 2         | Surveylle ja Quizeille kuvaukset, riippuvuuksien päivitys  |
 |            | 4         | Surveyn muokkaus- lomake |
-| Yht.       | 145       | | 
+| 24.7       | 2         | UserSurveys ja TakeSurvey/Quiz UI muutoksia  |
+|            | 3         | Quizin muokkaus- lomake |
+|            | 1         | Tutustuminen markdowniin ja dokumentointiin |
+| Yht.       | 151       | | 
