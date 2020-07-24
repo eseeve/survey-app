@@ -15,6 +15,8 @@ const reducer = (state = [], action) => {
     return [...state, action.data]
   case 'ANSWER_QUIZ':
     return state.map(q => q.id === action.data.id ? action.data : q).sort(byMostAnswers)
+  case 'EDIT_QUIZ':
+    return state.map(q => q.id === action.data.id ? action.data : q).sort(byMostAnswers)
   case 'REMOVE_QUIZ':
     return state.filter(q => q.id !== action.quiz.id)
   case 'RESET_QUIZ':
@@ -56,6 +58,17 @@ export const answerQuiz = (quiz, values) => {
     })
   }
 }
+
+export const editQuiz = (values) => {
+  return async dispatch => {
+    const data = quizService.update(values)
+    dispatch({
+      type: 'EDIT_QUIZ',
+      data
+    })
+  }
+}
+
 
 export const removeQuiz = (quiz) => {
   return async dispatch => {
