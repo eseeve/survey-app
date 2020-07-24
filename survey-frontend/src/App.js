@@ -23,6 +23,7 @@ import Quizzes from './components/Quizzes'
 import Quiz from './components/Quiz/Quiz'
 import QuizResults from './components/QuizResults'
 import EditSurvey from './components/EditSurvey/EditSurvey'
+import EditQuiz from './components/EditQuiz/EditQuiz'
 
 
 const App = () => {
@@ -58,6 +59,9 @@ const App = () => {
     <div>
       <Container>
         <Switch>
+          <Route path="/quizzes/:id/edit">
+            <EditQuiz />
+          </Route>
           <Route path="/surveys/:id/edit">
             <EditSurvey />
           </Route>

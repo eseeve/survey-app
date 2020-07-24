@@ -2,13 +2,14 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Header, Grid } from 'semantic-ui-react'
+import { SubmissionError } from 'redux-form'
 
 import { createQuiz } from '../../reducers/quizReducer'
 import QuizForm from './QuizForm'
 import Notification from '../Notification'
 import Menu from '../Menu'
 import { setNotification } from '../../reducers/notificationReducer'
-import { SubmissionError } from 'redux-form'
+
 
 const NewSurvey = () => {
   const dispatch = useDispatch()

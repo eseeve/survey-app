@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Header, Grid } from 'semantic-ui-react'
+import { SubmissionError } from 'redux-form'
 
 import { editQuiz } from '../../reducers/quizReducer'
 import EditQuizForm from './EditQuizForm'
