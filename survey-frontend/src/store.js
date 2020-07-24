@@ -11,6 +11,8 @@ import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
 import filterReducer from './reducers/filterReducer'
 import loadSurvey from './reducers/loadSurvey'
+import loadQuiz from './reducers/loadQuiz'
+
 
 const rootReducer = combineReducers ({
   surveys: surveyReducer,
@@ -21,6 +23,7 @@ const rootReducer = combineReducers ({
   filter: filterReducer,
   quizzes: quizReducer,
   editSurvey: loadSurvey,
+  editQuiz: loadQuiz,
   form: formReducer
 })
 
