@@ -22,7 +22,7 @@ const Option = ({ option, title }) => {
 const Question = ({ question }) => {
   return (
     <div style={{marginTop: '10px', marginBottom: '10px'}}>
-      <strong style={{fontSize: '16px'}}>{question.title}</strong>
+      <strong style={{fontSize: '18px'}}>{question.title}</strong>
       <div>
       {question.options.filter(o => !o.custom).map(o =>
           <Option key={o.option} option={o} title={question.title}/>

@@ -160,7 +160,6 @@ const SurveyResults = () => {
         </Grid.Column>
       </Grid>
       <Notification />
-      <div style={{marginBottom: '5px'}}>{survey.description}</div>
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions theme={theme} questions={survey.questions} total={total}/>}
       <Button style={{marginBottom: '10px'}} className='red-button' id='delete-responses' color='red' size='small' onClick={(event) => handleRemoveResponses(event, survey)}>Delete Responses</Button>
     </div>
