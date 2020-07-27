@@ -682,6 +682,46 @@ describe('when there is initially some surveys, quizzes and users saved', () => 
       expect(result.body.error).toContain('password must have min length of 5')
     })
 
+    test('editing succeeds with correct authorization', async () => {
+      const initialUsers = await helper.usersInDb()
+      const userToEdit = user.body
+
+      const editedUser = {
+        username: 'janedoez',
+        name: 'New name',
+        password: 'newPassword',
+      }
+      await api
+        .put(`/api/users/${userToEdit.id}`)
+        .send(editedUser)
+        .set(headers)
+        .expect(200)
+
+      const usersAtEnd = await helper.usersInDb()
+      expect(usersAtEnd.length).toBe(initialUsers.length)
+
+      const names = usersAtEnd.map(r => r.name)
+      expect(names).toContain('New name')
+    })
+
+    test('editing fails without correct authorization', async () => {
+      const initialUsers = await helper.usersInDb()
+      const userToEdit = user.body
+
+      const editedUser = {
+        username: 'janedoez',
+        name: 'Jane Z. Doe',
+        password: 'newPassword',
+      }
+      await api
+        .put(`/api/users/${userToEdit.id}`)
+        .send(editedUser)
+        .expect(401)
+
+      const usersAtEnd = await helper.usersInDb()
+      expect(usersAtEnd.length).toBe(initialUsers.length)
+    })
+
     test('deletion succeeds with correct authorization', async () => {
       const initialUsers = await helper.usersInDb()
       const userToDelete = user.body
