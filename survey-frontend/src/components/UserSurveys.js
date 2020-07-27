@@ -149,7 +149,12 @@ const UserSurveys = () => {
           )}
         </Segment.Group>
       }
-      <Button style={{marginBottom: '10px'}} className='red-button' id='delete-account' color='red' size='small' onClick={handleRemoveUser}>Delete Your Account</Button>
+      <Button style={{marginBottom: '10px'}} className='teal-button' id='edit-account' color='teal' size='small' as={Link} to={'/profile'}>
+        Change Your Password
+      </Button>
+      <Button style={{marginBottom: '10px'}} className='red-button' id='delete-account' color='red' size='small' onClick={handleRemoveUser}>
+        Delete Your Account
+      </Button>
     </div>
   )
 }

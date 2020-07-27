@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Form, Button } from 'semantic-ui-react'
 
-import { TextField, PasswordField } from '../FormField'
+import { PasswordField } from '../FormField'
 import validate from './validate'
 
 const UserForm = ({ handleSubmit, submitting }) => {
@@ -10,31 +10,19 @@ const UserForm = ({ handleSubmit, submitting }) => {
     <div>
       <Form onSubmit={handleSubmit}>
         <Field
-          name='name'
-          label='Name'
-          placeholder='Name'
-          component={TextField}
-        />
-        <Field
-          name='username'
-          label='Username'
-          placeholder='Username'
-          component={TextField}
-        />
-        <Field
           name='password'
-          label='Password'
+          label='New Password'
           placeholder='Password'
           component={PasswordField}
         />
         <Field
           name='confirmPassword'
-          label='Confirm Password'
+          label='Confirm New Password'
           placeholder='Confirm Password'
           component={PasswordField}
         />
         <Button style={{marginBottom: '10px'}} className='green-button' color='green' size='small' type='submit' disabled={submitting}>
-          Sign up
+          Change Password
         </Button>
       </Form>
     </div>
@@ -42,6 +30,6 @@ const UserForm = ({ handleSubmit, submitting }) => {
 }
 
 export default reduxForm({
-  form: 'newUser',
+  form: 'editUser',
   validate
 })(UserForm)

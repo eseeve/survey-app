@@ -6,6 +6,8 @@ const reducer = (state = [], action) => {
     return action.data
   case 'CREATE_USER':
     return [...state, action.data]
+  case 'EDIT_USER':
+    return state.map(u => u.id === action.data.id ? action.data : u)
   case 'REMOVE_USER':
     return state.filter(u => u.id !== action.user.id)
   default:
@@ -27,6 +29,16 @@ export const createUser = (user) => {
     const data = await usersService.create(user)
     dispatch({
       type: 'CREATE_USER',
+      data
+    })
+  }
+}
+
+export const editUser = (user, id) => {
+  return async dispatch => {
+    const data = usersService.update(user, id)
+    dispatch({
+      type: 'EDIT_USER',
       data
     })
   }

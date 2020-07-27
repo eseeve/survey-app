@@ -24,6 +24,7 @@ import Quiz from './components/Quiz/Quiz'
 import QuizResults from './components/QuizResults'
 import EditSurvey from './components/EditSurvey/EditSurvey'
 import EditQuiz from './components/EditQuiz/EditQuiz'
+import EditUser from './components/EditUser/EditUser'
 
 
 const App = () => {
@@ -82,6 +83,9 @@ const App = () => {
           </Route>
           <Route path="/quizzes/:id">
             <Quiz />
+          </Route>
+          <Route path="/profile">
+            <EditUser />
           </Route>
           <Route path="/surveys">
             <UserSurveys />
