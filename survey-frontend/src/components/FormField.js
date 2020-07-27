@@ -21,6 +21,7 @@ export const TextAreaField = props => {
     <Form.Field>
       <label style={{fontSize: '16px'}}>{props.label}</label>
       <TextArea
+        id={props.input.name}
         className='textarea'
         value={props.input.value}
         onChange={(param,data) => props.input.onChange(data.value)}

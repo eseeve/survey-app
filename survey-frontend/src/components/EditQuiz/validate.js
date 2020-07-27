@@ -16,7 +16,7 @@ const validate = values => {
         questionErrors.title = 'Required'
         questionsArrayErrors[questionIndex] = questionErrors
       }
-      if (!question || !question.correct) {
+      if (!question || question.correct === undefined) {
         questionErrors.correct = 'Required'
         questionsArrayErrors[questionIndex] = questionErrors
       }

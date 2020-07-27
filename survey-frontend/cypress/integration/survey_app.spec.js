@@ -264,35 +264,23 @@ describe('Survey app', function() {
             ]
           })
           cy.createQuiz({
-            name: 'Food Quiz',
+            name: 'Test Quiz',
             questions: [
               {
-                title: 'What is your favorite ice cream?',
+                title: 'Question 1',
                 correct: 0,
                 options: [
                   {
-                    option: 'Vanilla',
+                    option: 'Option 1',
                   },
                   {
-                    option: 'Chocolate',
+                    option: 'Option 2',
                   },
                   {
-                    option: 'Strawberry',
-                  }
-                ]
-              },
-              {
-                title: 'What is your favorite restaurant?',
-                correct: 0,
-                options: [
-                  {
-                    option: 'Blanko',
+                    option: 'Option 3',
                   },
                   {
-                    option: 'Tintå',
-                  },
-                  {
-                    option: 'Nerå',
+                    option: 'Option 4',
                   }
                 ]
               }
@@ -307,7 +295,7 @@ describe('Survey app', function() {
           cy.contains('Submit').click()
           cy.contains("Your answers to the survey 'Food Survey' were saved!")
         })
-        it('open answer in survey can be answered', function() {
+        it('Open answer in survey can be answered', function() {
           cy.get('#take-survey').click()
           cy.get('input').eq(3).type('test')
           cy.contains('Add').click()
@@ -320,13 +308,12 @@ describe('Survey app', function() {
         it('Quiz can be answered', function() {
           cy.get('#quizzes').click()
           cy.get('#take-quiz').click()
-          cy.get('.survey-radio').eq(1).click()
-          cy.get('.survey-radio').eq(3).click()
+          cy.get('.survey-radio').eq(0).click()
           cy.contains('Submit').click()
-          cy.contains("Your score on Food Quiz")
-          cy.contains("Total Points: 1 / 2")
+          cy.contains("Your score on Test Quiz")
+          cy.contains("Total Points: 1 / 1")
           cy.contains("Back to quizzes").click()
-          cy.contains("Your answers to the quiz 'Food Quiz' were saved!")
+          cy.contains("Your answers to the quiz 'Test Quiz' were saved!")
         })
         it('All the questions must be answered in the survey', function() {
           cy.get('#take-survey').click()
@@ -337,7 +324,6 @@ describe('Survey app', function() {
         it('All the questions must be answered in the quiz', function() {
           cy.get('#quizzes').click()
           cy.get('#take-quiz').click()
-          cy.get('.survey-radio').eq(1).click()
           cy.contains('Submit').click()
           cy.contains('You must answer to all questions')
         })
@@ -347,7 +333,33 @@ describe('Survey app', function() {
           cy.contains('Surveys by Teemu Testaaja')
           cy.contains('Food Survey')
           cy.contains('Quizzes')
-          cy.contains('Food Quiz')
+          cy.contains('Test Quiz')
+        })
+        it('Survey can be edited', function() {
+          cy.contains('Menu').click()
+          cy.get('#my-surveys').click()
+          cy.contains('Edit Survey').click()
+          cy.get('html').should('contain', "Edit survey")
+          cy.get('#description').type('Description goes here')
+          cy.contains('Submit').click()
+
+          cy.contains("Your survey 'Food Survey' has been updated!")
+          cy.reload()
+          cy.contains('Take survey').click()
+          cy.contains("Description goes here")
+        })
+        it('Quiz can be edited', function() {
+          cy.contains('Menu').click()
+          cy.get('#my-surveys').click()
+          cy.contains('Edit Quiz').click()
+          cy.get('html').should('contain', "Edit quiz")
+          cy.get('#description').type('Description goes here')
+          cy.contains('Submit').click()
+
+          cy.contains("Your quiz 'Test Quiz' has been updated!")
+          cy.reload()
+          cy.contains('Take quiz').click()
+          cy.contains("Description goes here")
         })
         it('Survey can be deleted', function() {
           cy.contains('Menu').click()
@@ -360,7 +372,7 @@ describe('Survey app', function() {
           cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.contains('Delete Quiz').click()
-          cy.get('html').should('contain', "Quiz 'Food Quiz' deleted.")
+          cy.get('html').should('contain', "Quiz 'Test Quiz' deleted.")
           cy.get('html').should('contain', 'You have no quizzes.')
         })
         it('Results can be viewed', function() {
@@ -376,7 +388,7 @@ describe('Survey app', function() {
           cy.contains('Delete Survey').click()
           cy.wait(200)
           cy.get('#results').click()
-          cy.get('html').should('contain', 'Food Quiz')
+          cy.get('html').should('contain', 'Test Quiz')
           cy.get('html').should('contain', 'No answers yet.')
         })
         it('Results contain data from answers', function() {
@@ -409,10 +421,9 @@ describe('Survey app', function() {
             cy.get('#password').type('password')
             cy.contains('Login').click()
           })
-          cy.contains('Survey App')
           cy.contains('Teemu Testaaja welcome back')
         })
-        it('User can be deleted and user surveys are deleted with it', function() {
+        it('User can be deleted and user surveys and quizzes are deleted with it', function() {
           cy.contains('Menu').click()
           cy.get('#my-surveys').click()
           cy.get('#delete-account').click()
@@ -427,6 +438,11 @@ describe('Survey app', function() {
             .its('store')
             .invoke('getState')
             .its('surveys')
+            .should('have.length', 0)
+          cy.window()
+            .its('store')
+            .invoke('getState')
+            .its('quizzes')
             .should('have.length', 0)
         })
         describe('When new user is created and logged in', function() {
