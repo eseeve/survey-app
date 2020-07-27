@@ -37,7 +37,7 @@ const Menu = ({ link }) => {
           <ThemeSwitch />
         </Dropdown.Item>
         <Dropdown.Item>
-          <Button size='small' type='button' onClick={handleLogout} >
+          <Button id='logout' size='small' type='button' onClick={handleLogout} >
             Logout
           </Button>
         </Dropdown.Item>

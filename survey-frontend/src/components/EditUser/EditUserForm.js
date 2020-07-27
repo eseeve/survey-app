@@ -12,16 +12,16 @@ const UserForm = ({ handleSubmit, submitting }) => {
         <Field
           name='password'
           label='New Password'
-          placeholder='Password'
+          placeholder='New Password'
           component={PasswordField}
         />
         <Field
           name='confirmPassword'
           label='Confirm New Password'
-          placeholder='Confirm Password'
+          placeholder='Confirm New Password'
           component={PasswordField}
         />
-        <Button style={{marginBottom: '10px'}} className='green-button' color='green' size='small' type='submit' disabled={submitting}>
+        <Button style={{marginBottom: '10px'}} id='change-password' className='green-button' color='green' size='small' type='submit' disabled={submitting}>
           Change Password
         </Button>
       </Form>

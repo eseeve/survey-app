@@ -391,6 +391,27 @@ describe('Survey app', function() {
           cy.get('html').should('contain', 'What is your favorite ice cream?')
           cy.get('html').should('contain', 'Chocolate')
         })
+        it('Password can be changed', function() {
+          cy.contains('Menu').click()
+          cy.get('#my-surveys').click()
+          cy.get('#edit-account').click()
+          cy.get('html').should('contain', "Change Your Password")
+          cy.get('input:first').type('password')
+          cy.get('input:last').type('password')
+          cy.get('#change-password').click()
+
+          cy.get('html').should('contain', "Password changed succesfully!")
+          cy.contains('Menu').click()
+          cy.get('#logout').click()
+
+          cy.get('form').within(function() {
+            cy.get('#username').type('testi')
+            cy.get('#password').type('password')
+            cy.contains('Login').click()
+          })
+          cy.contains('Survey App')
+          cy.contains('Teemu Testaaja welcome back')
+        })
         it('User can be deleted and user surveys are deleted with it', function() {
           cy.contains('Menu').click()
           cy.get('#my-surveys').click()
