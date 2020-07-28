@@ -16,8 +16,6 @@ const reducer = (state = [], action) => {
     return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   case 'REMOVE_SURVEY':
     return state.filter(s => s.id !== action.survey.id)
-  case 'ADD_EMAIL_SURVEY':
-    return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   case 'EDIT_SURVEY':
     return state.map(s => s.id === action.data.id ? action.data : s).sort(byMostAnswers)
   case 'RESET_SURVEY':
@@ -78,22 +76,11 @@ export const answerSurvey = (survey, values) => {
   }
 }
 
-export const editSurvey = (values) => {
+export const editSurvey = (survey) => {
   return async dispatch => {
-    const data = surveyService.update(values)
+    const data = surveyService.update(survey)
     dispatch({
       type: 'EDIT_SURVEY',
-      data
-    })
-  }
-}
-
-export const addEmailSurvey = (email, survey) => {
-  return async dispatch => {
-    const updatedSurvey = { ...survey, email}
-    const data = surveyService.update(updatedSurvey)
-    dispatch({
-      type: 'ADD_EMAIL_SURVEY',
       data
     })
   }

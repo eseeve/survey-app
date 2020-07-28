@@ -59,9 +59,9 @@ export const answerQuiz = (quiz, values) => {
   }
 }
 
-export const editQuiz = (values) => {
+export const editQuiz = (quiz) => {
   return async dispatch => {
-    const data = quizService.update(values)
+    const data = quizService.update(quiz)
     dispatch({
       type: 'EDIT_QUIZ',
       data
