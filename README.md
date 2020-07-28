@@ -65,4 +65,7 @@
 | 27.7       | 1         | Backend käyttäjän muokkaaminen ja sen testaus |
 |            | 1         | Salasanan vahto-lomake Frontend |
 |            | 4         | End to End- testaus |
-| Yht.       | 157       | | 
+| 28.7       | 2         | Tutustuminen SMTP, Backend mailRouter ja sen testaus |
+|            | 2         | EmailModal ja Quiz/Survey tilaukset Frontend |
+|            | 2         | Refaktorointi ja Quiz/Survey- Results korjaus |
+| Yht.       | 163       | | 
