@@ -6,11 +6,12 @@ import Chart from "react-google-charts"
 
 import Menu from './Menu'
 import Notification from './Notification' 
+import EmailModal from './EmailModal'
 
 import { resetQuiz } from '../reducers/quizReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
-const QuizQuestion = ({ theme, question, total }) => {
+const QuizQuestion = ({ theme, question }) => {
   let data = question.options.map(o => {
     return [
       o.option,
@@ -24,24 +25,36 @@ const QuizQuestion = ({ theme, question, total }) => {
   const backgroundColor = theme === 'dark' ? '#111111' : 'white'
   const textColor = theme === 'dark' ? '#eeeeee' : 'black'
 
+  let total = 0
+
+  if (question.options[question.correct].votes !== null) {
+    question.options.forEach(o => (o.votes !== null && o.votes !== undefined) ? total += o.votes : total)
+    return (
+      <div>
+        <h4>{question.title}</h4>
+        <div>{question.options[question.correct].votes} / {total} correct responses</div>
+        <Chart
+          className='chart'
+          width={'500px'}
+          height={'300px'}
+          chartType="BarChart"
+          loader={<div>Loading Chart</div>}
+          options={{
+            legend: { position: 'none' },
+            hAxis: { textStyle: { color: textColor } },
+            vAxis: { textStyle: { color: textColor } },
+            backgroundColor
+          }}
+          data={data}
+        />
+      </div>
+    )
+  }
+
   return (
-    <div>
+    <div style={{marginBottom: '10px'}}>
       <h4>{question.title}</h4>
-      <div>{question.options[question.correct].votes} / {total} correct responses</div>
-      <Chart
-        className='chart'
-        width={'500px'}
-        height={'300px'}
-        chartType="BarChart"
-        loader={<div>Loading Chart</div>}
-        options={{
-          legend: { position: 'none' },
-          hAxis: { textStyle: { color: textColor } },
-          vAxis: { textStyle: { color: textColor } },
-          backgroundColor
-        }}
-        data={data}
-      />
+        <div> 0 / {total} correct responses</div>
     </div>
   )
 }
@@ -144,6 +157,7 @@ const QuizResults = () => {
         </Grid.Column>
       </Grid>
       <Notification />
+      <div style={{fontSize: '16px'}}><strong style={{marginRight: '10px',}}>Total Responses: {total}</strong> <EmailModal survey={quiz} /></div>
       {total === 0 ? <div style={{marginBottom: '10px'}}>No answers yet.</div> : <Questions theme={theme} questions={quiz.questions} total={total} scores={quiz.scores}/>}
       <Button style={{marginBottom: '10px'}} className='red-button' id='delete-responses' color='red' size='small' onClick={(event) => handleRemoveResponses(event, quiz)}>Delete Responses</Button>
     </div>
