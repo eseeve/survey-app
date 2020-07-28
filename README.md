@@ -56,13 +56,13 @@
 |            | 2         | Frontendin UI testaus ja pieniä muutoksia |
 | 21.7       | 8         | End to End- testaus ja UI- korjauksia  |
 |            | 2         | Uusien toiminnallisuuksien ideointi |
-| 22.7       | 4         | Tutustuminen tiedostojen tallentamiseen MongoDB ja React  |
-| 23.7       | 2         | Surveylle ja Quizeille kuvaukset, riippuvuuksien päivitys  |
+| 22.7       | 4         | Tutustuminen tiedostojen tallentamiseen MongoDB ja React |
+| 23.7       | 2         | Surveylle ja Quizeille kuvaukset, riippuvuuksien päivitys |
 |            | 4         | Surveyn muokkaus- lomake |
-| 24.7       | 2         | UserSurveys ja TakeSurvey/Quiz UI muutoksia  |
+| 24.7       | 2         | UserSurveys ja TakeSurvey/Quiz UI muutoksia |
 |            | 3         | Quizin muokkaus- lomake |
 |            | 1         | Tutustuminen markdowniin ja dokumentointiin |
-| 24.7       | 1         | Backend käyttäjän muokkaaminen ja sen testaus   |
+| 27.7       | 1         | Backend käyttäjän muokkaaminen ja sen testaus |
 |            | 1         | Salasanan vahto-lomake Frontend |
-|            | 4         | End to End- testaus  |
+|            | 4         | End to End- testaus |
 | Yht.       | 157       | | 

@@ -13,6 +13,7 @@ const surveysRouter = require('./controllers/surveys')
 const quizzesRouter = require('./controllers/quizzes')
 const loginRouter = require('./controllers/login')
 const usersRouter = require('./controllers/users')
+const mailRouter = require('./controllers/mail')
 
 const app = express()
 
@@ -38,6 +39,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/surveys', surveysRouter)
 app.use('/api/quizzes', quizzesRouter)
+app.use('/api/sendmail', mailRouter)
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')
