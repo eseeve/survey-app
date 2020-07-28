@@ -23,6 +23,7 @@ const surveySchema = new mongoose.Schema(
   {
     name: { type: String, minlength: 3, required: true },
     description: { type: String },
+    email: { type: String },
     questions: { type: [questionSchema], maxlength: 20, required: true },
     answers: { type: Number, required: true },
     user: {
