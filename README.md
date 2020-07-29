@@ -3,9 +3,9 @@
 Survey App- sivulla voi luoda erilaisia kyselyitä ja tietovisoja. Käyttäjät voivat vastata toisten käyttäjien kyselyihin ja kerätä dataa omilla kyselyillä. Sovelluksen frontendinä toimii [React](https://reactjs.org/), backendinä [Node.js](https://nodejs.org/en/) ja tietokantana [MongoDB](https://www.mongodb.com/cloud/atlas). Tämä sovellus on julkaistu [Herokuun](https://www.heroku.com/). Toteutettu Full Stack -websovelluskehitys harjoitustyönä.
 
 [Survey App (Heroku)](https://survey-app-seeve.herokuapp.com/)  
-[Asennus ja komennot](https://github.com/eseeve/survey-app#dokumentaatio)  
-[Käyttöohjeet](https://github.com/eseeve/survey-app#dokumentaatio)  
-[Työaikakirjanpito](https://github.com/eseeve/survey-app#ty%C3%B6aikakirjanpito)  
+[Asennus ja komennot](https://github.com/eseeve/survey-app/blob/master/README.md#asennus-ja-komennot)  
+[Käyttöohjeet](https://github.com/eseeve/survey-app/blob/master/README.md#k%C3%A4ytt%C3%B6ohjeet)  
+[Työaikakirjanpito](https://github.com/eseeve/survey-app/blob/master/README.md#ty%C3%B6aikakirjanpito)  
 
 ## Asennus ja komennot 
 
