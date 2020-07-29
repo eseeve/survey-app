@@ -25,7 +25,7 @@ import QuizResults from './components/QuizResults'
 import EditSurvey from './components/EditSurvey/EditSurvey'
 import EditQuiz from './components/EditQuiz/EditQuiz'
 import EditUser from './components/EditUser/EditUser'
-
+import AppFooter from './components/AppFooter'
 
 const App = () => {
   const user = useSelector(state => state.user)
@@ -101,6 +101,7 @@ const App = () => {
             <Button className='teal-button' color='teal' style={{marginTop: '10px', marginBottom: '10px'}} as={Link} to={'/surveys/new'} floated='left'>Create a new survey</Button>
           </Route>
         </Switch>
+        <AppFooter />
       </Container>
     </div>
   )

@@ -37,7 +37,12 @@ const Menu = ({ link }) => {
           <ThemeSwitch />
         </Dropdown.Item>
         <Dropdown.Item>
-          <Button id='logout' size='small' type='button' onClick={handleLogout} >
+          <a href='https://github.com/eseeve/survey-app/blob/master/README.md'>
+            <Button>Info</Button>
+          </a>
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <Button id='logout' type='button' onClick={handleLogout} >
             Logout
           </Button>
         </Dropdown.Item>
