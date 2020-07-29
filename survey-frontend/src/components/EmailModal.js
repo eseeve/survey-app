@@ -45,12 +45,12 @@ const EmailModal = (survey) => {
   
   if (!survey.survey.email) {
     return (
-      <Modal onClose={closeModal} open={showModal} trigger={<Button style={{marginBottom: '15px'}} className='teal-button' id='subscribe' type='button' color='teal' size='small' onClick={() => setShowModal(true)}>Subscribe</Button>} closeIcon>
+      <Modal onClose={closeModal} open={showModal} trigger={<Button style={{marginBottom: '15px'}} className='teal-button' id='open-subscribe' type='button' color='teal' size='small' onClick={() => setShowModal(true)}>Subscribe</Button>} closeIcon>
         <Modal.Header>Send responses to your email</Modal.Header>
         <Modal.Content>
           <Form>
             <Form.Input label='Email' placeholder='yourname@mail.com' value={email} onChange={(event) => setEmail(event.target.value)} />
-            <Button style={{marginBottom: '10px'}} size='small' color='green' className='green-button' type='submit' onClick={(event) => handleSubscribe(event, survey.survey)}>
+            <Button id='subscribe' style={{marginBottom: '10px'}} size='small' color='green' className='green-button' type='submit' onClick={(event) => handleSubscribe(event, survey.survey)}>
               Subscribe
             </Button>
           </Form>
@@ -59,7 +59,7 @@ const EmailModal = (survey) => {
     )
   } else {
     return (
-      <Button style={{marginBottom: '15px'}} size='small' color='red' type='button' className='red-button' onClick={(event) => handleUnsubscribe(event, survey.survey)}>
+      <Button id='unsubscribe' style={{marginBottom: '15px'}} size='small' color='red' type='button' className='red-button' onClick={(event) => handleUnsubscribe(event, survey.survey)}>
         Unsubscribe
       </Button>
     )
