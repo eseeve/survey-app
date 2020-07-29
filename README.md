@@ -6,6 +6,7 @@ Survey App- sivulla voi luoda erilaisia kyselyitä ja tietovisoja. Käyttäjät 
 [Asennus ja komennot](https://github.com/eseeve/survey-app/blob/master/README.md#asennus-ja-komennot)  
 [Käyttöohjeet](https://github.com/eseeve/survey-app/blob/master/README.md#k%C3%A4ytt%C3%B6ohjeet)  
 [Työaikakirjanpito](https://github.com/eseeve/survey-app/blob/master/README.md#ty%C3%B6aikakirjanpito)  
+[Lisenssi](https://github.com/eseeve/survey-app/blob/master/LICENSE.txt)
 
 ## Asennus ja komennot 
 
