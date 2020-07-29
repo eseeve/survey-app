@@ -7,11 +7,12 @@ import { SubmissionError } from 'redux-form'
 import { answerSurvey } from '../../reducers/surveyReducer'
 import { setNotification } from '../../reducers/notificationReducer'
 import TakeSurvey from './TakeSurvey'
+import mailService from '../../services/mail'
 import Menu from '../Menu'
-
 
 const Survey = () => {
   const surveys = useSelector(state => state.surveys)
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -24,6 +25,18 @@ const Survey = () => {
         _error: 'You must answer to all questions'
       })
     } else {
+      if (survey.email) {
+        const mailData = {
+          to: survey.email,
+          subject: `Response on ${survey.name}`,
+          text: `
+            ${user.name} has answered your survey '${survey.name}'.
+            You can see the overall survey results from the following link
+            ${window.location.href.concat('/results')}.
+            `
+        }
+        mailService.send(mailData)
+      }
       dispatch(answerSurvey(survey, values))
       dispatch(setNotification(`Your answers to the survey '${survey.name}' were saved!`, 5))
       history.push('/')

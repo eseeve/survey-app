@@ -10,11 +10,13 @@ import Menu from '../Menu'
 import { answerQuiz } from '../../reducers/quizReducer'
 import Notification from '../Notification'
 import Score from './Score'
+import mailService from '../../services/mail'
 
 const Quiz = () => {
   const [ score, setScore ] = useState(null)
   const [ answers, setAnswers ] = useState(null)
   const quizzes = useSelector(state => state.quizzes)
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -36,6 +38,18 @@ const Quiz = () => {
       quiz.scores.push(rightAnswers)
       setScore(rightAnswers)
       setAnswers(values)
+      if (quiz.email) {
+        const mailData = {
+          to: quiz.email,
+          subject: `Response on ${quiz.name}`,
+          text: `
+            ${user.name} has answered your quiz '${quiz.name}'.
+            You can see the overall quiz results from the following link
+            ${window.location.href.concat('/results')}.
+            `
+        }
+        mailService.send(mailData)
+      }
       dispatch(answerQuiz(quiz, values))
       dispatch(setNotification(`Your answers to the quiz '${quiz.name}' were saved!`, 5))
     }
