@@ -46,6 +46,60 @@ Sovelluksen End-to-End testit voi suorittaa Cypressillä. Frontend tulee olla k�
 
 ## Käyttöohjeet
 
+### Käyttäjän luominen ja kirjautuminen
+
+Suvey App vaatii kirjautumisen kyselyiden luomiseen ja vastaamiseen. Käyttäjän luominen tapahtuu kirjautumisivulla klikkaamalla 'Login'-napin alapuolella olevaa linkkiä.
+
+![login](https://user-images.githubusercontent.com/59598363/88786923-cac0f200-d19b-11ea-8dcf-f5ee305dc659.png)
+
+Käyttäjän luomiseen tarvitaan oma nimi, käyttäjänimi ja salasana. Käyttäjän luominen tapahtuu painamalla 'Sign Up'-nappia, jonka jälkeen 'Login to Application'-sivulta pystyy kirjautumaan Survey Appiin.
+
+![signup](https://user-images.githubusercontent.com/59598363/88786593-5ede8980-d19b-11ea-9d4e-c14a42a0a594.png)
+
+### Surveys
+
+#### Kyselyn luominen
+
+#### Kyselyyn vastaaminen
+
+#### Kyselyiden järjestely ja etsiminen
+
+### Quizzes
+
+#### Tietovisan luominen
+
+#### Tietovisaan vastaaminen
+
+#### Tietovisojen järjestely ja etsiminen
+
+#### Search Bar
+
+### Menu
+
+#### Navigointi
+
+#### Dark mode
+
+#### Info
+
+#### Uloskirjautuminen
+
+### My Surveys
+
+#### Kyselyn tai tietovisan editointi
+
+#### Kyselyn tai tietovisan poistaminen
+
+#### Kyselyn tai tietovisan linkin kopiointi
+
+#### Kyselyn tulokset
+
+#### Tietovisan tulokset
+
+#### Salasanan vaihto
+
+#### Käyttäjätilin poistaminen
+
 ## Työaikakirjanpito
 
 | Päivämäärä | Työtunnit | Mitä tein  |
@@ -113,4 +167,7 @@ Sovelluksen End-to-End testit voi suorittaa Cypressillä. Frontend tulee olla k�
 | 28.7       | 2         | Tutustuminen SMTP, Backend mailRouter ja sen testaus |
 |            | 2         | EmailModal ja Quiz/Survey tilaukset Frontend |
 |            | 2         | Refaktorointi ja Quiz/Survey- Results korjaus |
-| Yht.       | 163       | | 
+| 29.7       | 3         | Sähköposti-ilmoituksen lähetystoiminnallisuus ja sen testaaminen (E2E) |
+|            | 1         | AppFooterin ja Info-napin lisäys, UI-korjauksia ja muutoksia |
+|            | 2         | README:n rakenteen muutos, projektin tietojen päivitys ja dokumentointi ja lisenssin lisäys projektiin |
+| Yht.       | 169       | | 
