@@ -66,7 +66,7 @@ Käyttäjän luomisen jälkeen sivulle pystyy kirjautumaan syöttämällä käyt
 
 ## Surveys
 
-Kirjautumisen jälkeen avautuu *Surveys* -näkymä, jossa pystyy luomaan uusia kyselyitä ja vastaamaan muiden käyttäjien kyselyihin.
+Kirjautumisen jälkeen avautuu *Surveys* -näkymä, jossa pystyy luomaan uusia kyselyitä ja vastaamaan käyttäjien kyselyihin.
 
 ![surveys](https://user-images.githubusercontent.com/59598363/88882044-bc291800-d239-11ea-841f-d91b7ef34b68.png)
 
@@ -108,13 +108,35 @@ Kyselyt voi myös järjestää vastausten tai käyttäjien mukaan, esimerkiksi p
 
 ## Quizzes
 
+*Surveys* -sivulta pystyy vaihtamaan *Quizzes* -puolelle painamalla nappia *Quizzes*. Takaisin *Surveys* -puolelle pääsee vastaavasti painamalla nappia *Surveys*, joka renderöityy *Quizzes* -napin tilalle. Tällä sivulla pystyy luomaan uusia tietovisoja ja vastaamaan käyttäjien tietovisoihin.
+
+![quizzes](https://user-images.githubusercontent.com/59598363/88888353-d3bacd80-d246-11ea-808a-0d744377c708.png)
+
 ### Tietovisan luominen
+
+Painamalla *Quizzes* -sivulla nappia *Create a new quiz* pääsee luomaan uuden tietovisan. Tietovisan luomiseen tarvitaan nimi ja kysymyksiä. Tietovisalle voi myös kirjoittaa halutessaan kuvauksen *Description* -kenttään. Uusien kysymyksien lisäys kyselyyn tapahtuu painamalla *Add Question*. Jos kyselyn luomisen haluaa aloittaa alusta, tulee painaa *Clear Values*.
+
+![newquiz](https://user-images.githubusercontent.com/59598363/88888620-56438d00-d247-11ea-8490-a95dfb0152b1.png)
+
+Kysymyksen luomiseen tarvitaan otsikko, oikea vastausvaihtoehto ja neljä vastausvaihtoehtoa. Kysymykseen tulee kirjoittaa neljä eri vaihtoehtoa A, B, C ja D, jonka jälkeen *Correct Option* -menusta valitaan kysymyksen oikea vastaus. Koko kysymyksen voi poistaa painamalla kysymyksen oikeassa yläkulmassa olevaa punaista roskakori -ikonia.
+
+![quizquestion](https://user-images.githubusercontent.com/59598363/88889188-6a3bbe80-d248-11ea-9693-1f2bb43396c4.png)
+
+Kun kysely on valmis, sen voi julkaista painamalla *Submit*.
 
 ### Tietovisaan vastaaminen
 
+Painamalla *Quizzes* -sivulla tietovisan *Take Quiz* -nappia, pääsee vastaamaan tietovisaan. Tietovisan jokaiseen kysymykseen tulee vastata ennen kuin sen voi palauttaa painamalla *Submit*. Jokaiseen kysymykseen on yksi oikea vastaus. 
+
+![takequiz](https://user-images.githubusercontent.com/59598363/88890218-fd292880-d249-11ea-80a4-f14e492c6bc3.png)
+
+Kun tietovisan on palauttanut, pääsee *Score* -näkymään, jossa näkyy vastaajan pisteet ja kysymyskohtaiset vastaukset. Jokaisesta kysymyksestä voi saada yhden pisteen, jolloin täydet pisteet vastaavat kysymysten määrää. *Score* -sivulla näkyy tietovisan oikeat vastaukset ja mitkä kysymykset vastaaja sai oikein. Vastaaja voi halutessaan vastata tietovisaan uudelleen painamalla *Take 'quiz name' again*, tai palata takaisin *Quizzes* -sivulla painamalla *Back to quizzes*.
+
+![score](https://user-images.githubusercontent.com/59598363/88890572-7b85ca80-d24a-11ea-925b-c932eb3f19d0.png)
+
 ### Tietovisojen järjestely ja etsiminen
 
-### Search Bar
+Tietovisojen etsiminen ja järjestäminen toimii samalla tavalla kuin kyselyidenkin. Ks. [Kyselyiden järjestely ja etsiminen](https://github.com/eseeve/survey-app/blob/master/README.md#kyselyiden-j%C3%A4rjestely-ja-etsiminen).
 
 ## Menu
 
