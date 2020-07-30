@@ -140,13 +140,29 @@ Tietovisojen etsiminen ja järjestäminen toimii samalla tavalla kuin kyselyiden
 
 ## Menu
 
+Sovelluksen oikeassa yläkulmassa on *Menu*, joka sisältää navigointivaihtoehtoja ja muita ominaisuuksia, kuten dark mode ja uloskirjautuminen. 
+
+![menu](https://user-images.githubusercontent.com/59598363/88894538-ae32c180-d250-11ea-8a4f-e48a5bec476c.png)
+
 ### Navigointi
+
+Sovelluksen kotisivuna on *Surveys*. Kotisivulla *Menu* -valikossa navigointivaihtoehtona on *My Surveys*, jota painamalla pääsee omien kyselyiden ja tietovisojen sivulle. Muilla sovelluksen sivuilla navigointivaihtoehtona on *Home*, joka vie takaisin *Surveys* -sivulle. Uloskirjautuneena uutta käyttäjää luodessa *Home* vie käyttäjän takaisin kirjautumissivulle. 
+
+![menu1](https://user-images.githubusercontent.com/59598363/88895332-6ceee180-d251-11ea-8034-77ebe3c01f6f.png)
 
 ### Dark mode
 
+*Menu* -valikon *Dark mode* -nappi vaihtaa sivun ulkoasun mustan ja valkoisen välillä. Dark mode -asetus tallentuu selaimeen ja pysyy samana kun selaimen käynnistää uudelleen.
+
+![darkmode](https://user-images.githubusercontent.com/59598363/88896188-28b01100-d252-11ea-9a09-f68b530b7c91.png)
+
 ### Info
 
+*Menu* -valikon *Info* -nappi vie käyttäjän käyttöohje-sivulle projektin GitHub repoon, eli tälle sivulle.
+
 ### Uloskirjautuminen
+
+*Menu* -valikon *Logout* -nappia painamalla käyttäjä voi kirjautua ulos sovelluksesta. *Logout* vie käyttäjän takaisin kirjautumissivulle.
 
 ## My Surveys
 
