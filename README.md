@@ -48,13 +48,21 @@ Sovelluksen End-to-End testit voi suorittaa Cypressillä. Frontend tulee olla k�
 
 ### Käyttäjän luominen ja kirjautuminen
 
-Suvey App vaatii kirjautumisen kyselyiden luomiseen ja vastaamiseen. Käyttäjän luominen tapahtuu kirjautumisivulla klikkaamalla 'Login'-napin alapuolella olevaa linkkiä.
+#### Käyttäjän luominen
+
+Suvey App vaatii kirjautumisen kyselyiden luomiseen ja vastaamiseen. Käyttäjän luominen tapahtuu kirjautumisivulla klikkaamalla *Login* -napin alapuolella olevaa linkkiä.
 
 ![login](https://user-images.githubusercontent.com/59598363/88786923-cac0f200-d19b-11ea-8dcf-f5ee305dc659.png)
 
-Käyttäjän luomiseen tarvitaan oma nimi, käyttäjänimi ja salasana. Käyttäjän luominen tapahtuu painamalla 'Sign Up'-nappia, jonka jälkeen 'Login to Application'-sivulta pystyy kirjautumaan Survey Appiin.
+Käyttäjän luomiseen tarvitaan oma nimi, käyttäjänimi ja salasana. Käyttäjän luominen tapahtuu painamalla *Sign Up*, jonka jälkeen *Login to Application* -sivulta pystyy kirjautumaan Survey Appiin.
 
-![signup](https://user-images.githubusercontent.com/59598363/88786593-5ede8980-d19b-11ea-9d4e-c14a42a0a594.png)
+![signup](https://user-images.githubusercontent.com/59598363/88881657-a2d39c00-d238-11ea-936c-ae03786dc70d.png)
+
+#### Kirjautuminen
+
+Käyttäjän luomisen jälkeen sivulle pystyy kirjautumaan syöttämällä käyttäjätunnukset ja painamalla *Login*.
+
+![login1](https://user-images.githubusercontent.com/59598363/88881803-fe9e2500-d238-11ea-90f9-c5899711b023.png)
 
 ### Surveys
 
