@@ -1,6 +1,6 @@
 # Survey App
 
-Survey App- sivulla voi luoda erilaisia kyselyitä ja tietovisoja. Käyttäjät voivat vastata toisten käyttäjien kyselyihin ja kerätä dataa omilla kyselyillä. Sovelluksen frontendinä toimii [React](https://reactjs.org/), backendinä [Node.js](https://nodejs.org/en/) ja tietokantana [MongoDB](https://www.mongodb.com/cloud/atlas). Tämä sovellus on julkaistu [Herokuun](https://www.heroku.com/). Toteutettu Full Stack -websovelluskehitys harjoitustyönä.
+Survey App -sivulla voi luoda erilaisia kyselyitä ja tietovisoja. Käyttäjät voivat vastata toisten käyttäjien kyselyihin ja kerätä dataa omilla kyselyillä. Sovelluksen frontendinä toimii [React](https://reactjs.org/), backendinä [Node.js](https://nodejs.org/en/) ja tietokantana [MongoDB](https://www.mongodb.com/cloud/atlas). Tämä sovellus on julkaistu [Herokuun](https://www.heroku.com/). Toteutettu Full Stack -websovelluskehitys harjoitustyönä.
 
 [Survey App (Heroku)](https://survey-app-seeve.herokuapp.com/)  
 [Asennus ja komennot](https://github.com/eseeve/survey-app/blob/master/README.md#asennus-ja-komennot)  
@@ -33,11 +33,6 @@ Käynnistää backendin sovelluskehitysmoodissa käyttäen nodemonia, eli backen
 
 Käynnistää backendin testimoodissa käyttäen testitietokantaa. Testitietokanta tulee olla määriteltynä ympäristömuuttujissa.
 
-
-### `npm run start:test`
-
-Käynnistää backendin testimoodissa käyttäen testitietokantaa. Testitietokanta tulee olla määriteltynä ympäristömuuttujissa.
-
 ### `npm test -- survey-backend/tests/survey_api.test.js`
 
 Suorittaa backendin yksikkötestit.
@@ -50,11 +45,11 @@ Sovelluksen End-to-End testit voi suorittaa Cypressillä. Frontend tulee olla k�
 
 ### Käyttäjän luominen
 
-Suvey App vaatii kirjautumisen kyselyiden luomiseen ja vastaamiseen. Käyttäjän luominen tapahtuu kirjautumisivulla klikkaamalla *Login* -napin alapuolella olevaa linkkiä.
+Survey App vaatii kirjautumisen kyselyiden luomiseen ja vastaamiseen. Käyttäjän luominen tapahtuu kirjautumisivulla klikkaamalla *Login* -napin alapuolella olevaa linkkiä.
 
 ![login](https://user-images.githubusercontent.com/59598363/88786923-cac0f200-d19b-11ea-8dcf-f5ee305dc659.png)
 
-Käyttäjän luomiseen tarvitaan oma nimi, käyttäjänimi ja salasana. Käyttäjän luominen tapahtuu painamalla *Sign Up*, jonka jälkeen *Login to Application* -sivulta pystyy kirjautumaan Survey Appiin.
+Käyttäjän luomiseen tarvitaan oma nimi, käyttäjänimi, salasana ja salasanan vahvistus. Käyttäjän luominen tapahtuu painamalla *Sign Up*, jonka jälkeen *Login to Application* -sivulta pystyy kirjautumaan Survey Appiin.
 
 ![signup](https://user-images.githubusercontent.com/59598363/88882911-93098700-d23b-11ea-9999-894f255acdb2.png)
 
@@ -80,7 +75,7 @@ Kysymyksen luomiseen tarvitaan otsikko, kysymystyyppi ja vastausvaihtoehtoja. *M
 
 ![surveyquestion](https://user-images.githubusercontent.com/59598363/88883039-f3002d80-d23b-11ea-86a4-e4d777dd1391.png)
 
-Lineaarisen skaalan luomiseen tarvitaan otsikko, sekä aloitus -ja lopetusarvo. Skaala voi alkaa arvoilla 0-1 ja loppua arvoilla 2-10. Esimerkiksi jos valitsee väliksi 1-5, niin kyselyn vastaaja voi valita kysymyksen vataukseksi minkä tahansa arvon välillä 1-5. Normaalin kysymyksen tapaan lineaarisen skaalan voi poistaa painamalla skaalan oikeassa yläkulmassa olevaa punaista roskakori -ikonia.
+Lineaarisen skaalan luomiseen tarvitaan otsikko, sekä aloitus -ja lopetusarvo. Skaala voi alkaa arvoilla 0-1 ja loppua arvoilla 2-10. Esimerkiksi jos valitsee väliksi 1-5, niin kyselyn vastaaja voi valita kysymyksen vastaukseksi minkä tahansa arvon välillä 1-5. Normaalin kysymyksen tapaan lineaarisen skaalan voi poistaa painamalla skaalan oikeassa yläkulmassa olevaa punaista roskakori -ikonia.
 
 ![surveylinear](https://user-images.githubusercontent.com/59598363/88883674-9aca2b00-d23d-11ea-9058-7592ce1942cd.png)
 
@@ -92,7 +87,7 @@ Painamalla *Surveys* -sivulla kyselyn *Take Survey* -nappia, pääsee vastaamaan
 
 ![takesurvey](https://user-images.githubusercontent.com/59598363/88884668-c1896100-d23f-11ea-9d94-533f1a74ed1e.png)
 
-Avoimeen kysymykseen voi valita oman vaihtoehdon kirjoittamalla *Other* -kenttään vastauksen ja painamalla *Add*, jonka jälkeen kysykseen tulee valittavaksi uusi vaihtoehto.
+Avoimeen kysymykseen voi valita oman vaihtoehdon kirjoittamalla *Other* -kenttään vastauksen ja painamalla *Add*, jonka jälkeen kysymykseen tulee valittavaksi uusi vaihtoehto.
 
 ![takesurvey1](https://user-images.githubusercontent.com/59598363/88884790-001f1b80-d240-11ea-8cc5-9d3c8b355fa6.png)
 
@@ -102,13 +97,13 @@ Avoimeen kysymykseen voi valita oman vaihtoehdon kirjoittamalla *Other* -kenttä
 
 ![searchsurvey](https://user-images.githubusercontent.com/59598363/88885314-f813ab80-d240-11ea-9a89-c3b46d494fa2.png)
 
-Kyselyt voi myös järjestää vastausten tai käyttäjien mukaan, esimerkiksi painamalla *Sort By* ja *Least Responses* ensimmäisenä näytetään vähiten vastauksia keränneet kyselyt.
+Kyselyt voi myös järjestää vastausten tai käyttäjien mukaan, esimerkiksi painamalla *Sort By* ja *Least Responses*, jolloin ensimmäisenä näytetään vähiten vastauksia keränneet kyselyt.
 
 ![sortsurvey](https://user-images.githubusercontent.com/59598363/88885489-4628af00-d241-11ea-820c-4b3ce9bf0b4b.png)
 
 ## Quizzes
 
-*Surveys* -sivulta pystyy vaihtamaan *Quizzes* -puolelle painamalla nappia *Quizzes*. Takaisin *Surveys* -puolelle pääsee vastaavasti painamalla nappia *Surveys*, joka renderöityy *Quizzes* -napin tilalle. Tällä sivulla pystyy luomaan uusia tietovisoja ja vastaamaan käyttäjien tietovisoihin.
+*Surveys* -sivulta pystyy vaihtamaan *Quizzes* -puolelle painamalla nappia *Quizzes*. Takaisin *Surveys* -puolelle pääsee vastaavasti painamalla *Quizzes* -sivun nappia *Surveys*. Tällä sivulla pystyy luomaan uusia tietovisoja ja vastaamaan käyttäjien tietovisoihin.
 
 ![quizzes](https://user-images.githubusercontent.com/59598363/88888353-d3bacd80-d246-11ea-808a-0d744377c708.png)
 
@@ -130,7 +125,7 @@ Painamalla *Quizzes* -sivulla tietovisan *Take Quiz* -nappia, pääsee vastaamaa
 
 ![takequiz](https://user-images.githubusercontent.com/59598363/88890218-fd292880-d249-11ea-80a4-f14e492c6bc3.png)
 
-Kun tietovisan on palauttanut, pääsee *Score* -näkymään, jossa näkyy vastaajan pisteet ja kysymyskohtaiset vastaukset. Jokaisesta kysymyksestä voi saada yhden pisteen, jolloin täydet pisteet vastaavat kysymysten määrää. *Score* -sivulla näkyy tietovisan oikeat vastaukset ja mitkä kysymykset vastaaja sai oikein. Vastaaja voi halutessaan vastata tietovisaan uudelleen painamalla *Take 'quiz name' again*, tai palata takaisin *Quizzes* -sivulla painamalla *Back to quizzes*.
+Kun tietovisan on palauttanut, pääsee *Score* -näkymään, jossa näkyy vastaajan pisteet ja kysymyskohtaiset vastaukset. Jokaisesta kysymyksestä voi saada yhden pisteen, jolloin täydet pisteet vastaavat kysymysten määrää. *Score* -sivulla näkyy tietovisan oikeat vastaukset ja mitkä kysymykset vastaaja sai oikein. Vastaaja voi halutessaan vastata tietovisaan uudelleen painamalla *Take 'quiz name' again*, tai palata takaisin *Quizzes* -sivulle painamalla *Back to quizzes*.
 
 ![score](https://user-images.githubusercontent.com/59598363/88890572-7b85ca80-d24a-11ea-925b-c932eb3f19d0.png)
 
@@ -166,19 +161,63 @@ Sovelluksen kotisivuna on *Surveys*. Kotisivulla *Menu* -valikossa navigointivai
 
 ## My Surveys
 
+Sovelluksen *My Surveys* -sivulle pääsee kotisivulla painamalla *Menu* -valikon *My Surveys* -nappia. Sivulla näkyy kaikki käyttäjän luomat kyselyt ja tietovisat, sekä vaihtoehdot vaihda salasana ja poista käyttäjätili.
+
+![mysurveys](https://user-images.githubusercontent.com/59598363/88901663-bba07980-d259-11ea-9fb8-c6bc8fd72a6c.png)
+
 ### Kyselyn tai tietovisan editointi
+
+Jokaista kyselyä tai tietovisaa voi muokata sen luomisen jälkeen painamalla *Edit Survey* -nappia *My Surveys* -sivulla. Muokkausnäkymä on samanlainen kuin uutta kyselyä tai tietovisaa luodessa, mutta sen kentät on täytetty jo valmiiksi luotujen kysymysten mukaan. Kyselyyn tai tietovisaan voi tällä sivulla lisätä tai poistaa kysymyksiä, tai muokata entisiä kysymyksiä. Jos muokkauksia ei halua tallentaa, *Menu* -valikosta voi palata takaisin kotisivulle. Kun muokkaus on valmis ja muutokset halutaan tallentaa, voi painaa sivun alakulmassa olevaa *Submit* -nappia.
+
+![editsurvey](https://user-images.githubusercontent.com/59598363/88902160-7cbef380-d25a-11ea-91d6-45ae7e40a5d9.png)
 
 ### Kyselyn tai tietovisan poistaminen
 
+Kyselyn tai tietovisan poistaminen tapahtuu painamalla *Delete Survey* tai *Delete Quiz*. Poistaminen tulee vahvistaa painamalla uudesta ikkunasta *OK* jos haluaa jatkaa kyselyn tai tietovisan poistamista. Tapahtuman voi myös peruuttaa painamalla *Peruuta/Cancel*.
+
+![deletesurvey](https://user-images.githubusercontent.com/59598363/88902564-1090bf80-d25b-11ea-9ef3-842c6abdb766.png)
+
 ### Kyselyn tai tietovisan linkin kopiointi
+
+Kyselyn tai tietovisan linkin voi kopioida *Copy link* -napista, jolloin linkki kopioituu leikepöydälle, josta sen voi jakaa muille tai avata uuteen ikkunaan.
 
 ### Kyselyn tulokset
 
+Kyselyn tulokset löytyy painamalla *My Surveys* -sivulla kyselyn *View results* -linkkiä. Tuloksissa näkyy vastaajien määrä, mahdollisuus tilata vastausilmoituksen sähköpostiin, sekä kysymyskohtaiset tilastot vastauksista. Alla kuva *Multiple Choice* -kysymyksen graafista. 
+
+![surveyresult](https://user-images.githubusercontent.com/59598363/88903467-6d40aa00-d25c-11ea-90b0-aab977ef6e6b.png)
+
+Kyselyn vastaukset voi myös nollata painamalla viimeisen kysymyksen alla olevasta napista *Delete Responses*, jolloin kaikki kerätty data kysymyksistä poistetaan. Alla kuva *Linear Scale* -kysymyksen graafista ja *Delete Responses* -napista.
+
+![surveyresult1](https://user-images.githubusercontent.com/59598363/88903862-feb01c00-d25c-11ea-97a2-82e3dbf49d88.png)
+
+Kyselyn vastauksien ilmoitukset voi myös tilata, jolloin kyselylle annettuun sähköpostiin saapuu ilmoitus kyselyn uudesta vastauksesta ja kyselyn vastaajasta. Kysely tilataan painamalla *Subscribe*, jonka jälkeen uuden ikkunan *Email* -kenttään kirjoitetaan haluttu sähköpostiosoite, joka tallennetaan painamalla *Subscribe*. Tilauksen voi peruuttaa painamalla kyselyn tulossivulla *Unsubscribe* tilauksen jälkeen, jolloin sähköpostiosoite poistetaan kyselystä.
+
+![subscribe](https://user-images.githubusercontent.com/59598363/88904355-a75e7b80-d25d-11ea-9d03-e580f695be25.png)
+
 ### Tietovisan tulokset
+
+Tietovisan tulokset löytyy painamalla *My Surveys* -sivulla tietovisan *View results* -linkkiä. Tuloksissa näkyy vastaajien määrä, mahdollisuus tilata vastausilmoituksen sähköpostiin, tilastoja vastauksista ja pisteistä, sekä kysymyskohtaiset tilastot vastauksista. Tilastoissa näkyy pisteiden keskiarvo, mediaani ja vaihteluväli. Tilastoissa näkyy myös tietovisan vastaajien pistemäärien jakauma. 
+
+![quizresults](https://user-images.githubusercontent.com/59598363/88905638-286a4280-d25f-11ea-939c-0ee9ebd39699.png)
+
+Kysymysten vastausten jakaumat näkyvät *Questions* -osiossa. Kysymysten graafeissa näkyy oikeiden vastausten määrä verrattuna kaikkiin vastauksiin ja oikeiden vastausten jakauma. Oikea vastaus on graafissa väritetty vihreällä ja väärät vastaukset harmaalla.
+
+![quizresults1](https://user-images.githubusercontent.com/59598363/88906210-d544bf80-d25f-11ea-9813-78f3b6929357.png)
+
+Tietovisan vastausten nollaaminen ja tilaaminen tapahtuu samalla tavalla kuin kyselyiden. Ks. [Kyselyn tulokset](https://github.com/eseeve/survey-app/blob/master/README.md#kyselyn-tulokset)
 
 ### Salasanan vaihto
 
+Käyttäjätilin salasanan voi vaihtaa painamalla *Change Your Password* -nappia *My Surveys* -sivulla. Uuden salasanan voi kirjoittaa *New Password* -kenttään. Salasanan voi vaihtaa varmistettua sen *Confirm New Password* -kenttään ja painamalla *Change Password*.
+
+![changepassword](https://user-images.githubusercontent.com/59598363/88907211-0d98cd80-d261-11ea-96e8-260d239288f3.png)
+
 ### Käyttäjätilin poistaminen
+
+Käyttäjätilin voi poistaa painamalla *Delete Your Account* -nappia *My Surveys* -sivulla. Käyttäjätilin poistaessa myös kaikki käyttäjän luomat kyselyt ja tietovisat poistuvat. Tapahtuma tulee vahvistaa painamalla uudesta ikkunasta *OK*. Tapahtuman voi myös peruuttaa painamalla *Peruuta/Cancel*.
+
+![deleteaccount](https://user-images.githubusercontent.com/59598363/88907874-d676ec00-d261-11ea-9641-edf46cacba82.png)
 
 # Työaikakirjanpito
 
@@ -250,4 +289,5 @@ Sovelluksen kotisivuna on *Surveys*. Kotisivulla *Menu* -valikossa navigointivai
 | 29.7       | 3         | Sähköposti-ilmoituksen lähetystoiminnallisuus ja sen testaaminen (E2E) |
 |            | 1         | AppFooterin ja Info-napin lisäys, UI-korjauksia ja muutoksia |
 |            | 2         | README:n rakenteen muutos, projektin tietojen päivitys ja dokumentointi ja lisenssin lisäys projektiin |
-| Yht.       | 169       | | 
+| 30.7       | 6         | Dokumentaatio ja käyttöohje, pieniä UI- korjauksia ja tietokannan täyttö kyselyillä, tietovisoilla ja vastauksilla |
+| Yht.       | 175       | | 
