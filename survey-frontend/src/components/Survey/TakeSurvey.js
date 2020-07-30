@@ -144,7 +144,7 @@ const LinearScaleOption = ({ option, title }) => {
 const LinearScaleQuestion = ({ question }) => {
   return (
     <div style={{marginTop: '10px', marginBottom: '12px'}}>
-      <strong style={{fontSize: '18px'}}>{question.title}</strong>
+      <strong style={{fontSize: '16px'}}>{question.title}</strong>
       <Grid columns='equal'>
         {question.options.filter(o => !o.custom).map(o =>
         <Grid.Column style={{marginTop: '12px'}} key={o.option}>
