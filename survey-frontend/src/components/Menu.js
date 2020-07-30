@@ -37,7 +37,7 @@ const Menu = ({ link }) => {
           <ThemeSwitch />
         </Dropdown.Item>
         <Dropdown.Item>
-          <a href='https://github.com/eseeve/survey-app/blob/master/README.md'>
+          <a href='https://github.com/eseeve/survey-app/blob/master/README.md#k%C3%A4ytt%C3%B6ohjeet'>
             <Button>Info</Button>
           </a>
         </Dropdown.Item>
