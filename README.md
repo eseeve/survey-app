@@ -8,7 +8,7 @@ Survey App- sivulla voi luoda erilaisia kyselyitä ja tietovisoja. Käyttäjät 
 [Työaikakirjanpito](https://github.com/eseeve/survey-app/blob/master/README.md#ty%C3%B6aikakirjanpito)  
 [Lisenssi](https://github.com/eseeve/survey-app/blob/master/LICENSE.txt)
 
-## Asennus ja komennot 
+# Asennus ja komennot 
 
 Frontendin ja Backendin riippuvuuksien asennus:  
 
@@ -44,11 +44,11 @@ Suorittaa backendin yksikkötestit.
 
 Sovelluksen End-to-End testit voi suorittaa Cypressillä. Frontend tulee olla käynnissä ja backend testimoodissa, jonka jälkeen survey-frontend/ kansiossa voi suorittaa komennon `npm run cypress:open`.
 
-## Käyttöohjeet
+# Käyttöohjeet
 
-### Käyttäjän luominen ja kirjautuminen
+## Käyttäjän luominen ja kirjautuminen
 
-#### Käyttäjän luominen
+### Käyttäjän luominen
 
 Suvey App vaatii kirjautumisen kyselyiden luomiseen ja vastaamiseen. Käyttäjän luominen tapahtuu kirjautumisivulla klikkaamalla *Login* -napin alapuolella olevaa linkkiä.
 
@@ -56,59 +56,93 @@ Suvey App vaatii kirjautumisen kyselyiden luomiseen ja vastaamiseen. Käyttäjä
 
 Käyttäjän luomiseen tarvitaan oma nimi, käyttäjänimi ja salasana. Käyttäjän luominen tapahtuu painamalla *Sign Up*, jonka jälkeen *Login to Application* -sivulta pystyy kirjautumaan Survey Appiin.
 
-![signup](https://user-images.githubusercontent.com/59598363/88881657-a2d39c00-d238-11ea-936c-ae03786dc70d.png)
+![signup](https://user-images.githubusercontent.com/59598363/88882911-93098700-d23b-11ea-9999-894f255acdb2.png)
 
-#### Kirjautuminen
+### Kirjautuminen
 
 Käyttäjän luomisen jälkeen sivulle pystyy kirjautumaan syöttämällä käyttäjätunnukset ja painamalla *Login*.
 
-![login1](https://user-images.githubusercontent.com/59598363/88881803-fe9e2500-d238-11ea-90f9-c5899711b023.png)
+![login1](https://user-images.githubusercontent.com/59598363/88882891-87b65b80-d23b-11ea-9d25-7163950fbc7a.png)
 
-### Surveys
+## Surveys
 
-#### Kyselyn luominen
+Kirjautumisen jälkeen avautuu *Surveys* -näkymä, jossa pystyy luomaan uusia kyselyitä ja vastaamaan muiden käyttäjien kyselyihin.
 
-#### Kyselyyn vastaaminen
+![surveys](https://user-images.githubusercontent.com/59598363/88882044-bc291800-d239-11ea-841f-d91b7ef34b68.png)
 
-#### Kyselyiden järjestely ja etsiminen
+### Kyselyn luominen
 
-### Quizzes
+Painamalla *Surveys* -sivulla nappia *Create a new survey* pääsee luomaan uuden kyselyn. Kyselyn luomiseen tarvitaan nimi ja kysymyksiä. Kyselylle voi myös kirjoittaa halutessaan kuvauksen *Description* -kenttään. Uusien kysymyksien lisäys kyselyyn tapahtuu painamalla *Add Question*. Kyselyyn voi myös lisätä lineaarisen skaalan painamalla *Add Linear Scale*. Jos kyselyn luomisen haluaa aloittaa alusta, tulee painaa *Clear Values*.
 
-#### Tietovisan luominen
+![newsurvey](https://user-images.githubusercontent.com/59598363/88882396-8d5f7180-d23a-11ea-9876-b110dfb3b8f3.png)
 
-#### Tietovisaan vastaaminen
+Kysymyksen luomiseen tarvitaan otsikko, kysymystyyppi ja vastausvaihtoehtoja. *Multiple Choice* -kysymyksiin vastaaja voi valita vain yhden vaihtoehdoista, kun taas *Checkboxes* -kysymyksiin voi valita useamman vaihtoehdon. Kysymykseen lisätään vaihtoehtokenttiä painamalla *Add Option*. Vaihtoehtoja voi poistaa kenttien vieressä olevista harmaista rasteista. Kysymyksen voi myös tehdä avoimeksi lisäämällä rastin ruutuun *Add 'other'*. Tällöin vastaaja voi kirjoittaa oman vastauksen vastatessaan kyselyyn, jos jokin vaihtoehdoista ei sovi hänelle. Koko kysymyksen voi poistaa painamalla kysymyksen oikeassa yläkulmassa olevaa punaista roskakori -ikonia.
 
-#### Tietovisojen järjestely ja etsiminen
+![surveyquestion](https://user-images.githubusercontent.com/59598363/88883039-f3002d80-d23b-11ea-86a4-e4d777dd1391.png)
 
-#### Search Bar
+Lineaarisen skaalan luomiseen tarvitaan otsikko, sekä aloitus -ja lopetusarvo. Skaala voi alkaa arvoilla 0-1 ja loppua arvoilla 2-10. Esimerkiksi jos valitsee väliksi 1-5, niin kyselyn vastaaja voi valita kysymyksen vataukseksi minkä tahansa arvon välillä 1-5. Normaalin kysymyksen tapaan lineaarisen skaalan voi poistaa painamalla skaalan oikeassa yläkulmassa olevaa punaista roskakori -ikonia.
 
-### Menu
+![surveylinear](https://user-images.githubusercontent.com/59598363/88883674-9aca2b00-d23d-11ea-9058-7592ce1942cd.png)
 
-#### Navigointi
+Kun kysely on valmis, sen voi julkaista painamalla *Submit*.
 
-#### Dark mode
+### Kyselyyn vastaaminen
 
-#### Info
+Painamalla *Surveys* -sivulla kyselyn *Take Survey* -nappia, pääsee vastaamaan kyselyyn. Kyselyn jokaiseen kysymykseen tulee vastata ennen kuin kyselyn voi palauttaa painamalla *Submit*. *Multiple Choice* -kysymyksiin voi valita yhden vaihtoehdoista (ks. kuva alla, ensimmäinen kysymys). *Checkboxes* -kysymyksiin voi valita yhden tai useamman vastauksen (ks. kuva alla, toinen kysymys). *Linear Scale* -kysymyksiin voi valita yhden vaihtoehdoista annetulla välillä (ks. kuva alla, viimeinen kysymys).
 
-#### Uloskirjautuminen
+![takesurvey](https://user-images.githubusercontent.com/59598363/88884668-c1896100-d23f-11ea-9d94-533f1a74ed1e.png)
 
-### My Surveys
+Avoimeen kysymykseen voi valita oman vaihtoehdon kirjoittamalla *Other* -kenttään vastauksen ja painamalla *Add*, jonka jälkeen kysykseen tulee valittavaksi uusi vaihtoehto.
 
-#### Kyselyn tai tietovisan editointi
+![takesurvey1](https://user-images.githubusercontent.com/59598363/88884790-001f1b80-d240-11ea-8cc5-9d3c8b355fa6.png)
 
-#### Kyselyn tai tietovisan poistaminen
+### Kyselyiden järjestely ja etsiminen
 
-#### Kyselyn tai tietovisan linkin kopiointi
+*Surveys* -sivulla kyselyitä voi etsiä kirjoittamalla *Search* -kenttään joko kyselyn tai käyttäjän nimen, jolloin sivulla näytetään vain hakutulokseen vastaavat kyselyt.
 
-#### Kyselyn tulokset
+![searchsurvey](https://user-images.githubusercontent.com/59598363/88885314-f813ab80-d240-11ea-9a89-c3b46d494fa2.png)
 
-#### Tietovisan tulokset
+Kyselyt voi myös järjestää vastausten tai käyttäjien mukaan, esimerkiksi painamalla *Sort By* ja *Least Responses* ensimmäisenä näytetään vähiten vastauksia keränneet kyselyt.
 
-#### Salasanan vaihto
+![sortsurvey](https://user-images.githubusercontent.com/59598363/88885489-4628af00-d241-11ea-820c-4b3ce9bf0b4b.png)
 
-#### Käyttäjätilin poistaminen
+## Quizzes
 
-## Työaikakirjanpito
+### Tietovisan luominen
+
+### Tietovisaan vastaaminen
+
+### Tietovisojen järjestely ja etsiminen
+
+### Search Bar
+
+## Menu
+
+### Navigointi
+
+### Dark mode
+
+### Info
+
+### Uloskirjautuminen
+
+## My Surveys
+
+### Kyselyn tai tietovisan editointi
+
+### Kyselyn tai tietovisan poistaminen
+
+### Kyselyn tai tietovisan linkin kopiointi
+
+### Kyselyn tulokset
+
+### Tietovisan tulokset
+
+### Salasanan vaihto
+
+### Käyttäjätilin poistaminen
+
+# Työaikakirjanpito
 
 | Päivämäärä | Työtunnit | Mitä tein  |
 | :---------:|:----------| :----------|
