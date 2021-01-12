@@ -8,7 +8,8 @@ on:
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-18.04
-    environment: .env
+    env:
+      URI: ${{ secrets.TEST_MONGODB_URI }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -27,5 +28,5 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start:test, npm start:front
+          start: TEST_MONGODB_URI="$URI" npm run start:test, npm start:front
           wait-on: http://localhost:3001
