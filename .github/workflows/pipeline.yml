@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
 
 jobs:
   deployment_pipeline:
@@ -26,9 +29,10 @@ jobs:
         uses: cypress-io/github-action@v2
         env:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
           PORT: 3001
         with:
           command: npm run test:e2e
-          start: npm run start:test, npm start:front
+          start: npm run start:test, npm run start:front
           wait-on: http://localhost:3001
