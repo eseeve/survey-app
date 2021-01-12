@@ -48,6 +48,8 @@
     "cypress": "^4.11.0",
     "deep-freeze": "0.0.1",
     "eslint": "^6.6.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-react": "^7.22.0",
     "jest": "24.9.0"
   },
   "proxy": "http://localhost:3001"

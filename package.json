@@ -12,7 +12,7 @@
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "start:test": "cross-env NODE_ENV=test node survey-backend",
     "build": "cd survey-frontend/ && npm install && npm run build",
-    "lint": "eslint ."
+    "lint": "eslint ./survey-backend"
   },
   "cacheDirectories": [
     "node_modules",
