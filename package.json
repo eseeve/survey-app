@@ -2,7 +2,7 @@
   "name": "survey-backend",
   "version": "1.0.0",
   "description": "Survey app lets you make surveys and collect results from them.",
-  "main": "index.js",
+  "main": "survey-frontend/src/index.js",
   "engines": {
     "node": "12.x"
   },
