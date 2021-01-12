@@ -2,7 +2,7 @@ describe('Survey app', function() {
   describe('When not signed up', function() {
     beforeEach(function() {
       cy.request('POST', 'http://localhost:3001/api/testing/reset')
-      cy.visit('http://localhost:3000')
+      cy.visit('http://localhost:3001')
     })
     it('Login page can be opened', function() {
       cy.contains('Login to application')
@@ -58,7 +58,7 @@ describe('Survey app', function() {
         password: 'salasana'
       }
       cy.request('POST', 'http://localhost:3001/api/users/', user)
-      cy.visit('http://localhost:3000')
+      cy.visit('http://localhost:3001')
     })
     it('User can login', function() {
       cy.get('form').within(function() {
@@ -83,7 +83,7 @@ describe('Survey app', function() {
           username: 'testi', password: 'salasana'
         }).then(response => {
           localStorage.setItem('loggedSurveyAppUser', JSON.stringify(response.body))
-          cy.visit('http://localhost:3000')
+          cy.visit('http://localhost:3001')
         })
       })
       it('User is saved to store', function() {
@@ -286,7 +286,7 @@ describe('Survey app', function() {
               }
             ]
           })
-          cy.visit('http://localhost:3000')
+          cy.visit('http://localhost:3001')
         })
         it('Survey can be answered', function() {
           cy.get('#take-survey').click()
@@ -479,7 +479,7 @@ describe('Survey app', function() {
           beforeEach(function() {
             cy.createUser({ name: 'Tiina Testaaja', username: 'testi1', password: 'secret'})
             cy.login({ username: 'testi1', password: 'secret' })
-            cy.visit('http://localhost:3000')
+            cy.visit('http://localhost:3001')
           })
           it('My surveys page is empty', function() {
             cy.contains('Menu').click()
