@@ -29,7 +29,6 @@ jobs:
         uses: cypress-io/github-action@v2
         env:
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
           PORT: 3001
         with:
