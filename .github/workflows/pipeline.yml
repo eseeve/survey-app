@@ -33,6 +33,7 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
           PORT: 3001
         with:
+          build: npm run build
           command: npm run test:e2e
           start: npm run start:test
           wait-on: http://localhost:3001
