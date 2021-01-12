@@ -290,4 +290,5 @@ Käyttäjätilin voi poistaa painamalla *Delete Your Account* -nappia *My Survey
 |            | 1         | AppFooterin ja Info-napin lisäys, UI-korjauksia ja muutoksia |
 |            | 2         | README:n rakenteen muutos, projektin tietojen päivitys ja dokumentointi ja lisenssin lisäys projektiin |
 | 30.7       | 6         | Dokumentaatio ja käyttöohje, pieniä UI- korjauksia ja tietokannan täyttö kyselyillä, tietovisoilla ja vastauksilla |
-| Yht.       | 175       | | 
+| 12.1       | 4         | Github Actions Deployment Pipeline |
+| Yht.       | 179       | | 
