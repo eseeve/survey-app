@@ -8,8 +8,6 @@ on:
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-18.04
-    env:
-      URI: ${{ secrets.TEST_MONGODB_URI }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -26,6 +24,8 @@ jobs:
         run: npm run build
       - name: e2e tests
         uses: cypress-io/github-action@v2
+        env:
+          URI: ${{ secrets.TEST_MONGODB_URI }}
         with:
           command: npm run test:e2e
           start: TEST_MONGODB_URI="$URI" PORT="3001" npm run start:test, npm start:front
