@@ -14,7 +14,10 @@ jobs:
         with:
           node-version: '12.x'
       - name: npm install
-        run: npm install
+        run: |
+          npm install
+          cd survey-frontend
+          npm install
       - name: lint
         run: npm run lint
       - name: build
@@ -23,5 +26,5 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start
-          wait-on: http://localhost:3000
+          start: npm run start:test, npm start:front
+          wait-on: http://localhost:3001
