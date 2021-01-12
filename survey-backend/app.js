@@ -17,6 +17,10 @@ const mailRouter = require('./controllers/mail')
 
 const app = express()
 
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
+
 mongoose.set('useCreateIndex', true)
 logger.info('connecting to', config.MONGODB_URI)
 

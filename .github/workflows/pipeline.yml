@@ -36,3 +36,13 @@ jobs:
           command: npm run test:e2e
           start: npm run start:test
           wait-on: http://localhost:3001
+      - name: Deploy
+        uses: akhileshns/heroku-deploy@v3.8.9
+        if: ${{ github.event_name == 'push' }}
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: survey-app-seeve
+          heroku_email: elias.seeve@gmail.com
+          healthcheck: "https://survey-app-seeve.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
