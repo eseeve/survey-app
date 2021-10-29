@@ -45,11 +45,7 @@
     "morgan": "^1.10.0",
     "mquery": ">=3.2.3",
     "node-notifier": ">=8.0.1",
-<<<<<<< HEAD
-    "nodemailer": "^6.6.2"
-=======
     "nodemailer": "^6.4.16"
->>>>>>> 40124b9d41f938dc5ad71ec50859d26e4413d515
   },
   "devDependencies": {
     "eslint": "^6.6.0",
